@@ -203,14 +203,35 @@
 		{if isset($features) && $features}
 					<!-- Lee added -->
 			<div class = "row">
+					<div id="homepage-slider">
+						{if isset($homeslider_slides.0) && isset($homeslider_slides.0.sizes.1)}{capture name='height'}{$homeslider_slides.0.sizes.1}{/capture}{/if}
+						<ul id="homeslider"{if isset($smarty.capture.height) && $smarty.capture.height} style="max-height:{$smarty.capture.height}px;"{/if}>
+							{foreach from=$homeslider_slides item=slide}
+								{if $slide.active}
+									<li class="homeslider-container">
+										<a href="{$slide.url|escape:'html':'UTF-8'}" title="{$slide.legend|escape:'html':'UTF-8'}">
+											<img src="{$link->getMediaLink("`$smarty.const._MODULE_DIR_`homeslider/images/`$slide.image|escape:'htmlall':'UTF-8'`")}"{if isset($slide.size) && $slide.size} {$slide.size}{else} width="100%" height="100%"{/if} alt="{$slide.legend|escape:'htmlall':'UTF-8'}" />
+										</a>
+										{if isset($slide.description) && trim($slide.description) != ''}
+											<div class="homeslider-description">{$slide.description}</div>
+										{/if}
+									</li>
+								{/if}
+							{/foreach}
+						</ul>
+					</div>
+			</div>
+			<div class = "row">
 			<!-- Bootrap Lee -->
-			<div role="tabpanel">
+			<div role="tabpanel" class="col-xs-6">
 							  <!-- Nav tabs -->
 				  <ul class="nav nav-tabs" role="tablist">
-					<li role="presentation" class="active"><a href="#word-of-day" aria-controls="word-of-day" role="tab" data-toggle="tab">Word of day</a></li>
-					<li role="presentation"><a href="#product-details" aria-controls="product-details" role="tab" data-toggle="tab">Product Details</a></li>
-					<li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Messages</a></li>
-					<li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Settings</a></li>
+					<li role="presentation" class="active">
+						<a style="border-width: 1px;border-bottom-right-radius: 30px;" href="#word-of-day" aria-controls="word-of-day" role="tab" data-toggle="tab">Word of day</a></li>
+					<li role="presentation">
+					<a style="border-width: 1px;border-bottom-right-radius: 30px;"href="#product-details" aria-controls="product-details" role="tab" data-toggle="tab">Product Details</a></li>
+					<li role="presentation">
+					<a style="border-width: 1px;border-bottom-right-radius: 30px;left = -20px;"href="#comments" aria-controls="comments" role="tab" data-toggle="tab">Comments</a></li>
 				  </ul>
 
 				  <!-- Tab panes -->
@@ -255,8 +276,96 @@
 							<!--end  More info -->
 						{/if}
 					</div>
-					<div role="tabpanel" class="tab-pane" id="messages">message</div>
-					<div role="tabpanel" class="tab-pane" id="settings">settings</div>
+					<div role="tabpanel" class="tab-pane" id="comments">
+						<div id="product_comments_block_tab">
+							<div class="row">
+								<div class="col-sm-3">Submit</div>
+								<div class="col-sm-3">Rules of forum</div>
+								<hr />
+							</div>
+							{if $comments}
+								{foreach from=$comments item=comment}
+									{if $comment.content}
+									<div class="comment row" itemprop="review" itemscope itemtype="http://schema.org/Review">
+										<div class="comment_author col-sm-2">
+											<span>{l s='Grade' mod='productcomments'}&nbsp;</span>
+											<div class="star_content clearfix"  itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating">
+												{section name="i" start=0 loop=5 step=1}
+													{if $comment.grade le $smarty.section.i.index}
+														<div class="star"></div>
+													{else}
+														<div class="star star_on"></div>
+													{/if}
+												{/section}
+												<meta itemprop="worstRating" content = "0" />
+												<meta itemprop="ratingValue" content = "{$comment.grade|escape:'html':'UTF-8'}" />
+												<meta itemprop="bestRating" content = "5" />
+											</div>
+											<div class="comment_author_infos">
+												<strong itemprop="author">{$comment.customer_name|escape:'html':'UTF-8'}</strong>
+												<meta itemprop="datePublished" content="{$comment.date_add|escape:'html':'UTF-8'|substr:0:10}" />
+												<em>{dateFormat date=$comment.date_add|escape:'html':'UTF-8' full=0}</em>
+											</div>
+										</div> <!-- .comment_author -->
+
+										<div class="comment_details col-sm-10">
+											<p itemprop="name" class="title_block">
+												<strong>{$comment.title}</strong>
+											</p>
+											<p itemprop="reviewBody">{$comment.content|escape:'html':'UTF-8'|nl2br}</p>
+											<ul>
+												{if $comment.total_advice > 0}
+													<li>
+														{l s='%1$d out of %2$d people found this review useful.' sprintf=[$comment.total_useful,$comment.total_advice] mod='productcomments'}
+													</li>
+												{/if}
+												{if $is_logged}
+													{if !$comment.customer_advice}
+													<li>
+														{l s='Was this comment useful to you?' mod='productcomments'}
+														<button class="usefulness_btn btn btn-default button button-small" data-is-usefull="1" data-id-product-comment="{$comment.id_product_comment}">
+															<span>{l s='Yes' mod='productcomments'}</span>
+														</button>
+														<button class="usefulness_btn btn btn-default button button-small" data-is-usefull="0" data-id-product-comment="{$comment.id_product_comment}">
+															<span>{l s='No' mod='productcomments'}</span>
+														</button>
+													</li>
+													{/if}
+													{if !$comment.customer_report}
+													<li>
+														<span class="report_btn" data-id-product-comment="{$comment.id_product_comment}">
+															{l s='Report abuse' mod='productcomments'}
+														</span>
+													</li>
+													{/if}
+												{/if}
+											</ul>
+										</div><!-- .comment_details -->
+
+									</div> <!-- .comment -->
+									{/if}
+								{/foreach}
+								{if (!$too_early AND ($is_logged OR $allow_guests))}
+								<p class="align_center">
+									<a id="new_comment_tab_btn" class="btn btn-default button button-small open-comment-form" href="#new_comment_form">
+										<span>{l s='Write your review' mod='productcomments'} !</span>
+									</a>
+								</p>
+								{/if}
+							{else}
+								{if (!$too_early AND ($is_logged OR $allow_guests))}
+								<p class="align_center">
+									<a id="new_comment_tab_btn" class="btn btn-default button button-small open-comment-form" href="#new_comment_form">
+										<span>{l s='Be the first to write your review' mod='productcomments'} !</span>
+									</a>
+								</p>
+								{else}
+								<p class="align_center">{l s='No customer comments for the moment.' mod='productcomments'}</p>
+								{/if}
+							{/if}
+						</div> <!-- #product_comments_block_tab -->
+					</div>
+					
 				  </div>
 
 				<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
