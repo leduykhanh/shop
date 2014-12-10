@@ -8,10 +8,10 @@
   .shop-phone i {
     font-size: 21px;
     line-height: 21px;
-    color: white;
+    color: #0071bc;
     padding-right: 7px; }
   .shop-phone strong {
-    color: white; }
+    color: #0071bc; }
 
 #contact-link, .static-page-menu {
   float: right;
@@ -24,7 +24,7 @@
     }
   #contact-link a, .static-page-menu a{
     display: block;
-    color: white;
+    color: #0071bc;
     font-weight: bold;
     padding: 8px 10px 11px 10px;
     text-shadow: 1px 1px rgba(0, 0, 0, 0.2);
