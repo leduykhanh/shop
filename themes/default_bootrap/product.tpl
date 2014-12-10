@@ -321,7 +321,7 @@
 					<div role="tabpanel" class="tab-pane" id="comments">
 						<div id="product_comments_block_tab">
 							<div class="row">
-								<div class="col-sm-3">Submit</div>
+								<div class="col-sm-3">Add a comment</div>
 								<div class="col-sm-3">Rules of forum</div>
 								<hr />
 							</div>
@@ -345,8 +345,7 @@
 											</div>
 											<div class="comment_author_infos">
 												<strong itemprop="author">{$comment.customer_name|escape:'html':'UTF-8'}</strong>
-												<meta itemprop="datePublished" content="{$comment.date_add|escape:'html':'UTF-8'|substr:0:10}" />
-												<em>{dateFormat date=$comment.date_add|escape:'html':'UTF-8' full=0}</em>
+
 											</div>
 										</div> <!-- .comment_author -->
 
@@ -355,6 +354,8 @@
 												<strong>{$comment.title}</strong>
 											</p>
 											<p itemprop="reviewBody">{$comment.content|escape:'html':'UTF-8'|nl2br}</p>
+												<meta itemprop="datePublished" content="{$comment.date_add|escape:'html':'UTF-8'|substr:0:10}" />
+												<em>{dateFormat date=$comment.date_add|escape:'html':'UTF-8' full=0}</em>
 											<ul>
 												{if $comment.total_advice > 0}
 													<li>
