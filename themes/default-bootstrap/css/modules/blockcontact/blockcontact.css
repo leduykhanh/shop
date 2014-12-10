@@ -36,7 +36,7 @@
         padding-left: 5px;
         padding-right: 5px; } }
     #contact-link a:hover, #contact-link a.active, 
-    #contact-link a:hover, #contact-link a.active{
+    .static-page-menu a:hover, #contact-link a.active{
       background: #2b2b2b; 
     }
 
