@@ -25,6 +25,12 @@
 <div id="contact-link">
 	<a href="{$link->getPageLink('contact', true)|escape:'html':'UTF-8'}" title="{l s='Help & Contact' mod='blockcontact'}">{l s='Help & Contact' mod='blockcontact'}</a>
 </div>
+<div class="static-page-menu">
+    <a href = "#">How It Works</a>
+</div>
+<div class="static-page-menu">
+    <a href = "#">History</a>
+</div>
 {if $telnumber}
 	<span class="shop-phone">
 		<i class="icon-phone"></i>{l s='Call us now:' mod='blockcontact'} <strong>{$telnumber}</strong>
