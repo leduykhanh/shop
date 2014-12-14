@@ -202,7 +202,7 @@
 		{/if}
 		{if isset($features) && $features}
 					<!-- Lee added -->
-			<div class = "row">
+<!--			<div class = "row">
 					<div id="homepage-slider">
 						{if isset($homeslider_slides.0) && isset($homeslider_slides.0.sizes.1)}{capture name='height'}{$homeslider_slides.0.sizes.1}{/capture}{/if}
 						<ul id="homeslider"{if isset($smarty.capture.height) && $smarty.capture.height} style="max-height:{$smarty.capture.height}px;"{/if}>
@@ -221,7 +221,8 @@
 						</ul>
 					</div>
 			</div>
-			<div class = "row">
+-->
+			<div style = "position:absolute;top:100px;right:100px"class = "row">
 								<!-- prices -->
 					<div class="price">
 						<p class="our_price_display" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
@@ -269,11 +270,13 @@
 							  <!-- Nav tabs -->
 				  <ul class="nav nav-tabs" role="tablist">
 					<li role="presentation" class="active">
-						<a style="border-width: 1px;border-bottom-right-radius: 30px;" href="#word-of-day" aria-controls="word-of-day" role="tab" data-toggle="tab">Word of day</a></li>
+						<a style="border: solid 1px #000000;border-bottom-right-radius: 30px;" href="#word-of-day" aria-controls="word-of-day" role="tab" data-toggle="tab">Word of day</a></li>
 					<li role="presentation">
-					<a style="border-width: 1px;border-bottom-right-radius: 30px;"href="#product-details" aria-controls="product-details" role="tab" data-toggle="tab">Product Details</a></li>
+					<a style="border-left: none;border-right: solid 1px #000000;border-top: solid 1px #000000;
+					border-bottom: solid 1px #000000;border-bottom-right-radius:30px; left:-30px; padding-left:30px;"href="#product-details" aria-controls="product-details" role="tab" data-toggle="tab">Product Details</a></li>
 					<li role="presentation">
-					<a style="border-width: 1px;border-bottom-right-radius: 30px;left = -20px;"href="#comments" aria-controls="comments" role="tab" data-toggle="tab">Comments</a></li>
+					<a style="border-left: none;border-right: solid 1px #000000;border-top: solid 1px #000000;
+					border-bottom: solid 1px #000000;border-bottom-right-radius:30px; left:-60px; padding-left:30px;"href="#comments" aria-controls="comments" role="tab" data-toggle="tab">Comments</a></li>
 				  </ul>
 
 				  <!-- Tab panes -->
@@ -330,19 +333,6 @@
 									{if $comment.content}
 									<div class="comment row" itemprop="review" itemscope itemtype="http://schema.org/Review">
 										<div class="comment_author col-sm-2">
-											<span>{l s='Grade' mod='productcomments'}&nbsp;</span>
-											<div class="star_content clearfix"  itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating">
-												{section name="i" start=0 loop=5 step=1}
-													{if $comment.grade le $smarty.section.i.index}
-														<div class="star"></div>
-													{else}
-														<div class="star star_on"></div>
-													{/if}
-												{/section}
-												<meta itemprop="worstRating" content = "0" />
-												<meta itemprop="ratingValue" content = "{$comment.grade|escape:'html':'UTF-8'}" />
-												<meta itemprop="bestRating" content = "5" />
-											</div>
 											<div class="comment_author_infos">
 												<strong itemprop="author">{$comment.customer_name|escape:'html':'UTF-8'}</strong>
 
@@ -365,12 +355,11 @@
 												{if $is_logged}
 													{if !$comment.customer_advice}
 													<li>
-														{l s='Was this comment useful to you?' mod='productcomments'}
 														<button class="usefulness_btn btn btn-default button button-small" data-is-usefull="1" data-id-product-comment="{$comment.id_product_comment}">
-															<span>{l s='Yes' mod='productcomments'}</span>
+															<span>{l s='Up' mod='productcomments'}</span>
 														</button>
 														<button class="usefulness_btn btn btn-default button button-small" data-is-usefull="0" data-id-product-comment="{$comment.id_product_comment}">
-															<span>{l s='No' mod='productcomments'}</span>
+															<span>{l s='Down' mod='productcomments'}</span>
 														</button>
 													</li>
 													{/if}
@@ -486,21 +475,6 @@
 		<!-- end center infos-->
 			</div>
 			<!-- end Lee added -->
-			<!-- Data sheet -->
-			<section class="page-product-box">
-				<h3 class="page-product-heading">{l s='Data sheet'}</h3>
-				<table class="table-data-sheet">
-					{foreach from=$features item=feature}
-					<tr class="{cycle values="odd,even"}">
-						{if isset($feature.value)}
-						<td>{$feature.name|escape:'html':'UTF-8'}</td>
-						<td>{$feature.value|escape:'html':'UTF-8'}</td>
-						{/if}
-					</tr>
-					{/foreach}
-				</table>
-			</section>
-			<!--end Data sheet -->
 		{/if}
 
 		<!--HOOK_PRODUCT_TAB -->
