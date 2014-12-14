@@ -220,7 +220,7 @@ font-size: 20px;padding-right: 40px;padding-top: 5px;padding-bottom: 5px;">
 					</div>
 			</div>
 -->
-			<div style = "position:absolute;top:150px;right:100px;width:300px;color: white;"class = "row">
+			<div style = "position:absolute;top:150px;right:50px;width:300px;color: white;"class = "row">
 					<!--- name --->
 					<div>
 					<h1 style ="text-transform: uppercase;text-align: right;">{$product->name|escape:'html':'UTF-8'}</h1>
@@ -265,10 +265,12 @@ font-size: 20px;padding-right: 40px;padding-top: 5px;padding-bottom: 5px;">
 							</span>
 						{/if}
 					<!-- shipping -->	
-					<div><span>+{$product->additional_shipping_cost} shipping cost</span></div>
+					<div><span style="font-size:15px">+{$product->additional_shipping_cost} shipping cost</span></div>
 					</div> <!-- end prices -->
 					<!--- market price-->
 					<div style = "background-color: #0071bc; border-bottom-left-radius: 90px;position:relative; height: 50px; z-index:2;border:solid 1px #c2cbb4" class="price">
+						<div><span style="color:white;font-size:15px;padding-left:50px;" >Catalog price  {$product->catalog_price} </span></div>
+						<div><span style="color:white;font-size:15px;padding-left:50px;" >Market price  {$product->market_price} </span></div>
 					</div>
 					<!--- end of market price--->
 					<!--- great I want it --->
@@ -415,6 +417,10 @@ font-size: 20px;padding-right: 40px;padding-top: 5px;padding-bottom: 5px;">
 				<script src="js/bootstrap.min.js"></script>
 				</div>
 						<!-- end bootrap Lee-->
+				<div class="col-xs-6">
+					<div> Send us an email</div>
+					<div> Refer a friend </div>
+				</div>
 			</div>
 			<!-- end Lee added -->
 		{/if}
