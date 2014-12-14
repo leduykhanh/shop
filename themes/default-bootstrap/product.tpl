@@ -80,22 +80,14 @@
 							</a>
 						{else}
 							<img id="bigpic" itemprop="image" src="{$link->getImageLink($product->link_rewrite, $cover.id_image, 'large_default')|escape:'html':'UTF-8'}" title="{if !empty($cover.legend)}{$cover.legend|escape:'html':'UTF-8'}{else}{$product->name|escape:'html':'UTF-8'}{/if}" alt="{if !empty($cover.legend)}{$cover.legend|escape:'html':'UTF-8'}{else}{$product->name|escape:'html':'UTF-8'}{/if}" width="{$largeSize.width}" height="{$largeSize.height}"/>
-							{if !$content_only}
-								<span class="span_link no-print">{l s='View larger'}</span>
-							{/if}
+
 						{/if}
 					</span>
 				{else}
-					<span id="view_full_size">
-						<img itemprop="image" src="{$img_prod_dir}{$lang_iso}-default-large_default.jpg" id="bigpic" alt="" title="{$product->name|escape:'html':'UTF-8'}" width="{$largeSize.width}" height="{$largeSize.height}"/>
-						{if !$content_only}
-							<span class="span_link">
-								{l s='View larger'}
-							</span>
-						{/if}
-					</span>
 				{/if}
 			</div> <!-- end image-block -->
+			<!--{l s="{var_dump($product)}"}
+			{l s="{isset($images) && count($images) > 0}"}-->
 			{if isset($images) && count($images) > 0}
 				<!-- thumbnails -->
 				<div id="views_block" class="clearfix {if isset($images) && count($images) < 2}hidden{/if}">
@@ -145,7 +137,13 @@
 			{/if}
 		</div> <!-- end pb-left-column -->
 		<!-- end left infos-->
-		
+	<!-- stock -->
+	<div class="pb-left-column col-xs-12 col-sm-12 col-md-12">
+		<div style="border-top-right-radius:30px;background-color:#29abe2;text-align: right;
+font-size: 20px;padding-right: 40px;padding-top: 5px;padding-bottom: 5px;">
+			<span>{$product->available_now/(float)$product->quantity*100} % stock</span>
+		</div>
+	</div>
 	</div> <!-- end primary_block -->
 	{if !$content_only}
 {if (isset($quantity_discounts) && count($quantity_discounts) > 0)}
@@ -222,9 +220,13 @@
 					</div>
 			</div>
 -->
-			<div style = "position:absolute;top:100px;right:100px"class = "row">
-								<!-- prices -->
-					<div class="price">
+			<div style = "position:absolute;top:150px;right:100px;width:300px;color: white;"class = "row">
+					<!--- name --->
+					<div>
+					<h1 style ="text-transform: uppercase;text-align: right;">{$product->name|escape:'html':'UTF-8'}</h1>
+					</div>
+					<!-- prices -->
+					<div class="price" style = "background-color:#29abe2;border-top-right-radius: 90px;height: 80px; border:solid 1px #c2cbb4;margin-bottom:2px;color: white;" >
 						<p class="our_price_display" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
 							{if $product->quantity > 0}<link itemprop="availability" href="http://schema.org/InStock"/>{/if}
 							{if $priceDisplay >= 0 && $priceDisplay <= 2}
@@ -262,7 +264,19 @@
 								{l s='tax excl.'}
 							</span>
 						{/if}
+					<!-- shipping -->	
+					<div><span>+{$product->additional_shipping_cost} shipping cost</span></div>
 					</div> <!-- end prices -->
+					<!--- market price-->
+					<div style = "background-color: #0071bc; border-bottom-left-radius: 90px;position:relative; height: 50px; z-index:2;border:solid 1px #c2cbb4" class="price">
+					</div>
+					<!--- end of market price--->
+					<!--- great I want it --->
+					<div style = "background-color: #FF0000;height: 100px; top:-50px;position:relative; z-index:1; padding-top: 55px;text-align: center;font-size: 30px;color:white">
+					<a style = "color:white"> Great,I want it</a>
+					<hr \>
+					</div>
+					<!--- end great I want it --->
 			</div>
 			<div class = "row">
 			<!-- Bootrap Lee -->
@@ -270,13 +284,17 @@
 							  <!-- Nav tabs -->
 				  <ul class="nav nav-tabs" role="tablist">
 					<li role="presentation" class="active">
-						<a style="border: solid 1px #000000;border-bottom-right-radius: 30px;" href="#word-of-day" aria-controls="word-of-day" role="tab" data-toggle="tab">Word of day</a></li>
+						<a style="border: solid 1px #0000FF;border-bottom-right-radius: 30px;z-index:3;
+						background-color:#FFFFFF" href="#word-of-day" aria-controls="word-of-day" role="tab" data-toggle="tab" 
+						onMouseOver="this.style.backgroundColor='#0000FF'" 
+						onMouseOut="this.style.backgroundColor='#FFFFFF'">Word of day</a></li>
 					<li role="presentation">
-					<a style="border-left: none;border-right: solid 1px #000000;border-top: solid 1px #000000;
-					border-bottom: solid 1px #000000;border-bottom-right-radius:30px; left:-30px; padding-left:30px;"href="#product-details" aria-controls="product-details" role="tab" data-toggle="tab">Product Details</a></li>
+					<a style="border-left: none;border-right: solid 1px #0000FF;border-top: solid 1px #0000FF;z-index:2;border-bottom: solid 1px #0000FF;border-bottom-right-radius:30px; left:-30px; padding-left:30px;background-color:#FFFFFF"href="#product-details" aria-controls="product-details" role="tab" data-toggle="tab" onMouseOver="this.style.backgroundColor='#0000FF'" 
+						onMouseOut="this.style.backgroundColor='#FFFFFF'">Product Details</a></li>
 					<li role="presentation">
-					<a style="border-left: none;border-right: solid 1px #000000;border-top: solid 1px #000000;
-					border-bottom: solid 1px #000000;border-bottom-right-radius:30px; left:-60px; padding-left:30px;"href="#comments" aria-controls="comments" role="tab" data-toggle="tab">Comments</a></li>
+					<a style="border-left: none;border-right: solid 1px #0000FF;border-top: solid 1px #0000FF; z-index:1;border-bottom: solid 1px #0000FF;border-bottom-right-radius:30px; left:-60px; padding-left:30px;background-color:#FFFFFF"href="#comments" aria-controls="comments" role="tab" data-toggle="tab"
+						onMouseOver="this.style.backgroundColor='#0000FF'" 
+						onMouseOut="this.style.backgroundColor='#FFFFFF'">Comments</a></li>
 				  </ul>
 
 				  <!-- Tab panes -->
@@ -288,13 +306,6 @@
 											<div id="short_description_content" class="rte align_justify" itemprop="description">{$product->description_short}</div>
 										{/if}
 
-										{if $product->description}
-											<p class="buttons_bottom_block">
-												<a href="javascript:{ldelim}{rdelim}" class="button">
-													{l s='More details'}
-												</a>
-											</p>
-										{/if}
 										<!--{if $packItems|@count > 0}
 											<div class="short_description_pack">
 											<h3>{l s='Pack content'}</h3>
@@ -317,6 +328,7 @@
 								{if isset($product) && $product->description}
 									<!-- full description -->
 									<div  class="rte">{$product->description}</div>
+								{/if}
 							</section>
 							<!--end  More info -->
 						{/if}
@@ -340,9 +352,6 @@
 										</div> <!-- .comment_author -->
 
 										<div class="comment_details col-sm-10">
-											<p itemprop="name" class="title_block">
-												<strong>{$comment.title}</strong>
-											</p>
 											<p itemprop="reviewBody">{$comment.content|escape:'html':'UTF-8'|nl2br}</p>
 												<meta itemprop="datePublished" content="{$comment.date_add|escape:'html':'UTF-8'|substr:0:10}" />
 												<em>{dateFormat date=$comment.date_add|escape:'html':'UTF-8' full=0}</em>
@@ -406,83 +415,10 @@
 				<script src="js/bootstrap.min.js"></script>
 				</div>
 						<!-- end bootrap Lee-->
-					<!-- center infos -->
-		<div class="pb-center-column col-xs-12 col-sm-4">
-			{if $product->online_only}
-				<p class="online_only">{l s='Online only'}</p>
-			{/if}
-			<h1 itemprop="name">{$product->name|escape:'html':'UTF-8'}</h1>
-			<p id="product_reference"{if empty($product->reference) || !$product->reference} style="display: none;"{/if}>
-				<label>{l s='Model'} </label>
-				<span class="editable" itemprop="sku">{if !isset($groups)}{$product->reference|escape:'html':'UTF-8'}{/if}</span>
-			</p>
-			{if $product->condition}
-			<p id="product_condition">
-				<label>{l s='Condition'} </label>
-				{if $product->condition == 'new'}
-					<link itemprop="itemCondition" href="http://schema.org/NewCondition"/>
-					<span class="editable">{l s='New'}</span>
-				{elseif $product->condition == 'used'}
-					<link itemprop="itemCondition" href="http://schema.org/UsedCondition"/>
-					<span class="editable">{l s='Used'}</span>
-				{elseif $product->condition == 'refurbished'}
-					<link itemprop="itemCondition" href="http://schema.org/RefurbishedCondition"/>
-					<span class="editable">{l s='Refurbished'}</span>
-				{/if}
-			</p>
-			{/if}
-
-			
-			{if ($display_qties == 1 && !$PS_CATALOG_MODE && $PS_STOCK_MANAGEMENT && $product->available_for_order)}
-				<!-- number of item in stock -->
-				<p id="pQuantityAvailable"{if $product->quantity <= 0} style="display: none;"{/if}>
-					<span id="quantityAvailable">{$product->quantity|intval}</span>
-					<span {if $product->quantity > 1} style="display: none;"{/if} id="quantityAvailableTxt">{l s='Item'}</span>
-					<span {if $product->quantity == 1} style="display: none;"{/if} id="quantityAvailableTxtMultiple">{l s='Items'}</span>
-				</p>
-			{/if}
-			{if $PS_STOCK_MANAGEMENT}
-				<!-- availability -->
-				<p id="availability_statut"{if ($product->quantity <= 0 && !$product->available_later && $allow_oosp) || ($product->quantity > 0 && !$product->available_now) || !$product->available_for_order || $PS_CATALOG_MODE} style="display: none;"{/if}>
-					{*<span id="availability_label">{l s='Availability:'}</span>*}
-					<span id="availability_value"{if $product->quantity <= 0 && !$allow_oosp} class="warning_inline"{/if}>{if $product->quantity <= 0}{if $allow_oosp}{$product->available_later}{else}{l s='This product is no longer in stock'}{/if}{else}{$product->available_now}{/if}</span>
-				</p>
-				{hook h="displayProductDeliveryTime" product=$product}
-				<p class="warning_inline" id="last_quantities"{if ($product->quantity > $last_qties || $product->quantity <= 0) || $allow_oosp || !$product->available_for_order || $PS_CATALOG_MODE} style="display: none"{/if} >{l s='Warning: Last items in stock!'}</p>
-			{/if}
-			<p id="availability_date"{if ($product->quantity > 0) || !$product->available_for_order || $PS_CATALOG_MODE || !isset($product->available_date) || $product->available_date < $smarty.now|date_format:'%Y-%m-%d'} style="display: none;"{/if}>
-				<span id="availability_date_label">{l s='Availability date:'}</span>
-				<span id="availability_date_value">{dateFormat date=$product->available_date full=false}</span>
-			</p>
-			<!-- Out of stock hook -->
-			<div id="oosHook"{if $product->quantity > 0} style="display: none;"{/if}>
-				{$HOOK_PRODUCT_OOS}
-			</div>
-			{if isset($HOOK_EXTRA_RIGHT) && $HOOK_EXTRA_RIGHT}{$HOOK_EXTRA_RIGHT}{/if}
-			{if !$content_only}
-				<!-- usefull links-->
-				<ul id="usefull_link_block" class="clearfix no-print">
-					{if $HOOK_EXTRA_LEFT}{$HOOK_EXTRA_LEFT}{/if}
-					<li class="print">
-						<a href="javascript:print();">
-							{l s='Print'}
-						</a>
-					</li>
-					{if $have_image && !$jqZoomEnabled}{/if}
-				</ul>
-			{/if}
-		</div>
-		<!-- end center infos-->
 			</div>
 			<!-- end Lee added -->
 		{/if}
 
-		<!--HOOK_PRODUCT_TAB -->
-		<section class="page-product-box">
-			{$HOOK_PRODUCT_TAB}
-			{if isset($HOOK_PRODUCT_TAB_CONTENT) && $HOOK_PRODUCT_TAB_CONTENT}{$HOOK_PRODUCT_TAB_CONTENT}{/if}
-		</section>
-		<!--end HOOK_PRODUCT_TAB -->
 		{if isset($accessories) && $accessories}
 			<!--Accessories -->
 			<section class="page-product-box">
@@ -750,5 +686,5 @@
 {addJsDefL name='product_fileButtonHtml'}{l s='Choose File' js=1}{/addJsDefL}
 {/strip}
 {/if}
-{/if}
+
 
