@@ -1,2 +1,5 @@
 ALTER TABLE  `ps_product` ADD  `market_price` FLOAT NOT NULL ,
 ADD  `catalog_price` FLOAT NOT NULL ;
+
+ALTER TABLE  `ps_product_shop` ADD  `market_price` FLOAT NOT NULL ,
+ADD  `catalog_price` FLOAT NOT NULL ;
