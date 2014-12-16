@@ -3,3 +3,5 @@ ADD  `catalog_price` FLOAT NOT NULL ;
 
 ALTER TABLE  `ps_product_shop` ADD  `market_price` FLOAT NOT NULL ,
 ADD  `catalog_price` FLOAT NOT NULL ;
+ALTER TABLE  `ps_product` ADD  `brand_name` VARCHAR( 50 ) NOT NULL ;
+ALTER TABLE  `ps_product_lang` ADD  `brand_name` VARCHAR( 50 ) NOT NULL ;

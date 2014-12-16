@@ -131,12 +131,28 @@
 	<div id="product-pack-container" {if $product_type != Product::PTYPE_PACK}style="display:none"{/if}></div>
 
 	<hr />
-
+	<div class="form-group">
+		<div class="col-lg-1"><span class="pull-right">{include file="controllers/products/multishop/checkbox.tpl" field="brand_name" type="default" multilang="true"}</span></div>
+		<label class="control-label col-lg-2 required" for="brand_name{$id_lang}">
+			<span class="label-tooltip" data-toggle="tooltip" title="{l s='The brand name for this product.'} {l s='Invalid characters:'} &lt;&gt;;=#{}">
+				{l s='Brand Name'}
+			</span>
+		</label>
+		<div class="col-lg-5">
+			{include file="controllers/products/input_text_lang.tpl"
+				languages=$languages
+				input_class="{$class_input_ajax}{if !$product->id || Configuration::get('PS_FORCE_FRIENDLY_PRODUCT')}copy2friendlyUrl{/if} updateCurrentText"
+				input_value=$product->brand_name
+				input_name="brand_name"
+				required=true
+			}
+		</div>
+	</div>
 	<div class="form-group">
 		<div class="col-lg-1"><span class="pull-right">{include file="controllers/products/multishop/checkbox.tpl" field="name" type="default" multilang="true"}</span></div>
 		<label class="control-label col-lg-2 required" for="name_{$id_lang}">
 			<span class="label-tooltip" data-toggle="tooltip" title="{l s='The public name for this product.'} {l s='Invalid characters:'} &lt;&gt;;=#{}">
-				{l s='Name'}
+				{l s='Product Name'}
 			</span>
 		</label>
 		<div class="col-lg-5">
@@ -348,7 +364,7 @@
 		<label class="control-label col-lg-2" for="description_{$id_lang}">
 			<span class="label-tooltip" data-toggle="tooltip"
 				title="{l s='Appears in the body of the product page.'}">
-				{l s='Description'}
+				{l s='Product Details'}
 			</span>
 		</label>
 		<div class="col-lg-9">

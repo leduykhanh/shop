@@ -140,7 +140,11 @@
 	<!-- stock -->
 	<div class="pb-left-column col-xs-12 col-sm-12 col-md-12">
 		<div style="border-top-right-radius:30px;background-color:#29abe2;text-align: right;
-font-size: 20px;padding-right: 40px;padding-top: 5px;padding-bottom: 5px;">
+		font-size: 24px;padding-right: 40px;padding-top: 5px;padding-bottom: 5px;" class="col-md-3">
+			<span>0:0:00</span>
+		</div>
+		<div style="border-top-right-radius:30px;background-color:#29abe2;text-align: right;
+		font-size: 24px;padding-right: 40px;padding-top: 5px;padding-bottom: 5px;"  class="col-md-9">
 			<span>{$product->available_now/(float)$product->quantity*100} % stock</span>
 		</div>
 	</div>
@@ -223,7 +227,8 @@ font-size: 20px;padding-right: 40px;padding-top: 5px;padding-bottom: 5px;">
 			<div style = "position:absolute;top:150px;right:50px;width:300px;color: white;"class = "row">
 					<!--- name --->
 					<div>
-					<h1 style ="text-transform: uppercase;text-align: right;">{$product->name|escape:'html':'UTF-8'}</h1>
+					<h1 style ="text-transform: uppercase;text-align: right;">{$product->brand_name|escape:'html':'UTF-8'}</h1>
+					<h2 style ="text-transform: uppercase;text-align: right;">{$product->name|escape:'html':'UTF-8'}</h2>
 					</div>
 					<!-- prices -->
 					<div class="price" style = "background-color:#29abe2;border-top-right-radius: 90px;height: 80px; border:solid 1px #c2cbb4;margin-bottom:2px;color: white;" >
