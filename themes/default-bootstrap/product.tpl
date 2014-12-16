@@ -86,11 +86,22 @@
 				{else}
 				{/if}
 			</div> <!-- end image-block -->
+			<!-- stock -->
+			<div class="pb-left-column col-xs-12 col-sm-12 col-md-12" style="top:-30px">
+				<div style="border-top-right-radius:30px;background-color:#29abe2;text-align: right;
+				font-size: 24px;padding-right: 40px;padding-top: 5px;padding-bottom: 5px;" class="col-md-3">
+					<span>0:0:00</span>
+				</div>
+				<div style="border-top-right-radius:30px;background-color:#29abe2;text-align: right;
+				font-size: 24px;padding-right: 40px;padding-top: 5px;padding-bottom: 5px;"  class="col-md-9">
+					<span>{$product->available_now/(float)$product->quantity*100} % stock</span>
+				</div>
+			</div>
 			<!--{l s="{var_dump($product)}"}
 			{l s="{isset($images) && count($images) > 0}"}-->
 			{if isset($images) && count($images) > 0}
 				<!-- thumbnails -->
-				<div id="views_block" class="clearfix {if isset($images) && count($images) < 2}hidden{/if}">
+			<!---	<div id="views_block" class="clearfix {if isset($images) && count($images) < 2}hidden{/if}">
 					{if isset($images) && count($images) > 2}
 						<span class="view_scroll_spacer">
 							<a id="view_scroll_left" class="" title="{l s='Other views'}" href="javascript:{ldelim}{rdelim}">
@@ -116,7 +127,9 @@
 							{/foreach}
 						{/if}
 						</ul>
-					</div> <!-- end thumbs_list -->
+					</div> 
+					-->
+					<!-- end thumbs_list -->
 					{if isset($images) && count($images) > 2}
 						<a id="view_scroll_right" title="{l s='Other views'}" href="javascript:{ldelim}{rdelim}">
 							{l s='Next'}
@@ -137,17 +150,7 @@
 			{/if}
 		</div> <!-- end pb-left-column -->
 		<!-- end left infos-->
-	<!-- stock -->
-	<div class="pb-left-column col-xs-12 col-sm-12 col-md-12">
-		<div style="border-top-right-radius:30px;background-color:#29abe2;text-align: right;
-		font-size: 24px;padding-right: 40px;padding-top: 5px;padding-bottom: 5px;" class="col-md-3">
-			<span>0:0:00</span>
-		</div>
-		<div style="border-top-right-radius:30px;background-color:#29abe2;text-align: right;
-		font-size: 24px;padding-right: 40px;padding-top: 5px;padding-bottom: 5px;"  class="col-md-9">
-			<span>{$product->available_now/(float)$product->quantity*100} % stock</span>
-		</div>
-	</div>
+
 	</div> <!-- end primary_block -->
 	{if !$content_only}
 {if (isset($quantity_discounts) && count($quantity_discounts) > 0)}
@@ -224,11 +227,11 @@
 					</div>
 			</div>
 -->
-			<div style = "position:absolute;top:150px;right:50px;width:300px;color: white;"class = "row">
+			<div style = "position:absolute;top:100px;right:50px;width:300px;color: white;"class = "row">
 					<!--- name --->
 					<div>
-					<h1 style ="text-transform: uppercase;text-align: right;">{$product->brand_name|escape:'html':'UTF-8'}</h1>
-					<h2 style ="text-transform: uppercase;text-align: right;">{$product->name|escape:'html':'UTF-8'}</h2>
+					<h1 style ="text-transform: uppercase;text-align: right;font-size:30px">{$product->brand_name|escape:'html':'UTF-8'}</h1>
+					<h2 style ="text-transform: uppercase;text-align: right;font-size:20px">{$product->name|escape:'html':'UTF-8'}</h2>
 					</div>
 					<!-- prices -->
 					<div class="price" style = "background-color:#29abe2;border-top-right-radius: 90px;height: 80px; border:solid 1px #c2cbb4;margin-bottom:2px;color: white;" >
@@ -423,8 +426,12 @@
 				</div>
 						<!-- end bootrap Lee-->
 				<div class="col-xs-6">
-					<div> Send us an email</div>
-					<div> Refer a friend </div>
+					<div style="background-color:red;height:100px;border-top-left-radius:90px;padding-left: 50px; font-size:25px;margin: 10px; color:white">
+						<img style="margin:10px" height= 70px src = "../../img/email.png" />Send us an email</div>
+					<div style="background-color:red;height:100px;border-top-left-radius:90px;padding-left: 50px; font-size:25px;margin: 10px; color:white"> 	<img style="margin:10px" height= 70px src = "../../img/tellus.png" />Tell us what you want </div>
+					<div style="background-color:red;height:100px;border-top-left-radius:90px;padding-left: 50px; font-size:25px;margin: 10px; color:white">  <img style="margin:10px" height= 70px src = "../../img/refer.png" />Refer friends to earn value</div>
+					<div style="background-color:whtie;height:100px;border-top-left-radius:90px;padding-left: 50px; font-size:25px;margin: 10px; color:red;
+					border:solid 2px red"> <img style="margin:10px" height= 70px src = "../../img/enamad.png" />eNamad Certificated website</div>
 				</div>
 			</div>
 			<!-- end Lee added -->
