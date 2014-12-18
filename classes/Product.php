@@ -38,6 +38,19 @@ class ProductCore extends ObjectModel
 	//Lee
 	public $market_price;
 	public $catalog_price;
+	public $brand_name;
+	public $initial_quantity;
+	public $buffer_trigger;
+	public $refferal_value;
+	public $shipping_1;
+	public $shipping_2;
+	public $quantity_limit;
+	public $payment_mode;
+	public $start_date;
+	public $end_date;
+	public $product_link;
+	public $deal_status;
+	
 	//Lee
 	/** @var string Tax name */
 	public $tax_name;
@@ -303,6 +316,18 @@ class ProductCore extends ObjectModel
 			// Lee added
 			'market_price' => 						array('type' => self::TYPE_FLOAT, 'shop' => true, 'validate' => 'isPrice', 'required' => true),
 			'catalog_price' => 						array('type' => self::TYPE_FLOAT, 'shop' => true, 'validate' => 'isPrice', 'required' => true),
+			'brand_name' => 						array('type' => self::TYPE_STRING, 'lang' => true, 'validate' => 'isCatalogName', 'required' => true, 'size' => 128),
+			'initial_quantity' => 		array('type' => self::TYPE_INT, 'shop' => true, 'validate' => 'isUnsignedId'),
+			'buffer_trigger' => 		array('type' => self::TYPE_INT, 'shop' => true, 'validate' => 'isUnsignedId'),
+			'refferal_value' => 		array('type' => self::TYPE_INT, 'shop' => true, 'validate' => 'isUnsignedId'),
+			'shipping_1' => 		array('type' => self::TYPE_INT, 'shop' => true, 'validate' => 'isUnsignedId'),
+			'shipping_2' => 		array('type' => self::TYPE_INT, 'shop' => true, 'validate' => 'isUnsignedId'),
+			'quantity_limit' => 		array('type' => self::TYPE_INT, 'shop' => true, 'validate' => 'isUnsignedId'),
+			'payment_mode' => 		array('type' => self::TYPE_INT, 'shop' => true, 'validate' => 'isUnsignedId'),
+			'start_date' => 			array('type' => self::TYPE_DATE, 'shop' => true, 'validate' => 'isDateFormat'),
+			'end_date' => 			array('type' => self::TYPE_DATE, 'shop' => true, 'validate' => 'isDateFormat'),
+			'product_link' => 						array('type' => self::TYPE_STRING, 'shop' => true, 'validate' => 'isString'),
+			'deal_status' => 		array('type' => self::TYPE_INT, 'shop' => true, 'validate' => 'isUnsignedId'),
 			/* Lang fields */
 			'meta_description' => 			array('type' => self::TYPE_STRING, 'lang' => true, 'validate' => 'isGenericName', 'size' => 255),
 			'meta_keywords' => 				array('type' => self::TYPE_STRING, 'lang' => true, 'validate' => 'isGenericName', 'size' => 255),

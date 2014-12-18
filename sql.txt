@@ -5,3 +5,17 @@ ALTER TABLE  `ps_product_shop` ADD  `market_price` FLOAT NOT NULL ,
 ADD  `catalog_price` FLOAT NOT NULL ;
 ALTER TABLE  `ps_product` ADD  `brand_name` VARCHAR( 50 ) NOT NULL ;
 ALTER TABLE  `ps_product_lang` ADD  `brand_name` VARCHAR( 50 ) NOT NULL ;
+ALTER TABLE  `ps_product` ADD  `initial_quantity` INT NOT NULL ,
+ADD  `buffer_quantity` INT NOT NULL ,
+ADD  `buffer_trigger` INT NOT NULL ,
+ADD  `refferal_value` INT NOT NULL ,
+ADD  `shipping_1` INT NOT NULL ,
+ADD  `shipping_2` INT NOT NULL ,
+ADD  `quantity_limit` INT NOT NULL ,
+ADD  `payment_mode` INT NOT NULL ,
+ADD  `start_date` DATETIME NOT NULL ,
+ADD  `end_date` DATETIME NOT NULL ,
+ADD  `product_link` INT NOT NULL ,
+ADD  `deal_status` INT NOT NULL ;
+
+ALTER TABLE  `ps_product` CHANGE  `product_link`  `product_link` VARCHAR( 11 ) NOT NULL ;
