@@ -97,8 +97,8 @@
 					<span>{$product->available_now/(float)$product->quantity*100} % stock</span>
 				</div>
 			</div>
-			<!--{l s="{var_dump($product)}"}
-			{l s="{isset($images) && count($images) > 0}"}-->
+			<!--{l s="{var_dump(Context::getContext()->customer->email)}"}
+			{l s="{isset($images) && count($images) > 0}"} -->
 			{if isset($images) && count($images) > 0}
 				<!-- thumbnails -->
 			<!---	<div id="views_block" class="clearfix {if isset($images) && count($images) < 2}hidden{/if}">
@@ -290,8 +290,22 @@
 			</div>
 			<div class = "row">
 			<!-- Bootrap Lee -->
-			<div role="tabpanel" class="col-xs-6">
+			<div role="tabpanel" class="col-xs-12">
 							  <!-- Nav tabs -->
+				<ul class="nav text-center nav-tabs col-xs-12" style="border:none;" role="tablist">
+					<li role="presentation" class="active">
+						<a id = "cc" style="border:none;background-color:#FFFFFF" href="#word-of-day" aria-controls="word-of-day" role="tab" data-toggle="tab" 
+						onMouseOver="this.style.backgroundColor='#FFFFFF)'" 
+						onMouseOut="this.style.backgroundColor='#FFFFFF'" >Word of day</a></li>
+					<li role="presentation">
+					<a style="border:none;background-color:#FFFFFF"href="#product-details" aria-controls="product-details" role="tab" data-toggle="tab" onMouseOver="this.style.backgroundColor='#FFFFFF'" 
+						onMouseOut="this.style.backgroundColor='#FFFFFF'">Product Details</a></li>
+					<li role="presentation">
+					<a style="border:none;background-color:#FFFFFF"href="#comments" aria-controls="comments" role="tab" data-toggle="tab"
+						onMouseOver="this.style.backgroundColor='#FFFFFF'" 
+						onMouseOut="this.style.backgroundColor='#FFFFFF'">Comments</a></li>
+				  </ul>
+				<!---
 				  <ul class="nav nav-tabs" role="tablist">
 					<li role="presentation" class="active">
 						<a style="border: solid 1px #0000FF;border-bottom-right-radius: 30px;z-index:3;
@@ -306,10 +320,10 @@
 						onMouseOver="this.style.backgroundColor='#0000FF'" 
 						onMouseOut="this.style.backgroundColor='#FFFFFF'">Comments</a></li>
 				  </ul>
-
+				--->
 				  <!-- Tab panes -->
-				  <div class="tab-content">
-					<div role="tabpanel" class="tab-pane active" id="word-of-day">
+				  <div class="tab-content col-xs-6">
+					<div role="tabpanel" class="tab-pane active"  id="word-of-day">
 								{if $product->description_short || $packItems|@count > 0}
 									<div id="short_description_block">
 										{if $product->description_short}
@@ -418,21 +432,26 @@
 					</div>
 					
 				  </div>
-
+				<div class="col-xs-6">
+					<div style="background-color:red;height:100px;border-top-left-radius:90px;padding-left: 50px; font-size:25px;margin: 10px; color:white">
+						<img style="margin:10px" height= 70px src = "../../img/email.png" />
+						{if $logged}
+							{l s=Context::getContext()->customer->email}
+						{else}
+							{l s='Send us an email' }
+						{/if}
+						</div>
+					<div style="background-color:red;height:100px;border-top-left-radius:90px;padding-left: 50px; font-size:25px;margin: 10px; color:white"> 	<img style="margin:10px" height= 70px src = "../../img/tellus.png" />Tell us what you want </div>
+					<div style="background-color:red;height:100px;border-top-left-radius:90px;padding-left: 50px; font-size:25px;margin: 10px; color:white">  <img style="margin:10px" height= 70px src = "../../img/refer.png" />Refer friends to earn value</div>
+					<div style="background-color:whtie;height:100px;border-top-left-radius:90px;padding-left: 50px; font-size:25px;margin: 10px; color:red;
+					border:solid 2px red"> <img style="margin:10px" height= 70px src = "../../img/enamad.png" />eNamad Certificated website</div>
+				</div>
 				<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 				<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 				<!-- Include all compiled plugins (below), or include individual files as needed -->
 				<script src="js/bootstrap.min.js"></script>
 				</div>
 						<!-- end bootrap Lee-->
-				<div class="col-xs-6">
-					<div style="background-color:red;height:100px;border-top-left-radius:90px;padding-left: 50px; font-size:25px;margin: 10px; color:white">
-						<img style="margin:10px" height= 70px src = "../../img/email.png" />Send us an email</div>
-					<div style="background-color:red;height:100px;border-top-left-radius:90px;padding-left: 50px; font-size:25px;margin: 10px; color:white"> 	<img style="margin:10px" height= 70px src = "../../img/tellus.png" />Tell us what you want </div>
-					<div style="background-color:red;height:100px;border-top-left-radius:90px;padding-left: 50px; font-size:25px;margin: 10px; color:white">  <img style="margin:10px" height= 70px src = "../../img/refer.png" />Refer friends to earn value</div>
-					<div style="background-color:whtie;height:100px;border-top-left-radius:90px;padding-left: 50px; font-size:25px;margin: 10px; color:red;
-					border:solid 2px red"> <img style="margin:10px" height= 70px src = "../../img/enamad.png" />eNamad Certificated website</div>
-				</div>
 			</div>
 			<!-- end Lee added -->
 		{/if}
