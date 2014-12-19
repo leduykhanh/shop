@@ -364,6 +364,7 @@
 								<div class="col-sm-3">Rules of forum</div>
 								<hr />
 							</div>
+							{if isset($HOOK_PRODUCT_TITAN_COMMENTS)  && $HOOK_PRODUCT_TITAN_COMMENTS} {$HOOK_PRODUCT_TITAN_COMMENTS} {/if}
 							{if $comments}
 								{foreach from=$comments item=comment}
 									{if $comment.content}
@@ -447,9 +448,9 @@
 					border:solid 2px red"> <img style="margin:10px" height= 70px src = "../../img/enamad.png" />eNamad Certificated website</div>
 				</div>
 				<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-				<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+				
 				<!-- Include all compiled plugins (below), or include individual files as needed -->
-				<script src="js/bootstrap.min.js"></script>
+				
 				</div>
 						<!-- end bootrap Lee-->
 			</div>
