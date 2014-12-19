@@ -177,31 +177,6 @@
 			<input type="text" id="reference" name="reference" value="{$product->reference|htmlentitiesUTF8}" />
 		</div>
 	</div>
-
-	<div class="form-group">
-		<label class="control-label col-lg-3" for="ean13">
-			<span class="label-tooltip" data-toggle="tooltip"
-				title="{l s='This type of product code is specific to Europe and Japan, but is widely used internationally. It is a superset of the UPC code: all products marked with an EAN will be accepted in North America.'}">
-				{$bullet_common_field} {l s='EAN-13 or JAN barcode'}
-			</span>
-		</label>
-		<div class="col-lg-3">
-			<input maxlength="13" type="text" id="ean13" name="ean13" value="{$product->ean13|htmlentitiesUTF8}" />
-		</div>
-	</div>
-
-	<div class="form-group">
-		<label class="control-label col-lg-3" for="upc">
-			<span class="label-tooltip" data-toggle="tooltip"
-				title="{l s='This type of product code is widely used in the United States, Canada, the United Kingdom, Australia, New Zealand and in other countries.'}">
-				{$bullet_common_field} {l s='UPC barcode'}
-			</span>
-		</label>
-		<div class="col-lg-3">
-			<input maxlength="12" type="text" id="upc" name="upc" value="{$product->upc|escape:'html':'UTF-8'}" />
-		</div>
-	</div>
-
 	<hr/>
 
 	{* status informations *}
@@ -338,6 +313,35 @@
 						<option value="refurbished" {if $product->condition == 'refurbished'}selected="selected"{/if}>{l s='Refurbished'}</option>
 					</select>
 				</div>	
+			</div>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-lg-1"><span class="pull-right">{include file="controllers/products/multishop/checkbox.tpl" field="start_date" type="default" multilang="true"}</span></div>
+		<label class="control-label col-lg-2 required" for="name_{$id_lang}">
+			<span class="label-tooltip" data-toggle="tooltip" title="{l s='The start date for this product.'} 
+			{l s='Invalid characters:'} &lt;&gt;;=#{}">
+				{l s='Start Date'}
+			</span>
+		</label>
+		<div class="input-group fixed-width-xl">
+			<input type="text" name="start_date" class="datetimepicker" value="{$product->start_date}" />
+			<div class="input-group-addon">
+				<i class="icon-calendar-o"></i>
+			</div>
+		</div>
+	</div>
+		<div class="form-group">
+		<div class="col-lg-1"><span class="pull-right">{include file="controllers/products/multishop/checkbox.tpl" field="end_date" type="default" multilang="true"}</span></div>
+		<label class="control-label col-lg-2 required" for="name_{$id_lang}">
+			<span class="label-tooltip" data-toggle="tooltip" title="{l s='The end date of this product.'} {l s='Invalid characters:'} &lt;&gt;;=#{}">
+				{l s='End Date'}
+			</span>
+		</label>
+		<div class="input-group fixed-width-xl">
+			<input type="text" name="end_date" class="datetimepicker" value="{$product->end_date}" />
+			<div class="input-group-addon">
+				<i class="icon-calendar-o"></i>
 			</div>
 		</div>
 	</div>
