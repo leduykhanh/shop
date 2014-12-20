@@ -1,9 +1,9 @@
 <script type="text/javascript">
     var titancomments_controller_url = '{$titancomments_controller_url}';
     var titancomments_secure_key = '{$secure_key}';
-    var titancomments_url_rewrite = '{$titancomments_url_rewriting_activated}';
-    
-    var productcomment_added_moderation = '{l s='Your comment has been submitted and will be available once approved by a moderator.' mod='productcomments' js=1}';
+    var titancomments_id_product_comment_form = '{$titancomments_id_product_comment_form}';
+    var titancomments_moderation_active = {$titancomments_moderation_active};
+    var titancomments_added_moderation = '{l s='Your comment has been submitted and will be available once approved by a moderator.' mod='productcomments' js=1}';
 </script>
 
 <div class="row">
@@ -18,7 +18,7 @@
     <form id="id_titancomments_form" action="#">
         <div class="comment_author col-sm-2">
             <div class="comment_author_infos">
-                <strong itemprop="author">tutti</strong>
+                <strong itemprop="author">{$titancomments_customer_name}</strong>
             </div>
         </div>
         <div class="comment_details col-sm-10">

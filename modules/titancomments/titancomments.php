@@ -5,8 +5,6 @@ if(!defined('_PS_VERSION_'))
 class TitanComments extends Module{
 
     const INSTALL_SQL_FILE = 'install.sql';
-
-    /*TODO: other variables here*/
     
     private $_baseUrl ;
     public function __construct(){
@@ -25,16 +23,6 @@ class TitanComments extends Module{
 
     public function install($keep = true){
         if($keep){
-           /* if (!file_exists(dirname(__FILE__).'/'.self::INSTALL_SQL_FILE))
-                return false;
-            else if (!$sql = file_get_contents(dirname(__FILE__).'/'.self::INSTALL_SQL_FILE))
-                return false;
-            $sql = str_replace(array('PREFIX_', 'ENGINE_TYPE'), array(_DB_PREFIX_, _MYSQL_ENGINE_), $sql);
-            $sql = preg_split("/;\s*[\r\n]+/", trim($sql));
-
-            foreach ($sql as $query)
-                if (!Db::getInstance()->execute(trim($query)))
-                    return false;*/
         }
         if (parent::install() == false ||
             !$this->registerHook('header') ||
@@ -50,11 +38,11 @@ class TitanComments extends Module{
 
     public function uninstall($keep = true){
         if (!parent::uninstall() || ($keep && !$this->deleteTables()) ||
-            !Configuration::updateValue('TITAN_COMMENTS_MINIMAL_TIME', 30) ||
-            !Configuration::updateValue('TITAN_COMMENTS_ALLOW_GUESTS', 0) ||
-            !Configuration::updateValue('TITAN_COMMENTS_ALLOW_VOTE', 1) ||
-            !Configuration::updateValue('TITAN_COMMENTS_ALLOW_DELETE', 0) ||
-            !Configuration::updateValue('TITAN_COMMENTS_MODERATE', 1)||
+            !Configuration::deleteByName('TITAN_COMMENTS_MINIMAL_TIME') ||
+            !Configuration::deleteByName('TITAN_COMMENTS_ALLOW_GUESTS') ||
+            !Configuration::deleteByName('TITAN_COMMENTS_ALLOW_VOTE') ||
+            !Configuration::deleteByName('TITAN_COMMENTS_ALLOW_DELETE') ||
+            !Configuration::deleteByName('TITAN_COMMENTS_MODERATE')||
             !$this->unregisterHook('header') ||
             !$this->unregisterHook('displayProductTitanComments'))
             return false;
@@ -79,20 +67,10 @@ class TitanComments extends Module{
         return parent::getCacheId().'|'.(int)$id_product;
     }
 
-    protected function _postProcess(){
-        if (Tools::isSubmit('productcomments'))
-        {
-            /*$id_product_comment = (int)Tools::getValue('id_product_comment');
-            $comment = new ProductComment($id_product_comment);
-            $comment->validate();
-            ProductComment::deleteReports($id_product_comment);*/
-        }
-    }
-
     public function getContent(){
         include_once(dirname(__FILE__).'/TitanComment.php');
-        $this->_html = '<div>cong hoa xa hoi chu nghia vietnam</div>';
-        /*TODO: implement this */
+        $this->_html = '<div>This is a helper module for Product Comment module.</div>';
+        $this->_html .= '<div>If you have not installed Product Comment, please do so</div>';
 
         $this->_setBaseUrl();
 
@@ -109,22 +87,21 @@ class TitanComments extends Module{
     }
 
     public function hookDisplayProductTitanComments($param){
-        $this->context->controller->addJS($this->_path.'js/jquery.voting.js');
+
         $this->context->controller->addJS($this->_path.'js/jquery.textareaCounter.plugin.js');
         $this->context->controller->addJS($this->_path.'js/titancomments.js');
 
+        $customer_name = Context::getContext()->customer->firstname.' '.Context::getContext()->customer->lastname;
         $this->context->smarty->assign(array(
-            'titancomments_controller_url' => $this->context->link->getModuleLink('titancomments'),
+            'titancomments_customer_name' => $customer_name,
+            'titancomments_moderation_active' => (int)Configuration::get('PRODUCT_COMMENTS_MODERATE'),
+            'titancomments_id_product_comment_form' => (int)Tools::getValue('id_product'),
+            'titancomments_controller_url' => $this->context->link->getModuleLink('productcomments'),
             ));
         return ($this->display(__FILE__, '/titancomments.tpl'));
     }
 
     public function hookHeader($param){
         $this->context->controller->addCss($this->_path . 'titancomments.css', 'all');
-       /* $this->page_name = Dispatcher::getInstance()->getController();
-        if (in_array($this->page_name, array('product', 'producttitancommentvote')))
-        {
-            $this->context->controller->addJS($this->_path.'js/jquery.vote.js');
-        }*/
     }
 }

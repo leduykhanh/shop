@@ -15,9 +15,18 @@ $(document).ready(function() {
         if (!productcomments_url_rewrite)
             url_options = '&';
 
+        d = {
+            "customer-id":1,
+            "title":"Comment",
+            "content":$('#titancomments_content').val(),
+            "id_product":titancomments_id_product_comment_form,
+            "criterion":[1,2,3,4,5]
+        };
+        console.log($.param(d));
+
         $.ajax({
             url: titancomments_controller_url + url_options + 'action=add_comment&secure_key=' + titancomments_secure_key + '&rand=' + new Date().getTime(),
-            data: $('#id_titancomments_form').serialize(),
+            data: $.param(d),
             type: 'POST',
             headers: { "cache-control": "no-cache" },
             dataType: "json",
@@ -28,6 +37,10 @@ $(document).ready(function() {
                     $('#titancomments_form').hide({duration:400});
                     $('#id_titancomments_form')[0].reset();
                     $('.titancomments_add_comment').show();
+                    $.fancybox.close();
+                    var buttons = {};
+                    buttons["OK"] = "titanCommentRefreshPage";
+                    fancyChooseBox(titancomments_moderation_active ? titancomments_added_moderation : d.content, d.title, buttons);
                 }
                 else
                 {
@@ -39,3 +52,7 @@ $(document).ready(function() {
     });
 
 });
+
+function titanCommentRefreshPage() {
+    //window.location.reload();
+}
