@@ -302,7 +302,7 @@
 					<!--- end of market price--->
 					<!--- great I want it --->
 					<div style = "background-color: #FF0000;height: 100px; top:-50px;position:relative; z-index:1; padding-top: 55px;text-align: center;font-size: 30px;color:white">
-					<a style = "color:white"> Great,I want it</a>
+					<a href = "{$link->getPageLink('leepurchase', true)|escape:'html':'UTF-8'}" style = "color:white"> Great,I want it</a>
 					<hr \>
 					</div>
 					<!--- end great I want it --->
@@ -379,8 +379,6 @@
 					<div role="tabpanel" class="tab-pane" id="comments">
 						<div id="product_comments_block_tab">
 							<div class="row">
-								<div class="col-sm-3">Add a comment</div>
-								<div class="col-sm-3">Rules of forum</div>
 								<hr />
 							</div>
 							{if isset($HOOK_PRODUCT_TITAN_COMMENTS)  && $HOOK_PRODUCT_TITAN_COMMENTS} {$HOOK_PRODUCT_TITAN_COMMENTS} {/if}
@@ -455,11 +453,9 @@
 				<div class="col-xs-6">
 					<div style="background-color:red;height:100px;border-top-left-radius:90px;padding-left: 50px; font-size:25px;margin: 10px; color:white">
 						<img style="margin:10px" height= 70px src = "../../img/email.png" />
-						{if $logged}
-							{l s=Context::getContext()->customer->email}
-						{else}
-							{l s='Send us an email' }
-						{/if}
+						<input type = "text" style="margin:10px" value = "{if $logged} {Context::getContext()->customer->email}{else}Send us an email
+						{/if}"
+						>
 						</div>
 					<div style="background-color:red;height:100px;border-top-left-radius:90px;padding-left: 50px; font-size:25px;margin: 10px; color:white"> 	<img style="margin:10px" height= 70px src = "../../img/tellus.png" />Tell us what you want </div>
 					<div style="background-color:red;height:100px;border-top-left-radius:90px;padding-left: 50px; font-size:25px;margin: 10px; color:white">  <img style="margin:10px" height= 70px src = "../../img/refer.png" />Refer friends to earn value</div>
