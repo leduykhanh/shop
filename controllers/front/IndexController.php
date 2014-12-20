@@ -33,11 +33,39 @@ class IndexControllerCore extends ProductController
      * @see FrontController::initContent()
      */
      public function init(){
-        $_GET['id_product']=1;
+        $date = date("Y/m/d G:i");
+        
+        $id_product = IndexControllerCore::searchByDate($date);
+        
+        $_GET['id_product'] = $id_product;
         parent::init();
      }
+
     public function initContent()
     {
         parent::initContent();
+    }
+
+    /**
+    * Search for a product that has the effective date contains a $date
+    * TODO: this should be put in a helper function or a model class
+    */
+    private static function searchByDate($current, Context $context = null){
+        if($context == null)
+            $context = Context::getContext();
+        $sql = new DbQuery();
+        $sql->select('p.`id_product`');
+        $sql->from('product', 'p');
+        $sql->orderBy('p.`id_product` ASC');
+
+        //This condition is somewhat wrong. 
+        //TODO: ask customer for what does it mean by $start_date & $end_date
+        //i.e: inclusive or exclusive
+        $sql->where('p.start_date <= \'' . $current . '\' and \'' . $current . '\'<= p.end_date');
+        $result = Db::getInstance()->executeS($sql);
+
+        if(!$result)
+            return false;
+        return $result[0]['id_product'];
     }
 }
