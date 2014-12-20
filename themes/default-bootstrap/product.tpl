@@ -88,18 +88,37 @@
 			</div> <!-- end image-block -->
 			<!-- stock -->
 			<div class="pb-left-column col-xs-12 col-sm-12 col-md-12" style="top:-30px">
-				<div style="border-top-right-radius:30px;background-color:#29abe2;text-align: right;
+				<div style="border-top-right-radius:30px;border:solid 1px red;text-align: left; color:red;
 				font-size: 24px;padding-right: 40px;padding-top: 5px;padding-bottom: 5px;" class="col-md-3">
-					<span>0:0:00</span>
+					<span id = "count_down">00:00:00</span>
+					<script>
+					setInterval(updateCountDown,1000);
+					function updateCountDown(){
+						var current_time = new Date();
+						var difference = new Date("{$product->end_date}") - current_time;
+						    var daysDifference = Math.floor(difference/1000/60/60/24);
+								difference -= daysDifference*1000*60*60*24
+							 
+								var hoursDifference = Math.floor(difference/1000/60/60);
+								difference -= hoursDifference*1000*60*60
+							 
+								var minutesDifference = Math.floor(difference/1000/60);
+								difference -= minutesDifference*1000*60
+							 
+								var secondsDifference = Math.floor(difference/1000);
+						var count_down = document.getElementById("count_down");
+						count_down.innerHTML = hoursDifference + ":" + minutesDifference + ":" + secondsDifference;
+						}
+					</script>
 				</div>
 				<div style="border-top-right-radius:30px;background-color:#29abe2;text-align: right;
 				font-size: 24px;padding-right: 40px;padding-top: 5px;padding-bottom: 5px;"  class="col-md-9">
 					<span>{$product->available_now/(float)$product->quantity*100} % stock</span>
 				</div>
 			</div>
-			<!--{l s="{var_dump(Context::getContext()->customer->email)}"}
-			{l s="{isset($images) && count($images) > 0}"} -->
-			{if isset($images) && count($images) > 0}
+			<!--{l s="{var_dump($features)}"}
+			{l s="{isset($images) && count($images) > 0}"}-->
+			{if isset($images) && count($images) > 0} 
 				<!-- thumbnails -->
 			<!---	<div id="views_block" class="clearfix {if isset($images) && count($images) < 2}hidden{/if}">
 					{if isset($images) && count($images) > 2}
@@ -205,7 +224,7 @@
 				</div>
 			</section>
 		{/if}
-		{if isset($features) && $features}
+		{if true}
 					<!-- Lee added -->
 <!--			<div class = "row">
 					<div id="homepage-slider">
