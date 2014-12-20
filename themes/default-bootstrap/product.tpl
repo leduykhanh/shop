@@ -302,7 +302,7 @@
 					<!--- end of market price--->
 					<!--- great I want it --->
 					<div style = "background-color: #FF0000;height: 100px; top:-50px;position:relative; z-index:1; padding-top: 55px;text-align: center;font-size: 30px;color:white">
-					<a href = "{$link->getPageLink('leepurchase', true)|escape:'html':'UTF-8'}" style = "color:white"> Great,I want it</a>
+					<a href = "{$link->getPageLink('leepurchase', true)|escape:'html':'UTF-8'}&id_product={Tools::getValue('id_product')}" style = "color:white"> Great,I want it</a>
 					<hr \>
 					</div>
 					<!--- end great I want it --->
@@ -313,14 +313,14 @@
 							  <!-- Nav tabs -->
 				<ul class="nav text-center nav-tabs col-xs-12" style="border:none;" role="tablist">
 					<li role="presentation" class="active">
-						<a id = "cc" style="border:none;background-color:#FFFFFF" href="#word-of-day" aria-controls="word-of-day" role="tab" data-toggle="tab" 
+						<a id = "cc" style="border:none;background-color:#FFFFFF;color:#0071bc;" href="#word-of-day" aria-controls="word-of-day" role="tab" data-toggle="tab" 
 						onMouseOver="this.style.backgroundColor='#FFFFFF)'" 
 						onMouseOut="this.style.backgroundColor='#FFFFFF'" >Word of day</a></li>
 					<li role="presentation">
-					<a style="border:none;background-color:#FFFFFF"href="#product-details" aria-controls="product-details" role="tab" data-toggle="tab" onMouseOver="this.style.backgroundColor='#FFFFFF'" 
+					<a style="border:none;background-color:#FFFFFF;color:#0071bc;"href="#product-details" aria-controls="product-details" role="tab" data-toggle="tab" onMouseOver="this.style.backgroundColor='#FFFFFF'" 
 						onMouseOut="this.style.backgroundColor='#FFFFFF'">Product Details</a></li>
 					<li role="presentation">
-					<a style="border:none;background-color:#FFFFFF"href="#comments" aria-controls="comments" role="tab" data-toggle="tab"
+					<a style="border:none;background-color:#FFFFFF;color:#0071bc;"href="#comments" aria-controls="comments" role="tab" data-toggle="tab"
 						onMouseOver="this.style.backgroundColor='#FFFFFF'" 
 						onMouseOut="this.style.backgroundColor='#FFFFFF'">Comments</a></li>
 				  </ul>
