@@ -1,0 +1,477 @@
+ body {
+	margin: 0;
+	padding: 0;
+ }
+ 
+ #background 
+{ 
+	 left: 0px; 
+	 top: 0px; 
+	 position: relative; 
+	 margin-left: auto; 
+	 margin-right: auto; 
+	 width: 1920px;
+	 height: 1080px; 
+	 overflow: hidden;
+	 z-index:0;
+	} 
+
+ #Background 
+{ 
+	 left: 0px; 
+	 top: 0px; 
+	 position: absolute; 
+	 width: 1920px;
+	 height: 1080px;
+	 z-index:1;
+} 
+
+ #Layer20 
+{ 
+	 left: 939px; 
+	 top: 174px; 
+	 position: absolute; 
+	 width: 981px;
+	 height: 832px;
+	 z-index:2;
+} 
+
+ #blue 
+{ 
+	 left: 479px; 
+	 top: 928px; 
+	 position: absolute; 
+	 width: 832px;
+	 height: 65px;
+	 z-index:3;
+} 
+
+ #Layer5 
+{ 
+	 left: 0px; 
+	 top: 994px; 
+	 position: absolute; 
+	 width: 1920px;
+	 height: 94px;
+	 z-index:4;
+} 
+
+ #Layer4 
+{ 
+	 left: 0px; 
+	 top: 0px; 
+	 position: absolute; 
+	 width: 1920px;
+	 height: 74px;
+	 z-index:5;
+} 
+
+ #SummerCollectionLimi 
+{ 
+	 left: 33px; 
+	 top: 176px; 
+	 position: absolute; 
+	 width: 1213px;
+	 height: 808px;
+	 z-index:6;
+} 
+
+ #Layer18 
+{ 
+	 left: -22px; 
+	 top: 116px; 
+	 position: absolute; 
+	 width: 910px;
+	 height: 436px;
+	 z-index:7;
+} 
+
+ #pricebox 
+{ 
+	 left: 1350px; 
+	 top: 383px; 
+	 position: absolute; 
+	 width: 512px;
+	 height: 242px;
+	 z-index:8;
+} 
+
+ #layer_240000 
+{ 
+	 left: 1384px; 
+	 top: 414px; 
+	 position: absolute; 
+	 width: 368px;
+	 height: 55px;
+	 z-index:9;
+} 
+
+ #hogan6193HXM05203272 
+{ 
+	 left: 813px; 
+	 top: 288px; 
+	 position: absolute; 
+	 width: 449px;
+	 height: 163px;
+	 z-index:10;
+} 
+
+ #CatalogPrice520000Ma 
+{ 
+	 left: 1449px; 
+	 top: 549px; 
+	 position: absolute; 
+	 width: 339px;
+	 height: 57px;
+	 z-index:11;
+} 
+
+ #RoundedRectangle9 
+{ 
+	 left: 1350px; 
+	 top: 556px; 
+	 position: absolute; 
+	 width: 513px;
+	 height: 192px;
+	 z-index:12;
+} 
+
+ #GreatIwantit 
+{ 
+	 left: 1420px; 
+	 top: 665px; 
+	 position: absolute; 
+	 width: 358px;
+	 height: 41px;
+	 z-index:13;
+} 
+
+ #10000ofshipping 
+{ 
+	 left: 1386px; 
+	 top: 471px; 
+	 position: absolute; 
+	 width: 349px;
+	 height: 39px;
+	 z-index:14;
+} 
+
+ #layer_043338 
+{ 
+	 left: 103px; 
+	 top: 945px; 
+	 position: absolute; 
+	 width: 203px;
+	 height: 34px;
+	 z-index:15;
+} 
+
+ #Shape4 
+{ 
+	 left: 710px; 
+	 top: 925px; 
+	 position: absolute; 
+	 width: 1151px;
+	 height: 71px;
+	 z-index:16;
+} 
+
+ #HOGAN 
+{ 
+	 left: 1570px; 
+	 top: 262px; 
+	 position: absolute; 
+	 width: 293px;
+	 height: 56px;
+	 z-index:17;
+} 
+
+ #info1 
+{ 
+	 left: 1805px; 
+	 top: 476px; 
+	 position: absolute; 
+	 width: 29px;
+	 height: 29px;
+	 z-index:18;
+} 
+
+ #info2 
+{ 
+	 left: 1805px; 
+	 top: 579px; 
+	 position: absolute; 
+	 width: 29px;
+	 height: 29px;
+	 z-index:19;
+} 
+
+ #info3 
+{ 
+	 left: 1805px; 
+	 top: 544px; 
+	 position: absolute; 
+	 width: 29px;
+	 height: 29px;
+	 z-index:20;
+} 
+
+ #OLYMPIA 
+{ 
+	 left: 1692px; 
+	 top: 319px; 
+	 position: absolute; 
+	 width: 172px;
+	 height: 29px;
+	 z-index:21;
+} 
+
+ #Layer7 
+{ 
+	 left: 42px; 
+	 top: 28px; 
+	 position: absolute; 
+	 width: 300px;
+	 height: 115px;
+	 z-index:22;
+} 
+
+ #line 
+{ 
+	 left: 0px; 
+	 top: 173px; 
+	 position: absolute; 
+	 width: 1920px;
+	 height: 1px;
+	 z-index:23;
+} 
+
+ #line2 
+{ 
+	 left: 0px; 
+	 top: 1006px; 
+	 position: absolute; 
+	 width: 1920px;
+	 height: 1px;
+	 z-index:24;
+} 
+
+ #Layer23 
+{ 
+	 left: 0px; 
+	 top: 1006px; 
+	 position: absolute; 
+	 width: 1920px;
+	 height: 1px;
+	 z-index:25;
+} 
+
+ #r3 
+{ 
+	 left: 531px; 
+	 top: 1006px; 
+	 position: absolute; 
+	 width: 288px;
+	 height: 61px;
+	 z-index:26;
+} 
+
+ #r2 
+{ 
+	 left: 291px; 
+	 top: 1006px; 
+	 position: absolute; 
+	 width: 288px;
+	 height: 61px;
+	 z-index:27;
+} 
+
+ #RoundedRectangle8 
+{ 
+	 left: 80px; 
+	 top: 1006px; 
+	 position: absolute; 
+	 width: 197px;
+	 height: 61px;
+	 z-index:28;
+} 
+
+ #Layer17 
+{ 
+	 left: 140px; 
+	 top: 1006px; 
+	 position: absolute; 
+	 width: 192px;
+	 height: 61px;
+	 z-index:29;
+} 
+
+ #WordofDayProductDet 
+{ 
+	 left: 116px; 
+	 top: 1025px; 
+	 position: absolute; 
+	 width: 633px;
+	 height: 27px;
+	 z-index:30;
+} 
+
+ #Nextbuttonflatgray01 
+{ 
+	 left: 1876px; 
+	 top: 552px; 
+	 position: absolute; 
+	 width: 33px;
+	 height: 52px;
+	 z-index:31;
+} 
+
+ #Nextbuttonflatgray01_0 
+{ 
+	 left: 24px; 
+	 top: 553px; 
+	 position: absolute; 
+	 width: 34px;
+	 height: 51px;
+	 z-index:32;
+} 
+
+ #stroke 
+{ 
+	 left: 80px; 
+	 top: 926px; 
+	 position: absolute; 
+	 width: 1283px;
+	 height: 68px;
+	 z-index:33;
+} 
+
+ #stock 
+{ 
+	 left: 81px; 
+	 top: 927px; 
+	 position: absolute; 
+	 width: 1781px;
+	 height: 67px;
+	 z-index:34;
+} 
+
+ #92stock 
+{ 
+	 left: 1539px; 
+	 top: 943px; 
+	 position: absolute; 
+	 width: 217px;
+	 height: 34px;
+	 z-index:35;
+} 
+
+ #SPECIALEDITION 
+{ 
+	 left: 719px; 
+	 top: 463px; 
+	 position: absolute; 
+	 width: 536px;
+	 height: 50px;
+	 z-index:36;
+} 
+
+ #50OFF 
+{ 
+	 left: 898px; 
+	 top: 551px; 
+	 position: absolute; 
+	 width: 355px;
+	 height: 65px;
+	 z-index:37;
+} 
+
+ #SUMMERCOLLECTION 
+{ 
+	 left: 804px; 
+	 top: 516px; 
+	 position: absolute; 
+	 width: 452px;
+	 height: 31px;
+	 z-index:38;
+} 
+
+ #HOGAN_0 
+{ 
+	 left: 85px; 
+	 top: 308px; 
+	 position: absolute; 
+	 width: 712px;
+	 height: 131px;
+	 z-index:39;
+} 
+
+ #2500foreachreferral 
+{ 
+	 left: 1347px; 
+	 top: 814px; 
+	 position: absolute; 
+	 width: 511px;
+	 height: 32px;
+	 z-index:40;
+} 
+
+ #2500foreachreferral_0 
+{ 
+	 left: 1463px; 
+	 top: 823px; 
+	 position: absolute; 
+	 width: 390px;
+	 height: 25px;
+	 z-index:41;
+} 
+
+ #Layer22 
+{ 
+	 left: 1355px; 
+	 top: 792px; 
+	 position: absolute; 
+	 width: 84px;
+	 height: 85px;
+	 z-index:42;
+} 
+
+ #head 
+{ 
+	 left: 353px; 
+	 top: 927px; 
+	 position: absolute; 
+	 width: 197px;
+	 height: 67px;
+	 z-index:43;
+} 
+
+ #Layer21 
+{ 
+	 left: 1348px; 
+	 top: 726px; 
+	 position: absolute; 
+	 width: 515px;
+	 height: 1px;
+	 z-index:44;
+} 
+
+ #separators 
+{ 
+	 left: 992px; 
+	 top: 80px; 
+	 position: absolute; 
+	 width: 582px;
+	 height: 35px;
+	 z-index:45;
+} 
+
+ #History 
+{ 
+	 left: 844px; 
+	 top: 83px; 
+	 position: absolute; 
+	 width: 1012px;
+	 height: 35px;
+	 z-index:46;
+} 

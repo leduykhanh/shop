@@ -1,5 +1,5 @@
 {$HOOK_LEFT_COLUMN=false}
-	<div role="tabpanel" class="col-xs-12">
+	<div style = "top: 100px;" role="tabpanel" class="col-xs-12">
 							  <!-- Nav tabs -->
 				<ul class="nav text-center nav-tabs col-xs-12" style="border:none;" role="tablist">
 					<li role="presentation" class="active">
