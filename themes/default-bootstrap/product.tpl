@@ -400,7 +400,16 @@
 											<ul>
 												{if $comment.total_advice > 0}
 													<li>
-														{l s='%1$d out of %2$d people found this review useful.' sprintf=[$comment.total_useful,$comment.total_advice] mod='productcomments'}
+														<!-- voting markup -->
+														<div class="voting_wrapper" id="XXXXXXX">
+														    <div class="voting_btn">
+														        <div class="up_button">&nbsp;</div><span class="up_votes">{$comment.total_useful}</span>
+														    </div>
+														    <div class="voting_btn">
+														        <div class="down_button">&nbsp;</div><span class="down_votes">{$comment.total_advice-$comment.total_useful}</span>
+														    </div>
+														</div>
+														<!-- voting markup end -->
 													</li>
 												{/if}
 												{if $is_logged}
@@ -428,23 +437,11 @@
 									</div> <!-- .comment -->
 									{/if}
 								{/foreach}
-								{if (!$too_early AND ($is_logged OR $allow_guests))}
-								<p class="align_center">
-									<a id="new_comment_tab_btn" class="btn btn-default button button-small open-comment-form" href="#new_comment_form">
-										<span>{l s='Write your review' mod='productcomments'} !</span>
-									</a>
-								</p>
-								{/if}
+								
 							{else}
-								{if (!$too_early AND ($is_logged OR $allow_guests))}
-								<p class="align_center">
-									<a id="new_comment_tab_btn" class="btn btn-default button button-small open-comment-form" href="#new_comment_form">
-										<span>{l s='Be the first to write your review' mod='productcomments'} !</span>
-									</a>
-								</p>
-								{else}
+								
 								<p class="align_center">{l s='No customer comments for the moment.' mod='productcomments'}</p>
-								{/if}
+								
 							{/if}
 						</div> <!-- #product_comments_block_tab -->
 					</div>
