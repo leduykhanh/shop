@@ -29,7 +29,7 @@
     <a href = "{$link->getPageLink('leehowitworks', true)|escape:'html':'UTF-8'}">How It Works</a>
 </div>
 <div class="static-page-menu">
-    <a href = "#">History</a>
+    <a href = "{$link->getPageLink('leehistory', true)|escape:'html':'UTF-8'}">History</a>
 </div>
 {if $telnumber}
 	<span class="shop-phone">
