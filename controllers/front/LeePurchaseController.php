@@ -9,7 +9,8 @@ class LeePurchaseController  extends FrontController
 	public $address;
 	public function init()
 	{
-		$this->display_column_left = false; // hides left column
+		$this->display_column_left = false; // hides left column\
+		$this->display_footer =  false;
 		parent::init();
 	}  
 	public function initContent()

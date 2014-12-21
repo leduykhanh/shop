@@ -1,95 +1,183 @@
-{$HOOK_LEFT_COLUMN=false}
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <!-- Jquery -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+	{$HOOK_LEFT_COLUMN=false}
+<div class="container">
+
 	<div style = "top: 100px;" role="tabpanel" class="col-xs-12">
 							  <!-- Nav tabs -->
+		<div class="row">
+			<div class="col-md-2"></div>
+			<div class="col-md-8">
 				<ul class="nav text-center nav-tabs col-xs-12" style="border:none;" role="tablist">
-					<li role="presentation" class="active">
+					<li role="presentation" class="active col-xs-3">
 						<a id = "cc" style="border:none;background-color:#FFFFFF;;color:#0071bc;" href="#selection" aria-controls="selection" role="tab" data-toggle="tab" 
 						onMouseOver="this.style.backgroundColor='#FFFFFF)'" 
 						onMouseOut="this.style.backgroundColor='#FFFFFF'" >Selection</a></li>
-					<li role="presentation">
+					<li role="presentation" class="col-xs-3">
 					<a style="border:none;background-color:#FFFFFF;;color:#0071bc;"href="#address" aria-controls="address" role="tab" data-toggle="tab" onMouseOver="this.style.backgroundColor='#FFFFFF'" 
 						onMouseOut="this.style.backgroundColor='#FFFFFF'">Address</a></li>
-					<li role="presentation">
+					<li role="presentation" class="col-xs-3">
 					<a style="border:none;background-color:#FFFFFF;color:#0071bc;"href="#payment" aria-controls="payment" role="tab" data-toggle="tab"
 						onMouseOver="this.style.backgroundColor='#FFFFFF'" 
 						onMouseOut="this.style.backgroundColor='#FFFFFF'">Payments</a></li>
-					<li role="presentation">
+					<li role="presentation" class="col-xs-3">
 					<a style="border:none;background-color:#FFFFFF;color:#0071bc;"href="#summary" aria-controls="summary" role="tab" data-toggle="tab"
 						onMouseOver="this.style.backgroundColor='#FFFFFF'" 
 						onMouseOut="this.style.backgroundColor='#FFFFFF'">Summary</a></li>
 				  </ul>
+			</div>
+			<div class="col-md-2"></div>
+		</div>
 				  <!--- tab panels --->
 		<div class="tab-content col-xs-12">
+			
 					<div role="tabpanel" class="tab-pane active"  id="selection">
-						<div style="background-color:#0071bc;color:white;border-top-right-radius:50px;margin:5px">
+						<div class="row">
+							<div class="col-md-2"></div>
 						
-						<h2>{$product->name} </h2>
-						<h3>{$product->brand_name} </h4>
-						{$product->price} Per Unit
-						</div>
-						<div style="background-color:#0071bc;color:white;border-top-right-radius:0px;margin:5px">
-							<div class = "col-xs-3" style="background-color:#0071bc;color:white;">. </div>
-							<div class = "col-xs-6" style="background-color:#0071bc;color:white;">Unit</div>
-							<div class = "col-xs-3" style="background-color:#0071bc;color:white;">1</div>
+							<div class="col-md-8" style="background-color:#0071bc; color:white;border-top-right-radius:50px;margin:5px">
 						
-						</div>
-						<div style="background-color:#0071bc;color:white;border-top-right-radius:0px;margin:5px">
-							<div class = "col-xs-3" style="background-color:#0071bc;color:white;">. </div>
-							<div class = "col-xs-6" style="background-color:#0071bc;color:white;">Sub-total</div>
-							<div class = "col-xs-3" style="background-color:#0071bc;color:white;">{$product->price}</div>
-						</div>
-						<div style="background-color:#0071bc;color:white;border-top-right-radius:0px;margin:5px">
-							<div class = "col-xs-3" style="background-color:#0071bc;color:white;">. </div>
-							<div class = "col-xs-6" style="background-color:#0071bc;color:white;">Handling & Shipping</div>
-							<div class = "col-xs-3" style="background-color:#0071bc;color:white;">{$product->additional_shipping_cost}
+							<h2>{$product->name} </h2>
+							<h3>{$product->brand_name} </h4>
+							{$product->price} Per Unit
 							</div>
-						<div style="background-color:#0071bc;color:white;border-top-right-radius:0px;margin:5px">
-							<div class = "col-xs-3" style="background-color:#0071bc;color:white;">. </div>
-							<div class = "col-xs-6" style="background-color:#0071bc;color:white;">Promotional code</div>
-							<div class = "col-xs-3" style="background-color:#0071bc;color:white;">
-								<input type="text" >
-							</div>
+							<div class="col-md-2"></div>
 						</div>
-						<div style="background-color:#0071bc;color:white;border-top-right-radius:0px;margin:5px">
-							<div class = "col-xs-3" style="background-color:#0071bc;color:white;">. </div>
-							<div class = "col-xs-6" style="background-color:#0071bc;color:white;">Total</div>
-							<div class = "col-xs-3" style="background-color:#0071bc;color:white;">
+						<div class = "row">
+							<div class="col-md-2"></div>
+							<div class="col-md-8" style="background-color:#0071bc; color:white;margin:5px">
+								<div class = "col-xs-3" style="background-color:#0071bc;color:white;"> </div>
+								<div class = "col-xs-6" style="background-color:#0071bc;color:white;">Unit</div>
+								<div class = "col-xs-3" style="background-color:#0071bc;color:white;">1</div>
+						
+							</div>
+							<div class="col-md-2"></div>
+						</div>
+						<div class = "row">
+							<div class="col-md-2"></div>
+							<div class="col-md-8" style="background-color:#0071bc;color:white;margin:5px">
+								<div class = "col-xs-3" style="background-color:#0071bc;color:white;">. </div>
+								<div class = "col-xs-6" style="background-color:#0071bc;color:white;">Sub-total</div>
+								<div class = "col-xs-3" style="background-color:#0071bc;color:white;">{$product->price}</div>
+							</div>
+							<div class="col-md-2"></div>
+						</div>
+						<div class = "row">
+							<div class="col-md-2"></div>
+							<div class="col-md-8" style="background-color:#0071bc;color:white;margin:5px">
+								<div class = "col-xs-3" style="background-color:#0071bc;color:white;"> </div>
+								<div class = "col-xs-6" style="background-color:#0071bc;color:white;">Handling & Shipping</div>
+								<div class = "col-xs-3" style="background-color:#0071bc;color:white;">{$product->additional_shipping_cost}
+								</div>
+							</div>
+							<div class="col-md-2"></div>
+						</div>
+						<div class = "row">
+							<div class="col-md-2"></div>
+							<div class="col-md-8"style="background-color:#0071bc;color:white;margin:5px">
+								<div class = "col-xs-3" style="background-color:#0071bc;color:white;"> </div>
+								<div class = "col-xs-6" style="background-color:#0071bc;color:white;">Promotional code</div>
+								<div class = "col-xs-3" style="background-color:#0071bc;color:white;">
+								<input style="color:red" type="text" >
+								</div>
+							</div>
+							<div class="col-md-2"></div>
+						</div>
+						<div class = "row">
+							<div class="col-md-2"></div>						
+							<div class="col-md-8" style="background-color:#0071bc;color:white;margin:5px">
+								<div class = "col-xs-3" style="background-color:#0071bc;color:white;"> </div>
+								<div class = "col-xs-6" style="background-color:#0071bc;color:white;">Total</div>
+								<div class = "col-xs-3" style="background-color:#0071bc;color:white;">
 								{$product->additional_shipping_cost + $product->price}
+								</div>
 							</div>
+							
+							<div class="col-md-2"></div>
 						</div>
 					</div>
-				</div>
-				<div role="tabpanel" class="tab-pane active"  id="address">
-						<div style="background-color:#0071bc;color:white;border-top-right-radius:50px;margin:5px">
+				<div role="tabpanel" class="tab-pane"  id="address">
+						<div class = "row">
+							<div class="col-md-2"></div>	
+							<div class="col-md-8" style="background-color:#0071bc; color:white;border-top-right-radius:50px;margin:5px">
 						
-						<h2>{$product->name} </h2>
-						<h3>{$product->brand_name} </h4>
-						{$product->price} Per Unit
+								<h2>{$product->name} </h2>
+								<h3>{$product->brand_name} </h4>
+									{$product->price} Per Unit
+							</div>
+							<div class="col-md-2"></div>
 						</div>
-						<div style="background-color:#0071bc;color:white;border-top-right-radius:0px;margin:5px">
-							<div class = "col-xs-3" style="background-color:#0071bc;color:white;">Address </div>
-							<div class = "col-xs-6" style="background-color:#0071bc;color:white;">
-							<p>{$address[0]["firstname"]} {$address[0]["lastname"]}</p>
-							<p>{$address[0]["address1"]}</p>
-							<p>{$address[0]["address2"]}</p>
-							<p>Tel: {$address[0]["phone"]}</p>
-							<p>Mob: {$address[0]["phone_mobile"]}</p>
-							<p>{$customer->email}</p>
+						<div class = "row">
+							<div class="col-md-2"></div>
+							<div class="col-md-8"style="background-color:#0071bc;color:white;margin:5px">
+								<div class = "col-xs-3" style="background-color:#0071bc;color:white;">Address </div>
+								<div class = "col-xs-6" style="background-color:#0071bc;color:white;">
+									<p>{$address[0]["firstname"]} {$address[0]["lastname"]}</p>
+									<p>{$address[0]["address1"]}</p>
+									<p>{$address[0]["address2"]}</p>
+									<p>Tel: {$address[0]["phone"]}</p>
+									<p>Mob: {$address[0]["phone_mobile"]}</p>
+									<p>{$customer->email}</p>
+								</div>
+								<div class = "col-xs-3" style="background-color:#0071bc;color:white;">
+									Edit
+								</div>
 							</div>
-							<div class = "col-xs-3" style="background-color:#0071bc;color:white;">
-								Edit
-							</div>
+							<div class="col-md-2"></div>
 						</div>
 				</div>
-				<div role="tabpanel" class="tab-pane active"  id="payment">
+				<div role="tabpanel" class="tab-pane"  id="payment">
 				</div>
-				<div role="tabpanel" class="tab-pane active"  id="summary">
-					<div style="background-color:#0071bc;color:white;border-top-right-radius:50px;margin:5px">
+				<div role="tabpanel" class="tab-pane"  id="summary">
+						<div class = "row">
+							<div class="col-md-3"></div>
+							<div class="col-md-6"style="background-color:#0071bc;color:white; border-top-right-radius:50px;margin:5px">
 						
-						<h2>{$product->name} </h2>
-						<h3>{$product->brand_name} </h4>
-						{$product->price} Per Unit
+								<h2>{$product->name} </h2>
+								<h3>{$product->brand_name} </h4>
+								{$product->price} Per Unit
+							</div>
+							<div class="col-md-3"></div>
+						</div>
+						<div class = "row">
+							<div class="col-md-3"></div>
+							<div class="col-md-6"style="background-color:#0071bc;color:white; border-top-right-radius:0px;margin:5px">
+						
+								<h2>Shipping address & Contact</h2>
+								<p>{$address[0]["firstname"]} {$address[0]["lastname"]}</p>
+								<p>{$address[0]["address1"]}</p>
+								<p>{$address[0]["address2"]}</p>
+								<p>Tel: {$address[0]["phone"]}</p>
+								<p>Mob: {$address[0]["phone_mobile"]}</p>
+								<p>{$customer->email}</p>
+							</div>
+							<div class="col-md-3"></div>
+						</div>
+						<div class = "row">
+							<div class="col-md-3"></div>
+							<div class="col-md-6">
+								<div class="col-md-6">
+									<button style="background-color:#0071bc;color:white; border-top-right-radius:0px;"type="button">Back</button>
+								</div>
+								<div class="col-md-6">
+									<button style="background-color:red;color:white; border-top-right-radius:0px;" type="button">Confirm</button>
+								</div>
+							</div>
+							<div class="col-md-3"></div>
 						</div>
 				</div>
-		</div>
-</div>
+			</div>
+	</div>
+</body>
+</html>
