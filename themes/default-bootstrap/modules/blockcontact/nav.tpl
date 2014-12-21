@@ -26,7 +26,7 @@
 	<a href="{$link->getPageLink('contact', true)|escape:'html':'UTF-8'}" title="{l s='Help & Contact' mod='blockcontact'}">{l s='Help & Contact' mod='blockcontact'}</a>
 </div>
 <div class="static-page-menu">
-    <a href = "#">How It Works</a>
+    <a href = "{$link->getPageLink('leehowitworks', true)|escape:'html':'UTF-8'}">How It Works</a>
 </div>
 <div class="static-page-menu">
     <a href = "#">History</a>
