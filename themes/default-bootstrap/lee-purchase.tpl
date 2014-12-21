@@ -14,7 +14,7 @@
 	{$HOOK_LEFT_COLUMN=false}
 <div class="container">
 
-	<div style = "top: 100px;" role="tabpanel" class="col-xs-12">
+	<div style = "margin: 10px;" role="tabpanel" class="col-xs-12">
 							  <!-- Nav tabs -->
 		<div class="row">
 			<div class="col-md-2"></div>
@@ -46,7 +46,7 @@
 						<div class="row">
 							<div class="col-md-2"></div>
 						
-							<div class="col-md-8" style="background-color:#0071bc; color:white;border-top-right-radius:50px;margin:5px">
+							<div class="col-md-8" style="background-color:#0071bc; color:white;border-top-right-radius:50px;margin:1px">
 						
 							<h2>{$product->name} </h2>
 							<h3>{$product->brand_name} </h4>
@@ -56,7 +56,7 @@
 						</div>
 						<div class = "row">
 							<div class="col-md-2"></div>
-							<div class="col-md-8" style="background-color:#0071bc; color:white;margin:5px">
+							<div class="col-md-8" style="background-color:#0071bc; color:white;margin:1px">
 								<div class = "col-xs-3" style="background-color:#0071bc;color:white;"> </div>
 								<div class = "col-xs-6" style="background-color:#0071bc;color:white;">Unit</div>
 								<div class = "col-xs-3" style="background-color:#0071bc;color:white;">1</div>
@@ -66,8 +66,8 @@
 						</div>
 						<div class = "row">
 							<div class="col-md-2"></div>
-							<div class="col-md-8" style="background-color:#0071bc;color:white;margin:5px">
-								<div class = "col-xs-3" style="background-color:#0071bc;color:white;">. </div>
+							<div class="col-md-8" style="background-color:#0071bc;color:white;margin:1px">
+								<div class = "col-xs-3" style="background-color:#0071bc;color:white;"> </div>
 								<div class = "col-xs-6" style="background-color:#0071bc;color:white;">Sub-total</div>
 								<div class = "col-xs-3" style="background-color:#0071bc;color:white;">{$product->price}</div>
 							</div>
@@ -75,7 +75,7 @@
 						</div>
 						<div class = "row">
 							<div class="col-md-2"></div>
-							<div class="col-md-8" style="background-color:#0071bc;color:white;margin:5px">
+							<div class="col-md-8" style="background-color:#0071bc;color:white;margin:1px">
 								<div class = "col-xs-3" style="background-color:#0071bc;color:white;"> </div>
 								<div class = "col-xs-6" style="background-color:#0071bc;color:white;">Handling & Shipping</div>
 								<div class = "col-xs-3" style="background-color:#0071bc;color:white;">{$product->additional_shipping_cost}
@@ -85,7 +85,7 @@
 						</div>
 						<div class = "row">
 							<div class="col-md-2"></div>
-							<div class="col-md-8"style="background-color:#0071bc;color:white;margin:5px">
+							<div class="col-md-8"style="background-color:#0071bc;color:white;margin:1px">
 								<div class = "col-xs-3" style="background-color:#0071bc;color:white;"> </div>
 								<div class = "col-xs-6" style="background-color:#0071bc;color:white;">Promotional code</div>
 								<div class = "col-xs-3" style="background-color:#0071bc;color:white;">
@@ -96,7 +96,7 @@
 						</div>
 						<div class = "row">
 							<div class="col-md-2"></div>						
-							<div class="col-md-8" style="background-color:#0071bc;color:white;margin:5px">
+							<div class="col-md-8" style="background-color:#0071bc;color:white;margin:1px">
 								<div class = "col-xs-3" style="background-color:#0071bc;color:white;"> </div>
 								<div class = "col-xs-6" style="background-color:#0071bc;color:white;">Total</div>
 								<div class = "col-xs-3" style="background-color:#0071bc;color:white;">
@@ -110,7 +110,7 @@
 				<div role="tabpanel" class="tab-pane"  id="address">
 						<div class = "row">
 							<div class="col-md-2"></div>	
-							<div class="col-md-8" style="background-color:#0071bc; color:white;border-top-right-radius:50px;margin:5px">
+							<div class="col-md-8" style="background-color:#0071bc; color:white;border-top-right-radius:50px;margin:1px">
 						
 								<h2>{$product->name} </h2>
 								<h3>{$product->brand_name} </h4>
@@ -120,7 +120,7 @@
 						</div>
 						<div class = "row">
 							<div class="col-md-2"></div>
-							<div class="col-md-8"style="background-color:#0071bc;color:white;margin:5px">
+							<div class="col-md-8"style="background-color:#0071bc;color:white;margin:1px">
 								<div class = "col-xs-3" style="background-color:#0071bc;color:white;">Address </div>
 								<div class = "col-xs-6" style="background-color:#0071bc;color:white;">
 									<p>{$address[0]["firstname"]} {$address[0]["lastname"]}</p>
@@ -136,23 +136,72 @@
 							</div>
 							<div class="col-md-2"></div>
 						</div>
+						<div class = "row">
+							<div class="col-md-2"></div>
+							<div class="col-md-8" style="padding:0px">
+								<div class="col-md-6" style="padding:0px">
+									<button style="display: table-cell;background-color:#0071bc;color:white; width:100%; border-bottom-left-radius:30px; margin:1px;padding-left:0px"type="button">Back</button>
+								</div>
+								<div class="col-md-6" style="padding:0px">
+									<button style="display: table-cell;background-color:red;color:white; width:100%; border-top-right-radius:0px; margin:1px;padding-left:0px"type="button">Continue</button>
+								</div>
+							</div>
+							<div class="col-md-2"></div>
+						</div>	
 				</div>
 				<div role="tabpanel" class="tab-pane"  id="payment">
+						<div class = "row">
+							<div class="col-md-4"></div>	
+							<div class="col-md-4" style="background-color:#0071bc; color:white;border-top-right-radius:50px;margin:1px">
+						
+								<h2>{$product->name} </h2>
+								<h3>{$product->brand_name} </h4>
+									{$product->price} Per Unit
+							</div>
+							<div class="col-md-4"></div>
+						</div>
+						<div class = "row">
+							<div class="col-md-4"></div>
+							<div class="col-md-4"style="background-color:#0071bc;color:white;margin:1px">
+						
+								<h2>Payment Method </h2>
+							    <select multiple style = "overflow: hidden;"class="form-control" id="sel2">
+								<option>Online</option>
+								<option>Card to Card</option>
+								<option>Bank Transaction</option>
+								<option>At the door</option>
+							  </select>
+							</div>
+							<div class="col-md-4"></div>
+
+						</div>
+						<div class = "row">
+							<div class="col-md-4"></div>
+							<div class="col-md-4" style="padding:0px">
+								<div class="col-md-6" style="padding:0px">
+									<button style="display: table-cell;background-color:#0071bc;color:white; width:100%; border-bottom-left-radius:30px; margin:1px;padding-left:0px"type="button">Back</button>
+								</div>
+								<div class="col-md-6" style="padding:0px">
+									<button style="display: table-cell;background-color:red;color:white; width:100%; border-top-right-radius:0px; margin:1px;padding-left:0px"type="button">Continue</button>
+								</div>
+							</div>
+							<div class="col-md-4"></div>
+						</div>						
 				</div>
 				<div role="tabpanel" class="tab-pane"  id="summary">
 						<div class = "row">
-							<div class="col-md-3"></div>
-							<div class="col-md-6"style="background-color:#0071bc;color:white; border-top-right-radius:50px;margin:5px">
+							<div class="col-md-4"></div>
+							<div class="col-md-4"style="background-color:#0071bc;color:white; border-top-right-radius:50px;margin:1px">
 						
 								<h2>{$product->name} </h2>
 								<h3>{$product->brand_name} </h4>
 								{$product->price} Per Unit
 							</div>
-							<div class="col-md-3"></div>
+							<div class="col-md-4"></div>
 						</div>
 						<div class = "row">
-							<div class="col-md-3"></div>
-							<div class="col-md-6"style="background-color:#0071bc;color:white; border-top-right-radius:0px;margin:5px">
+							<div class="col-md-4"></div>
+							<div class="col-md-4"style="background-color:#0071bc;color:white; border-top-right-radius:0px;margin:1px">
 						
 								<h2>Shipping address & Contact</h2>
 								<p>{$address[0]["firstname"]} {$address[0]["lastname"]}</p>
@@ -162,19 +211,19 @@
 								<p>Mob: {$address[0]["phone_mobile"]}</p>
 								<p>{$customer->email}</p>
 							</div>
-							<div class="col-md-3"></div>
+							<div class="col-md-4"></div>
 						</div>
 						<div class = "row">
-							<div class="col-md-3"></div>
-							<div class="col-md-6">
-								<div class="col-md-6">
-									<button style="background-color:#0071bc;color:white; border-top-right-radius:0px;"type="button">Back</button>
+							<div class="col-md-4"></div>
+							<div class="col-md-4" style="padding:0px">
+								<div class="col-md-6" style="padding:0px">
+									<button style="display: table-cell;background-color:#0071bc;color:white; width:100%; border-bottom-left-radius:30px; margin:1px;padding-left:0px"type="button">Back</button>
 								</div>
-								<div class="col-md-6">
-									<button style="background-color:red;color:white; border-top-right-radius:0px;" type="button">Confirm</button>
+								<div class="col-md-6" style="padding:0px">
+									<button style="display: table-cell;background-color:red;color:white; width:100%; border-top-right-radius:0px; margin:1px;padding-left:0px"type="button">Confirm</button>
 								</div>
 							</div>
-							<div class="col-md-3"></div>
+							<div class="col-md-4"></div>
 						</div>
 				</div>
 			</div>
