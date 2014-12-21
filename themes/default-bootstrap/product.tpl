@@ -310,19 +310,25 @@
 			<!-- Bootrap Lee -->
 			<div role="tabpanel" class="col-xs-12">
 							  <!-- Nav tabs -->
-				<ul class="nav text-center nav-tabs col-xs-12" style="border:none;" role="tablist">
-					<li role="presentation" class="active">
-						<a id = "cc" style="border:none;background-color:#FFFFFF;color:#0071bc;" href="#word-of-day" aria-controls="word-of-day" role="tab" data-toggle="tab" 
-						onMouseOver="this.style.backgroundColor='#FFFFFF)'" 
-						onMouseOut="this.style.backgroundColor='#FFFFFF'" >Word of day</a></li>
-					<li role="presentation">
-					<a style="border:none;background-color:#FFFFFF;color:#0071bc;"href="#product-details" aria-controls="product-details" role="tab" data-toggle="tab" onMouseOver="this.style.backgroundColor='#FFFFFF'" 
-						onMouseOut="this.style.backgroundColor='#FFFFFF'">Product Details</a></li>
-					<li role="presentation">
-					<a style="border:none;background-color:#FFFFFF;color:#0071bc;"href="#comments" aria-controls="comments" role="tab" data-toggle="tab"
-						onMouseOver="this.style.backgroundColor='#FFFFFF'" 
-						onMouseOut="this.style.backgroundColor='#FFFFFF'">Comments</a></li>
-				  </ul>
+				<div class="row">
+				<div class="col-md-3"></div>
+				<div class="col-md-6">
+					<ul class="nav text-center nav-tabs col-xs-12" style="border:none;" role="tablist">
+						<li role="presentation" class="active col-md-4">
+							<a id = "cc" style="border:none;background-color:#FFFFFF;color:#0071bc;" href="#word-of-day" aria-controls="word-of-day" role="tab" data-toggle="tab" 
+							onMouseOver="this.style.backgroundColor='#FFFFFF)'" 
+							onMouseOut="this.style.backgroundColor='#FFFFFF'" >Word of day</a></li>
+						<li role="presentation"  class="col-md-4">
+						<a style="border:none;background-color:#FFFFFF;color:#0071bc;"href="#product-details" aria-controls="product-details" role="tab" data-toggle="tab" onMouseOver="this.style.backgroundColor='#FFFFFF'" 
+							onMouseOut="this.style.backgroundColor='#FFFFFF'">Product Details</a></li>
+						<li role="presentation"  class="col-md-4">
+						<a style="border:none;background-color:#FFFFFF;color:#0071bc;"href="#comments" aria-controls="comments" role="tab" data-toggle="tab"
+							onMouseOver="this.style.backgroundColor='#FFFFFF'" 
+							onMouseOut="this.style.backgroundColor='#FFFFFF'">Comments</a></li>
+					  </ul>
+				   </div>
+				  <div class="col-md-3"></div>
+				  </div>
 				<!---
 				  <ul class="nav nav-tabs" role="tablist">
 					<li role="presentation" class="active">

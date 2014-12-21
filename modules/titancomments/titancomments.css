@@ -1,7 +1,9 @@
 .titancomments_submit_comment {
     cursor:pointer;
 }
-
+.titancomments_add_comment{
+	cursor:pointer;
+}
 #titancomments_content {
     width:100%;
     margin-bottom:15px;
