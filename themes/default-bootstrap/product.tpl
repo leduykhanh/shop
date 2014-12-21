@@ -111,8 +111,7 @@
 						}
 					</script>
 				</div>
-				<div style="border-top-right-radius:30px;background-color:#29abe2;text-align: right;
-				font-size: 24px;padding-right: 40px;padding-top: 5px;padding-bottom: 5px;"  class="col-md-9">
+				<div style="border-top-right-radius:30px;background-color:red;text-align: right; border:solid 1px red;color:white;font-size: 24px;padding-right: 40px;padding-top: 5px;padding-bottom: 5px;"  class="col-md-9">
 					<span>{$product->available_now/(float)$product->quantity*100} % stock</span>
 				</div>
 			</div>
