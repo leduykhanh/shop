@@ -6683,7 +6683,8 @@ div.star a:hover {
   color: #333333; }
 
 .header-container {
-  background: white; }
+  background: white;
+  margin-bottom:30px;  }
 
 .breadcrumb {
   display: inline-block;

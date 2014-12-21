@@ -15,7 +15,7 @@
 
 #contact-link, .static-page-menu {
   float: right;
-  border-left: 1px solid #515151; }
+  border-left: 1px solid #EADEDE; }
   @media (max-width: 479px) {
     #contact-link, .static-page-menu {
       width: 25%;
