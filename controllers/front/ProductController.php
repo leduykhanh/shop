@@ -40,6 +40,7 @@ class ProductControllerCore extends FrontController
 		if (!$this->useMobileTheme())
 		{
 			$this->addCSS(_THEME_CSS_DIR_.'product.css');
+			$this->addCSS(_THEME_CSS_DIR_.'leeslider.css');
 			$this->addCSS(_THEME_CSS_DIR_.'print.css', 'print');
 			$this->addJqueryPlugin(array('fancybox', 'idTabs', 'scrollTo', 'serialScroll', 'bxslider'));
 			$this->addJS(array(

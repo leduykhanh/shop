@@ -85,10 +85,81 @@
 					</span>
 				{else}
 				{/if}
-			</div> <!-- end image-block -->
+			</div>
+			
+			<!-- end image-block -->
+			<!-- slider -->
+			<!---
+			<div id="slider">
+			  <a href="#" class="control_next">>></a>
+			  <a href="#" class="control_prev"><</a>
+			  <ul>
+				<li>
+				<img src="{$link->getImageLink($product->link_rewrite, $cover.id_image, 'large_default')|escape:'html':'UTF-8'}" />
+				</li>
+				<li style="background: #aaa;">SLIDE 2</li>
+				<li>SLIDE 3</li>
+				<li style="background: #aaa;">SLIDE 4</li>
+			  </ul>  
+			</div>
+
+			<div class="slider_option">
+			  <input type="checkbox" id="checkbox">
+			  <label for="checkbox">Autoplay Slider</label>
+			</div>
+			<script>
+			jQuery(document).ready(function ($) {
+
+			  $('#checkbox').change(function(){
+				setInterval(function () {
+					moveRight();
+				}, 3000);
+			  });
+			  
+				var slideCount = $('#slider ul li').length;
+				var slideWidth = $('#slider ul li').width();
+				var slideHeight = $('#slider ul li').height();
+				var sliderUlWidth = slideCount * slideWidth;
+				
+				$('#slider').css({ width: slideWidth, height: slideHeight });
+				
+				$('#slider ul').css({ width: sliderUlWidth, marginLeft: - slideWidth });
+				
+				$('#slider ul li:last-child').prependTo('#slider ul');
+
+				function moveLeft() {
+					$('#slider ul').animate({
+						left: + slideWidth
+					}, 200, function () {
+						$('#slider ul li:last-child').prependTo('#slider ul');
+						$('#slider ul').css('left', '');
+					});
+				};
+
+				function moveRight() {
+					$('#slider ul').animate({
+						left: - slideWidth
+					}, 200, function () {
+						$('#slider ul li:first-child').appendTo('#slider ul');
+						$('#slider ul').css('left', '');
+					});
+				};
+
+				$('a.control_prev').click(function () {
+					moveLeft();
+				});
+
+				$('a.control_next').click(function () {
+					moveRight();
+				});
+
+			}); 
+			</script>
+			-->
+			<!-- end slider -->
 			<!-- stock -->
 			<div class="pb-left-column col-xs-12 col-sm-12 col-md-12" style="top:-30px">
-				<div style="border-top-right-radius:30px;border:solid 1px red;text-align: left; color:red;
+				<div style="border-top-right-radius:30px;border:solid 1px #ed1c24;text-align: left; color:red;
 				font-size: 24px;padding-right: 40px;padding-top: 5px;padding-bottom: 5px;" class="col-md-3">
 					<span id = "count_down">00:00:00</span>
 					<script>
@@ -111,15 +182,16 @@
 						}
 					</script>
 				</div>
-				<div style="border-top-right-radius:30px;background-color:red;text-align: right; border:solid 1px red;color:white;font-size: 24px;padding-right: 40px;padding-top: 5px;padding-bottom: 5px;"  class="col-md-9">
-					<span>{$product->available_now/(float)$product->quantity*100} % stock</span>
+				<div style="border-top-right-radius:30px;background-color:#ed1c24;text-align: right; border:solid 1px #ed1c24;color:white;font-size: 24px;padding-right: 40px;padding-top: 5px;padding-bottom: 5px;"  class="col-md-9">
+					<span>{$product->quantity/(float)$product->initial_quantity*100} % stock</span>
 				</div>
 			</div>
-			<!--{l s="{var_dump($features)}"}
+			<!--{l s="{var_dump($images)}"} 
 			{l s="{isset($images) && count($images) > 0}"}-->
 			{if isset($images) && count($images) > 0} 
 				<!-- thumbnails -->
-			<!---	<div id="views_block" class="clearfix {if isset($images) && count($images) < 2}hidden{/if}">
+				
+				<div id="views_block" class="clearfix {if isset($images) && count($images) < 2}hidden{/if}">
 					{if isset($images) && count($images) > 2}
 						<span class="view_scroll_spacer">
 							<a id="view_scroll_left" class="" title="{l s='Other views'}" href="javascript:{ldelim}{rdelim}">
@@ -146,7 +218,7 @@
 						{/if}
 						</ul>
 					</div> 
-					-->
+					
 					<!-- end thumbs_list -->
 					{if isset($images) && count($images) > 2}
 						<a id="view_scroll_right" title="{l s='Other views'}" href="javascript:{ldelim}{rdelim}">
@@ -154,6 +226,7 @@
 						</a>
 					{/if}
 				</div> <!-- end views-block -->
+				
 				<!-- end thumbnails -->
 			{/if}
 			{if isset($images) && count($images) > 1}
@@ -168,7 +241,6 @@
 			{/if}
 		</div> <!-- end pb-left-column -->
 		<!-- end left infos-->
-
 	</div> <!-- end primary_block -->
 	{if !$content_only}
 {if (isset($quantity_discounts) && count($quantity_discounts) > 0)}
@@ -245,7 +317,7 @@
 					</div>
 			</div>
 -->
-			<div style = "position:absolute;top:100px;right:50px;width:300px;color: white;"class = "row">
+			<div style = "position:absolute;top:30px;right:50px;width:300px;color: white;"class = "row">
 					<!--- name --->
 					<div>
 					<h1 style ="text-transform: uppercase;text-align: right;font-size:30px">{$product->brand_name|escape:'html':'UTF-8'}</h1>
@@ -256,7 +328,7 @@
 						<p class="our_price_display" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
 							{if $product->quantity > 0}<link itemprop="availability" href="http://schema.org/InStock"/>{/if}
 							{if $priceDisplay >= 0 && $priceDisplay <= 2}
-								<span id="our_price_display" itemprop="price">{convertPrice price=$productPrice}</span>
+								<span id="our_price_display" itemprop="price">{$product->price}</span>
 								<!--{if $tax_enabled  && ((isset($display_tax_label) && $display_tax_label == 1) || !isset($display_tax_label))}
 									{if $priceDisplay == 1}{l s='tax excl.'}{else}{l s='tax incl.'}{/if}
 								{/if}-->
@@ -300,11 +372,38 @@
 					</div>
 					<!--- end of market price--->
 					<!--- great I want it --->
-					<div style = "background-color: #FF0000;height: 100px; top:-50px;position:relative; z-index:1; padding-top: 55px;text-align: center;font-size: 30px;color:white">
-					<a href = "{$link->getPageLink('leepurchase', true)|escape:'html':'UTF-8'}&id_product={Tools::getValue('id_product')}" style = "color:white"> Great,I want it</a>
-					<hr \>
+					<div style = "background-color: #ed1c24;height: 100px; top:-50px;position:relative; z-index:1; padding-top: 55px;text-align: center;font-size: 30px;color:white">
+					<!-- pb-right-column-->
+
+					{if ($product->show_price && !isset($restricted_country_mode)) || isset($groups) || $product->reference || (isset($HOOK_PRODUCT_ACTIONS) && $HOOK_PRODUCT_ACTIONS)}
+					<!-- add to cart form-->
+					<form id="buy_block"{if $PS_CATALOG_MODE && !isset($groups) && $product->quantity > 0} class="hidden"{/if} action="{$link->getPageLink('cart')|escape:'html':'UTF-8'}" method="post">
+						<!-- hidden datas -->
+						<p class="hidden">
+							<input type="hidden" name="token" value="{$static_token}" />
+							<input type="hidden" name="id_product" value="{$product->id|intval}" id="product_page_product_id" />
+							<input type="hidden" name="add" value="1" />
+							<input type="hidden" name="id_product_attribute" id="idCombination" value="" />
+						</p>
+							
+								<div {if (!$allow_oosp && $product->quantity <= 0) || !$product->available_for_order || (isset($restricted_country_mode) && $restricted_country_mode) || $PS_CATALOG_MODE} class="unvisible"{/if}>
+										<button type="submit" name="Submit" style = "color:white; background-color:Transparent; background-repeat:no-repeat; border: none;cursor:pointer;overflow: hidden;outline:none;padding:10px">
+											{if $content_only && (isset($product->customization_required) && $product->customization_required)}{l s='Customize'}{else}{l s='Great,I want it'}{/if}
+										</button>
+								</div>
+							</form>
+					{/if}
+		<!-- end pb-right-column-->
+				<!--	<a href = "{$link->getPageLink('leepurchase', true)|escape:'html':'UTF-8'}&id_product={Tools::getValue('id_product')}" style = "color:white"> Great,I want it</a>
+				-->
 					</div>
 					<!--- end great I want it --->
+					<!-- refer -->
+					<div style = "height: 50px; top:-40px;position:relative; z-index:1; padding-top: 1px;text-align: center;font-size: 20px;color:red">
+					<img style="margin:10px" height= 47px src = "../../img/red_refer.png" />
+					<a href = "{$link->getPageLink('leepurchase', true)|escape:'html':'UTF-8'}&id_product={Tools::getValue('id_product')}" style = "color:#ed1c24"> {$product->refferal_value} for each referral</a>
+					</div>
+					<!-- end reefer -->
 			</div>
 			<div class = "row">
 			<!-- Bootrap Lee -->
@@ -315,14 +414,14 @@
 				<div class="col-md-6">
 					<ul class="nav text-center nav-tabs col-xs-12" style="border:none;" role="tablist">
 						<li role="presentation" class="active col-md-4">
-							<a id = "cc" style="border:none;background-color:#FFFFFF;color:#0071bc;" href="#word-of-day" aria-controls="word-of-day" role="tab" data-toggle="tab" 
+							<a id = "cc" style="border:none;background-color:#FFFFFF;color:#0071bc; font-size:18px;" href="#word-of-day" aria-controls="word-of-day" role="tab" data-toggle="tab" 
 							onMouseOver="this.style.backgroundColor='#FFFFFF)'" 
 							onMouseOut="this.style.backgroundColor='#FFFFFF'" >Word of day</a></li>
 						<li role="presentation"  class="col-md-4">
-						<a style="border:none;background-color:#FFFFFF;color:#0071bc;"href="#product-details" aria-controls="product-details" role="tab" data-toggle="tab" onMouseOver="this.style.backgroundColor='#FFFFFF'" 
+						<a style="border:none;background-color:#FFFFFF;color:#0071bc; font-size:18px;"href="#product-details" aria-controls="product-details" role="tab" data-toggle="tab" onMouseOver="this.style.backgroundColor='#FFFFFF'" 
 							onMouseOut="this.style.backgroundColor='#FFFFFF'">Product Details</a></li>
 						<li role="presentation"  class="col-md-4">
-						<a style="border:none;background-color:#FFFFFF;color:#0071bc;"href="#comments" aria-controls="comments" role="tab" data-toggle="tab"
+						<a style="border:none;background-color:#FFFFFF;color:#0071bc;font-size:18px;"href="#comments" aria-controls="comments" role="tab" data-toggle="tab"
 							onMouseOver="this.style.backgroundColor='#FFFFFF'" 
 							onMouseOut="this.style.backgroundColor='#FFFFFF'">Comments</a></li>
 					  </ul>
@@ -453,16 +552,16 @@
 					
 				  </div>
 				<div class="col-xs-6">
-					<div style="background-color:red;height:100px;border-top-left-radius:90px;padding-left: 50px; font-size:25px;margin: 10px; color:white">
+					<div style="background-color:#ed1c24;height:100px;border-top-left-radius:90px;padding-left: 50px; font-size:25px;margin: 10px; color:white">
 						<img style="margin:10px" height= 70px src = "../../img/email.png" />
 						<input type = "text" style="margin:10px" value = "{if $logged} {Context::getContext()->customer->email}{else}Send us an email
 						{/if}"
 						>
 						</div>
-					<div style="background-color:red;height:100px;border-top-left-radius:90px;padding-left: 50px; font-size:25px;margin: 10px; color:white"> 	<img style="margin:10px" height= 70px src = "../../img/tellus.png" />Tell us what you want </div>
-					<div style="background-color:red;height:100px;border-top-left-radius:90px;padding-left: 50px; font-size:25px;margin: 10px; color:white">  <img style="margin:10px" height= 70px src = "../../img/refer.png" />Refer friends to earn value</div>
-					<div style="background-color:whtie;height:100px;border-top-left-radius:90px;padding-left: 50px; font-size:25px;margin: 10px; color:red;
-					border:solid 2px red"> <img style="margin:10px" height= 70px src = "../../img/enamad.png" />eNamad Certificated website</div>
+					<div style="background-color:#ed1c24;height:100px;border-top-left-radius:90px;padding-left: 50px; font-size:25px;margin: 10px; color:white"> 	<img style="margin:10px" height= 70px src = "../../img/tellus.png" />Tell us what you want </div>
+					<div style="background-color:#ed1c24;height:100px;border-top-left-radius:90px;padding-left: 50px; font-size:25px;margin: 10px; color:white">  <img style="margin:10px" height= 70px src = "../../img/refer.png" />Refer friends to earn value</div>
+					<div style="background-color:whtie;height:100px;border-top-left-radius:90px;padding-left: 50px; font-size:25px;margin: 10px; color:#ed1c24;
+					border:solid 2px #ed1c24"> <img style="margin:10px" height= 70px src = "../../img/enamad.png" />eNamad Certificated website</div>
 				</div>
 				<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 				

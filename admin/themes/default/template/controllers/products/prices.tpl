@@ -121,8 +121,8 @@ $(document).ready(function () {
 		</label>
 		<div class="input-group col-lg-2">
 			<span class="input-group-addon">{$currency->prefix}{$currency->suffix}</span>
-			<input type="hidden" id="priceTEReal" name="price" value="{toolsConvertPrice price=$product->price}"/>
-			<input size="11" maxlength="14" id="priceTE" name="price_displayed" type="text" value="{{toolsConvertPrice price=$product->price}|string_format:'%.6f'}" onchange="noComma('priceTE'); $('#priceTEReal').val(this.value);" onkeyup="$('#priceType').val('TE'); $('#priceTEReal').val(this.value.replace(/,/g, '.')); if (isArrowKey(event)) return; calcPriceTI();" />
+			<input type="hidden" id="priceTEReal" name="price" value="{$product->price}"/>
+			<input size="11" maxlength="14" id="priceTE" name="price_displayed" type="text" value="{{$product->price}}"/>
 		</div>
 	</div>
 	<!-- lee --->
@@ -134,7 +134,7 @@ $(document).ready(function () {
 		</label>
 		<div class="input-group col-lg-2">
 			<span class="input-group-addon">{$currency->prefix}{$currency->suffix}</span>
-			<input maxlength="14" name="catalog_price" id="catalog_price" type="text" value="{{toolsConvertPrice price=$product->catalog_price}|string_format:$priceDisplayPrecisionFormat}" onchange="this.value = this.value.replace(/,/g, '.');" />
+			<input maxlength="14" name="catalog_price" id="catalog_price" type="text" value="{{toolsConvertPrice price=$product->catalog_price}}" onchange="this.value = this.value.replace(/,/g, '.');" />
 		</div>
 	</div>
 	<div class="form-group">
@@ -145,18 +145,18 @@ $(document).ready(function () {
 		</label>
 		<div class="input-group col-lg-2">
 			<span class="input-group-addon">{$currency->prefix}{$currency->suffix}</span>
-			<input maxlength="14" name="market_price" id="market_price" type="text" value="{{toolsConvertPrice price=$product->market_price}|string_format:$priceDisplayPrecisionFormat}" onchange="this.value = this.value.replace(/,/g, '.');" />
+			<input maxlength="14" name="market_price" id="market_price" type="text" value="{{$product->market_price}}" onchange="this.value = this.value.replace(/,/g, '.');" />
 		</div>
 	</div>
 	<div class="form-group">
 		<div class="col-lg-1"><span class="pull-right">{include file="controllers/products/multishop/checkbox.tpl" field="refferal_value" type="default"}</span></div>
 		<label class="control-label col-lg-2" for="refferal_value">
 			<span class="label-tooltip" data-toggle="tooltip" title="{l s='The Catalog Price'}">
-			{l s='Refferal value'}</span>
+			{l s='Referral value'}</span>
 		</label>
 		<div class="input-group col-lg-2">
 			<span class="input-group-addon">{$currency->prefix}{$currency->suffix}</span>
-			<input maxlength="14" name="refferal_value" id="refferal_value" type="text" value="{{toolsConvertPrice price=$product->refferal_value}|string_format:$priceDisplayPrecisionFormat}" onchange="this.value = this.value.replace(/,/g, '.');" />
+			<input maxlength="14" name="refferal_value" id="refferal_value" type="text" value="{{$product->refferal_value}}" onchange="this.value = this.value.replace(/,/g, '.');" />
 		</div>
 	</div>
 	<!-- lee --->
