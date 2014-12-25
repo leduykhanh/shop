@@ -1068,3 +1068,14 @@ Quick View Styles
 .shop-phone {
 padding: 5px 0 10px 10px;
 }
+
+#presentation_ul a{
+  border-style: none none solid none;
+  border-bottom-width: thick;
+  color: rgb(0, 113, 188);
+  font-size: 18px;
+  background-color: rgb(255, 255, 255);
+}
+#presentation_ul .active a{  
+  border-bottom:solid 5px;
+}
