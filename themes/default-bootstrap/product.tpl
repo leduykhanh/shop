@@ -34,6 +34,7 @@
 		{assign var='productPrice' value=$product->getPrice(false, $smarty.const.NULL, $priceDisplayPrecision)}
 		{assign var='productPriceWithoutReduction' value=$product->getPriceWithoutReduct(true, $smarty.const.NULL)}
 	{/if}
+
 <div itemscope itemtype="http://schema.org/Product">
 	<div class="primary_block row">
 		{if !$content_only}
@@ -180,6 +181,15 @@
 						var count_down = document.getElementById("count_down");
 						count_down.innerHTML = hoursDifference + ":" + minutesDifference + ":" + secondsDifference;
 						}
+						function formatNumber(num)
+							{
+							return ("" + num).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, function($1) { return $1 + "'" });
+							}
+						$( document ).ready(function() {
+							$("#our_price").text(formatNumber({$product->price}) + ".-");
+							$("#catalog_price").text(formatNumber({$product->catalog_price}));
+							$("#market_price").text(formatNumber({$product->market_price}));
+						});
 					</script>
 				</div>
 				<div style="border-top-right-radius:30px;background-color:#ed1c24;text-align: right; border:solid 1px #ed1c24;color:white;font-size: 24px;padding-right: 40px;padding-top: 5px;padding-bottom: 5px;"  class="col-md-9">
@@ -325,50 +335,16 @@
 					</div>
 					<!-- prices -->
 					<div class="price" style = "background-color:#29abe2;border-top-right-radius: 90px;height: 80px; border:solid 1px #c2cbb4;margin-bottom:2px;color: white;" >
-						<p class="our_price_display" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-							{if $product->quantity > 0}<link itemprop="availability" href="http://schema.org/InStock"/>{/if}
-							{if $priceDisplay >= 0 && $priceDisplay <= 2}
-								<span id="our_price_display" itemprop="price">{$product->price}</span>
-								<!--{if $tax_enabled  && ((isset($display_tax_label) && $display_tax_label == 1) || !isset($display_tax_label))}
-									{if $priceDisplay == 1}{l s='tax excl.'}{else}{l s='tax incl.'}{/if}
-								{/if}-->
-								<meta itemprop="priceCurrency" content="{$currency->iso_code}" />
-								{hook h="displayProductPriceBlock" product=$product type="price"}
-							{/if}
-						</p>
-						<p id="reduction_percent" {if !$product->specificPrice || $product->specificPrice.reduction_type != 'percentage'} style="display:none;"{/if}>
-							<span id="reduction_percent_display">
-								{if $product->specificPrice && $product->specificPrice.reduction_type == 'percentage'}-{$product->specificPrice.reduction*100}%{/if}
-							</span>
-						</p>
-						<p id="reduction_amount" {if !$product->specificPrice || $product->specificPrice.reduction_type != 'amount' || $product->specificPrice.reduction|floatval ==0} style="display:none"{/if}>
-							<span id="reduction_amount_display">
-							{if $product->specificPrice && $product->specificPrice.reduction_type == 'amount' && $product->specificPrice.reduction|floatval !=0}
-								-{convertPrice price=$productPriceWithoutReduction-$productPrice|floatval}
-							{/if}
-							</span>
-						</p>
-						<p id="old_price"{if (!$product->specificPrice || !$product->specificPrice.reduction) && $group_reduction == 0} class="hidden"{/if}>
-							{if $priceDisplay >= 0 && $priceDisplay <= 2}
-								{hook h="displayProductPriceBlock" product=$product type="old_price"}
-								<span id="old_price_display">{if $productPriceWithoutReduction > $productPrice}{convertPrice price=$productPriceWithoutReduction}{/if}</span>
-								<!-- {if $tax_enabled && $display_tax_label == 1}{if $priceDisplay == 1}{l s='tax excl.'}{else}{l s='tax incl.'}{/if}{/if} -->
-							{/if}
-						</p>
-						{if $priceDisplay == 2}
-							<br />
-							<span id="pretaxe_price">
-								<span id="pretaxe_price_display">{convertPrice price=$product->getPrice(false, $smarty.const.NULL)}</span>
-								{l s='tax excl.'}
-							</span>
-						{/if}
+					<span id = "our_price" style="color:white;font-size:40px;padding-left:10px; position:relative; top:10px"></span>
 					<!-- shipping -->	
-					<div><span style="font-size:15px">+{$product->additional_shipping_cost} shipping cost</span></div>
+					<div><span style="font-size:15px; padding:10px; position:relative; top:30px">+{$product->additional_shipping_cost} shipping cost</span></div>
 					</div> <!-- end prices -->
 					<!--- market price-->
 					<div style = "background-color: #0071bc; border-bottom-left-radius: 90px;position:relative; height: 50px; z-index:2;border:solid 1px #c2cbb4" class="price">
-						<div><span style="color:white;font-size:15px;padding-left:50px;" >Catalog price  {$product->catalog_price} </span></div>
-						<div><span style="color:white;font-size:15px;padding-left:50px;" >Market price  {$product->market_price} </span></div>
+						<div style="color:white;font-size:15px;padding-left:50px;"> Catalog price
+							<span id = "catalog_price"  > </span></div>
+						<div style="color:white;font-size:15px;padding-left:50px;">Market price 
+							<span id = "market_price"  > {$product->market_price} </span></div>
 					</div>
 					<!--- end of market price--->
 					<!--- great I want it --->
@@ -412,16 +388,17 @@
 				<div class="row">
 				<div class="col-md-3"></div>
 				<div class="col-md-6">
-					<ul class="nav text-center nav-tabs col-xs-12" style="border:none;" role="tablist">
+
+					<ul id="presentation_ul" class="nav text-center nav-tabs col-xs-12" style="border:none;" role="tablist">
 						<li role="presentation" class="active col-md-4">
-							<a id = "cc" style="border:none;background-color:#FFFFFF;color:#0071bc; font-size:18px;" href="#word-of-day" aria-controls="word-of-day" role="tab" data-toggle="tab" 
+							<a id = "cc" href="#word-of-day" aria-controls="word-of-day" role="tab" data-toggle="tab" 
 							onMouseOver="this.style.backgroundColor='#FFFFFF)'" 
 							onMouseOut="this.style.backgroundColor='#FFFFFF'" >Word of day</a></li>
 						<li role="presentation"  class="col-md-4">
-						<a style="border:none;background-color:#FFFFFF;color:#0071bc; font-size:18px;"href="#product-details" aria-controls="product-details" role="tab" data-toggle="tab" onMouseOver="this.style.backgroundColor='#FFFFFF'" 
+						<a href="#product-details" aria-controls="product-details" role="tab" data-toggle="tab" onMouseOver="this.style.backgroundColor='#FFFFFF'" 
 							onMouseOut="this.style.backgroundColor='#FFFFFF'">Product Details</a></li>
 						<li role="presentation"  class="col-md-4">
-						<a style="border:none;background-color:#FFFFFF;color:#0071bc;font-size:18px;"href="#comments" aria-controls="comments" role="tab" data-toggle="tab"
+						<a href="#comments" aria-controls="comments" role="tab" data-toggle="tab"
 							onMouseOver="this.style.backgroundColor='#FFFFFF'" 
 							onMouseOut="this.style.backgroundColor='#FFFFFF'">Comments</a></li>
 					  </ul>

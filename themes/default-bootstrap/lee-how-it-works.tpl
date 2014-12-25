@@ -72,7 +72,14 @@
             <div class="col-md-4 who-we-are">
                 <div class="col-md-2"></div>
                 <div class="col-md-8 text-box text-center">
-                    <span style="display: table-cell; vertical-align: middle;"> </span>
+                    <span style="display: table-cell; vertical-align: middle;">
+						Tutti is neither Italian, nor it is a speaking bird. Tutti is a community that is 
+						looking to bring you, your friends and family, every single day, the best deal 
+						on the market. As a well-behaved Tutti, we keep negotiating until we get what 
+						our dearest customers want. 
+						Tutti is a private start-up established and registered in Iran. We are a team of 
+						professionals that have over 15 years of experience in Iran and abroad. 
+					</span>
                 </div>
             </div>
         </div>
