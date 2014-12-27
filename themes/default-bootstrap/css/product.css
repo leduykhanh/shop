@@ -47,7 +47,7 @@ a.fancybox-nav {
   display: block;
   cursor: pointer;
   padding: 5px;
-  border: 1px solid #dbdbdb;
+ /* border: 1px solid #dbdbdb;*/
   background: white; }
   @media (max-width: 767px) {
     .pb-left-column #image-block {
@@ -1063,7 +1063,8 @@ Quick View Styles
 
 @media (min-width: 992px) {
   .container {
-    max-width: 100%; }
+    max-width: 100%;
+	border:none;}
 
 .shop-phone {
 padding: 5px 0 10px 10px;

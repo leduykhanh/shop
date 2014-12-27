@@ -44,7 +44,7 @@
     top: 37px;
     left: 0;
     width: 157px;
-    background: #333333;
+    background: #0071bc;
     z-index: 2; }
     #languages-block-top ul li {
       color: white;
@@ -56,4 +56,4 @@
         display: block;
         color: white; }
       #languages-block-top ul li.selected, #languages-block-top ul li:hover a {
-        background: #484848; }
+        background: #0071bc; }
