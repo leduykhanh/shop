@@ -335,19 +335,19 @@
 					<h2 style ="text-transform: uppercase;text-align: right;font-size:20px">{$product->name|escape:'html':'UTF-8'}</h2>
 					</div>
 					<!-- prices -->
-					<div class="price" style = "background-color:#29abe2;border-top-right-radius: 90px;height: 80px; border:solid 1px #c2cbb4;margin-bottom:2px;color: white;" >
+					<div class="price" style = "background-color:#29abe2;border-top-right-radius: 90px;height: 80px; border:solid 2px #c2cbb4;margin-bottom:2px;color: white;" >
 					<span id = "our_price" style="color:white;font-size:40px;padding-left:10px; position:relative; top:20px; "></span>
 					<!-- shipping -->	
 					<div><span style="font-size:15px; padding:10px; position:relative; top:30px">+{$product->additional_shipping_cost} shipping cost</span></div>
 					</div> <!-- end prices -->
 					<!--- market price-->
-					<div style = "background-color: #0071bc; border-bottom-left-radius: 90px;position:relative; height: 50px; z-index:2;border:solid 1px #c2cbb4" class="price">
-						<div style="color:white;font-size:15px;padding-left:50px;"> Catalog price
+					<div style = "background-color: #0071bc; border-bottom-left-radius: 90px;position:relative; height: 60px; z-index:2;border:solid 2px #c2cbb4" class="price">
+						<div style="color:white;font-size:15px;padding-left:50px;top:5px;position:relative;"> Catalog price
 							<span id = "catalog_price"  > </span>
 							<span class="text-center" id = "catalog_hint" onMouseOver = "$(this).attr('title', 'This is the Iran catalog price');" style="border-radius:50%;border:solid 1px white;position:absolute;right:10px; cursor:pointer;
 							width:18px;height:18px">i</span>
 							</div>
-						<div style="color:white;font-size:15px;padding-left:50px;">Market price 
+						<div style="color:white;font-size:15px;padding-left:50px;top:5px;position:relative;">Market price 
 							<span id = "market_price"  > {$product->market_price} </span>
 							<span class="text-center" id = "market_hint" onMouseOver = "$(this).attr('title', 'This is the Iran market price');" style="border-radius:50%;border:solid 1px white;position:absolute;right:10px; cursor:pointer;
 							width:18px;height:18px">i</span>							
@@ -355,7 +355,7 @@
 					</div>
 					<!--- end of market price--->
 					<!--- great I want it --->
-					<div style = "background-color: #ed1c24;height: 100px; top:-50px;position:relative; z-index:1; padding-top: 55px;text-align: center;font-size: 30px;color:white">
+					<div style = "background-color: #ed1c24;height: 120px; top:-60px;position:relative; z-index:1; padding-top: 65px;text-align: center;font-size: 30px;color:white ; border:solid 2px #c2cbb4">
 					<!-- pb-right-column-->
 
 					{if ($product->show_price && !isset($restricted_country_mode)) || isset($groups) || $product->reference || (isset($HOOK_PRODUCT_ACTIONS) && $HOOK_PRODUCT_ACTIONS)}

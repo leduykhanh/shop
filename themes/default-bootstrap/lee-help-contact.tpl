@@ -49,7 +49,7 @@
         </div>
 
 
-        <div class="row" style="margin-top: 20px;">
+        <div class="row" style="margin-top: 6px;">
             <div class="col-md-2"></div>
 
             <div class="col-md-8 help-content">
