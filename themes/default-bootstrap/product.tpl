@@ -335,8 +335,8 @@
 					<h2 style ="text-transform: uppercase;text-align: right;font-size:20px">{$product->name|escape:'html':'UTF-8'}</h2>
 					</div>
 					<!-- prices -->
-					<div class="price text-center" style = "background-color:#29abe2;border-top-right-radius: 90px;height: 80px; border:solid 1px #c2cbb4;margin-bottom:2px;color: white;" >
-					<span id = "our_price" style="color:white;font-size:40px;padding-left:10px; position:relative; top:10px; "></span>
+					<div class="price" style = "background-color:#29abe2;border-top-right-radius: 90px;height: 80px; border:solid 1px #c2cbb4;margin-bottom:2px;color: white;" >
+					<span id = "our_price" style="color:white;font-size:40px;padding-left:10px; position:relative; top:20px; "></span>
 					<!-- shipping -->	
 					<div><span style="font-size:15px; padding:10px; position:relative; top:30px">+{$product->additional_shipping_cost} shipping cost</span></div>
 					</div> <!-- end prices -->
