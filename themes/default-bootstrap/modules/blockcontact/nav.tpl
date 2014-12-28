@@ -23,7 +23,7 @@
 *  International Registered Trademark & Property of PrestaShop SA
 *}
 <div id="contact-link">
-	<a href="{$link->getPageLink('contact', true)|escape:'html':'UTF-8'}" title="{l s='Help & Contact' mod='blockcontact'}">{l s='Help & Contact' mod='blockcontact'}</a>
+	<a href="{$link->getPageLink('contact', true)|escape:'html':'UTF-8'}" title="{l s='FAQ & Help' mod='blockcontact'}">{l s='FAQ & Help' mod='blockcontact'}</a>
 </div>
 <div class="static-page-menu">
     <a href = "{$link->getPageLink('leehowitworks', true)|escape:'html':'UTF-8'}">How It Works</a>

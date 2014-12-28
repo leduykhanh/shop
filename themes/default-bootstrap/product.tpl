@@ -371,7 +371,7 @@
 							
 								<div {if (!$allow_oosp && $product->quantity <= 0) || !$product->available_for_order || (isset($restricted_country_mode) && $restricted_country_mode) || $PS_CATALOG_MODE} class="unvisible"{/if}>
 										<button type="submit" name="Submit" style = "color:white; background-color:Transparent; background-repeat:no-repeat; border: none;cursor:pointer;overflow: hidden;outline:none;padding:10px">
-											{if $content_only && (isset($product->customization_required) && $product->customization_required)}{l s='Customize'}{else}{l s='Great,I want it'}{/if}
+											{if $content_only && (isset($product->customization_required) && $product->customization_required)}{l s='Customize'}{else}{l s='Great, I want it!'}{/if}
 										</button>
 								</div>
 							</form>
@@ -400,7 +400,7 @@
 						<li role="presentation" class="active col-md-4">
 							<a id = "cc" href="#word-of-day" aria-controls="word-of-day" role="tab" data-toggle="tab" 
 							onMouseOver="this.style.backgroundColor='#FFFFFF)'" 
-							onMouseOut="this.style.backgroundColor='#FFFFFF'" >Word of day</a></li>
+							onMouseOut="this.style.backgroundColor='#FFFFFF'" >Word of Day</a></li>
 						<li role="presentation"  class="col-md-4">
 						<a href="#product-details" aria-controls="product-details" role="tab" data-toggle="tab" onMouseOver="this.style.backgroundColor='#FFFFFF'" 
 							onMouseOut="this.style.backgroundColor='#FFFFFF'">Product Details</a></li>
