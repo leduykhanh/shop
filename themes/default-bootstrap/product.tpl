@@ -190,6 +190,7 @@
 							$("#our_price").text(formatNumber({$product->price}) + ".-");
 							$("#catalog_price").text(formatNumber({$product->catalog_price}));
 							$("#market_price").text(formatNumber({$product->market_price}));
+							$("#shipping_cost").text(formatNumber({$product->shipping_1}));
 						});
 					</script>
 				</div>
@@ -338,7 +339,10 @@
 					<div class="price" style = "background-color:#29abe2;border-top-right-radius: 90px;height: 80px; border:solid 2px #c2cbb4;margin-bottom:2px;color: white;" >
 					<span id = "our_price" style="color:white;font-size:40px;padding-left:10px; position:relative; top:20px; "></span>
 					<!-- shipping -->	
-					<div><span style="font-size:15px; padding:10px; position:relative; top:30px">+{$product->additional_shipping_cost} shipping cost</span></div>
+					<div style="font-size:20px; padding:10px; position:relative; top:10px">+ <span id = "shipping_cost"  > {$product->shipping_1} </span><span> of shipping</span>
+							<span class="text-center" id = "catalog_hint" onMouseOver = "$(this).attr('title', 'This is the Iran catalog price');" style="border-radius:50%;border:solid 1px white;position:absolute;right:10px; cursor:pointer;
+							width:18px;height:18px">i</span>
+							</div>
 					</div> <!-- end prices -->
 					<!--- market price-->
 					<div style = "background-color: #0071bc; border-bottom-left-radius: 90px;position:relative; height: 60px; z-index:2;border:solid 2px #c2cbb4" class="price">

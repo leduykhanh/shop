@@ -187,6 +187,28 @@
 	<div class="form-group">
 		<label class="control-label col-lg-3" for="reference">
 			<span class="label-tooltip" data-toggle="tooltip"
+			title="Shipping cost 1-2d">
+				{$bullet_common_field} {l s='Shipping cost 1-2d'}
+			</span>
+		</label>
+		<div class="col-lg-5">
+			<input type="text" id="shipping_1" name="shipping_1" value="{$product->shipping_1}" />
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="control-label col-lg-3" for="reference">
+			<span class="label-tooltip" data-toggle="tooltip"
+			title="Shipping cost 2-5d">
+				{$bullet_common_field} {l s='Shipping cost 2-5d'}
+			</span>
+		</label>
+		<div class="col-lg-5">
+			<input type="text" id="shipping_2" name="shipping_2" value="{$product->shipping_2}" />
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="control-label col-lg-3" for="reference">
+			<span class="label-tooltip" data-toggle="tooltip"
 			title="{l s='Your internal reference code for this product.'} {l s='Allowed special characters:'} .-_#\">
 				{$bullet_common_field} {l s='Reference code'}
 			</span>
