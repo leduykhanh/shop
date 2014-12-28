@@ -50,6 +50,7 @@ class ProductCore extends ObjectModel
 	public $end_date;
 	public $product_link;
 	public $deal_status;
+	public $product_name_color;
 	
 	//Lee
 	/** @var string Tax name */
@@ -314,6 +315,7 @@ class ProductCore extends ObjectModel
 			'date_add' => 					array('type' => self::TYPE_DATE, 'shop' => true, 'validate' => 'isDateFormat'),
 			'date_upd' => 					array('type' => self::TYPE_DATE, 'shop' => true, 'validate' => 'isDateFormat'),
 			// Lee added
+			'product_name_color' =>array('type' => self::TYPE_STRING, 'shop' => true),
 			'market_price' => 						array('type' => self::TYPE_FLOAT, 'shop' => true, 'validate' => 'isPrice', 'required' => true),
 			'catalog_price' => 						array('type' => self::TYPE_FLOAT, 'shop' => true, 'validate' => 'isPrice', 'required' => true),
 			'brand_name' => 						array('type' => self::TYPE_STRING, 'lang' => true, 'validate' => 'isCatalogName', 'required' => true, 'size' => 128),

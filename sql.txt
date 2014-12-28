@@ -33,4 +33,5 @@ ADD  `product_link` VARCHAR( 11 ) NOT NULL ,
 ADD  `deal_status` INT NOT NULL ;
 ALTER TABLE  `ps_product_shop` CHANGE  `price`  `price` INT( 20 ) NOT NULL ;
 
-ALTER TABLE  `ps_product_shop` ADD  `product_name_color` VARCHAR( 10 ) NOT NULL ;
+ALTER TABLE  `ps_product_shop` ADD  `product_name_color` VARCHAR( 10 ) NOT NULL  DEFAULT  '#FFFFFF';
+ALTER TABLE  `ps_product` ADD  `product_name_color` VARCHAR( 10 ) NOT NULL DEFAULT  '#FFFFFF';

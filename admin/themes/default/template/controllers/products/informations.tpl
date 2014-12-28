@@ -165,7 +165,25 @@
 			}
 		</div>
 	</div>
-
+	<div class="form-group">
+		<div class="col-lg-1"><span class="pull-right">{include file="controllers/products/multishop/checkbox.tpl" field="active" type="radio" onclick=""}</span></div>
+		<label class="control-label col-lg-2">
+			{l s='Product Name Color'}
+		</label>
+		<div class="col-lg-9">
+			<span class="switch prestashop-switch fixed-width-lg">
+				<input onclick="showOptions(true);" type="radio" name="product_name_color" id="active_on" value="#000000" {if $product->product_name_color == "#000000"} checked="checked" {/if}/>
+				<label for="active_on" class="radioCheck">
+					{l s='Black'}
+				</label>
+				<input onclick="showOptions(false);"  type="radio" name="product_name_color" id="active_off" value="#FFFFFF" {if $product->product_name_color == "#FFFFFF"} checked="checked" {/if} />
+				<label for="active_off" class="radioCheck">
+					{l s='White'}
+				</label>
+				<a class="slide-button btn"></a>
+			</span>
+		</div>
+	</div>
 	<div class="form-group">
 		<label class="control-label col-lg-3" for="reference">
 			<span class="label-tooltip" data-toggle="tooltip"
@@ -179,26 +197,6 @@
 	</div>
 	<hr/>
 
-	{* status informations *}
-	<div class="form-group">
-		<div class="col-lg-1"><span class="pull-right">{include file="controllers/products/multishop/checkbox.tpl" field="active" type="radio" onclick=""}</span></div>
-		<label class="control-label col-lg-2">
-			{l s='Enabled'}
-		</label>
-		<div class="col-lg-9">
-			<span class="switch prestashop-switch fixed-width-lg">
-				<input onclick="toggleDraftWarning(false);showOptions(true);showRedirectProductOptions(false);" type="radio" name="active" id="active_on" value="1" {if $product->active || !$product->isAssociatedToShop()}checked="checked" {/if} />
-				<label for="active_on" class="radioCheck">
-					{l s='Yes'}
-				</label>
-				<input onclick="toggleDraftWarning(true);showOptions(false);showRedirectProductOptions(true);"  type="radio" name="active" id="active_off" value="0" {if !$product->active && $product->isAssociatedToShop()}checked="checked"{/if} />
-				<label for="active_off" class="radioCheck">
-					{l s='No'}
-				</label>
-				<a class="slide-button btn"></a>
-			</span>
-		</div>
-	</div>
 
 	<div class="form-group redirect_product_options" style="display:none">
 		<div class="col-lg-1"><span class="pull-right">{include file="controllers/products/multishop/checkbox.tpl" field="redirect_type" type="radio" onclick=""}</span></div>
