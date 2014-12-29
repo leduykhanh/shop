@@ -31,8 +31,3 @@
 <div class="static-page-menu">
     <a href = "{$link->getPageLink('leehistory', true)|escape:'html':'UTF-8'}">History</a>
 </div>
-{if $telnumber}
-	<span class="shop-phone">
-		<i class="icon-phone"></i>{l s='Call us now:' mod='blockcontact'} <strong>{$telnumber}</strong>
-	</span>
-{/if}
