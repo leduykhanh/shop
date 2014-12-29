@@ -87,7 +87,7 @@
 					</span>
 				{else}
 				{/if} -->
-				<a href="#" class="control_next"> >> </a>
+				<a href="#" class="control_next" > >> </a>
 				<a href="#" class="control_prev"> << </a>
 				<ul id="image_block_items">
 				{if isset($images)}
@@ -153,75 +153,7 @@
 
 			</script>
 			<!-- end image-block -->
-			<!-- slider -->
-			<!---
-			<div id="slider">
-			  <a href="#" class="control_next">>></a>
-			  <a href="#" class="control_prev"><</a>
-			  <ul>
-				<li>
-				<img src="{$link->getImageLink($product->link_rewrite, $cover.id_image, 'large_default')|escape:'html':'UTF-8'}" />
-				</li>
-				<li style="background: #aaa;">SLIDE 2</li>
-				<li>SLIDE 3</li>
-				<li style="background: #aaa;">SLIDE 4</li>
-			  </ul>  
-			</div>
 
-			<div class="slider_option">
-			  <input type="checkbox" id="checkbox">
-			  <label for="checkbox">Autoplay Slider</label>
-			</div>
-			<script>
-			jQuery(document).ready(function ($) {
-
-			  $('#checkbox').change(function(){
-				setInterval(function () {
-					moveRight();
-				}, 3000);
-			  });
-			  
-				var slideCount = $('#slider ul li').length;
-				var slideWidth = $('#slider ul li').width();
-				var slideHeight = $('#slider ul li').height();
-				var sliderUlWidth = slideCount * slideWidth;
-				
-				$('#slider').css({ width: slideWidth, height: slideHeight });
-				
-				$('#slider ul').css({ width: sliderUlWidth, marginLeft: - slideWidth });
-				
-				$('#slider ul li:last-child').prependTo('#slider ul');
-
-				function moveLeft() {
-					$('#slider ul').animate({
-						left: + slideWidth
-					}, 200, function () {
-						$('#slider ul li:last-child').prependTo('#slider ul');
-						$('#slider ul').css('left', '');
-					});
-				};
-
-				function moveRight() {
-					$('#slider ul').animate({
-						left: - slideWidth
-					}, 200, function () {
-						$('#slider ul li:first-child').appendTo('#slider ul');
-						$('#slider ul').css('left', '');
-					});
-				};
-
-				$('a.control_prev').click(function () {
-					moveLeft();
-				});
-
-				$('a.control_next').click(function () {
-					moveRight();
-				});
-
-			}); 
-			</script>
-			-->
-			<!-- end slider -->
 			<!-- stock -->
 			<div class="pb-left-column col-xs-12 col-sm-12 col-md-12" style="top:-30px">
 				<div style="border-top-right-radius:30px;border:solid 1px #ed1c24;text-align: left; color:red;
@@ -265,7 +197,7 @@
 			{l s="{isset($images) && count($images) > 0}"}-->
 			{if isset($images) && count($images) > 0} 
 				<!-- thumbnails -->
-				
+		<!--		
 				<div id="views_block" class="clearfix {if isset($images) && count($images) < 2}hidden{/if}">
 					{if isset($images) && count($images) > 2}
 						<span class="view_scroll_spacer">
@@ -293,7 +225,7 @@
 						{/if}
 						</ul>
 					</div> 
-					
+			-->		
 					<!-- end thumbs_list -->
 					{if isset($images) && count($images) > 2}
 						<a id="view_scroll_right" title="{l s='Other views'}" href="javascript:{ldelim}{rdelim}">
