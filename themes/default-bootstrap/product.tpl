@@ -153,12 +153,6 @@
 
 			</script>
 			<!-- end image-block -->
-
-			<!-- stock -->
-			<div class="pb-left-column col-xs-12 col-sm-12 col-md-12" style="top:-30px">
-				<div style="border-top-right-radius:30px;border:solid 1px #ed1c24;text-align: left; color:red;
-				font-size: 24px;padding-right: 40px;padding-top: 5px;padding-bottom: 5px;" class="col-md-3">
-					<span id = "count_down">00:00:00</span>
 					<script>
 					setInterval(updateCountDown,1000);
 					function updateCountDown(){
@@ -188,6 +182,12 @@
 							$("#shipping_cost").text(formatNumber({$product->shipping_1}));
 						});
 					</script>
+			<!-- stock -->
+			<div class="pb-left-column col-xs-12 col-sm-12 col-md-12" style="top:-30px">
+				<div style="border-top-right-radius:30px;border:solid 1px #ed1c24;text-align: left; color:red;
+				font-size: 24px;padding-right: 40px;padding-top: 5px;padding-bottom: 5px;" class="col-md-3">
+					<span id = "count_down">00:00:00</span>
+
 				</div>
 				<div style="border-top-right-radius:30px;background-color:#ed1c24;text-align: right; border:solid 1px #ed1c24;color:white;font-size: 24px;padding-right: 40px;padding-top: 5px;padding-bottom: 5px;"  class="col-md-9">
 					<span>{$product->quantity/(float)$product->initial_quantity*100} % stock</span>
@@ -536,13 +536,34 @@
 				  </div>
 				<div class="col-xs-6">
 					<div style="background-color:#ed1c24;height:100px;border-top-left-radius:90px;padding-left: 50px; font-size:25px;margin: 10px; color:white">
-						<img style="margin:10px" height= 70px src = "../../img/email.png" />
+						<a class="modalbox" href="#inline">
+						<img style="margin:10px" height= 70px src = "../../img/email.png" /> </a>
 						<input type = "text" style="margin:10px" value = "{if $logged} {Context::getContext()->customer->email}{else}Send us an email
 						{/if}"
 						>
 						</div>
-					<div style="background-color:#ed1c24;height:100px;border-top-left-radius:90px;padding-left: 50px; font-size:25px;margin: 10px; color:white"> 	<img style="margin:10px" height= 70px src = "../../img/tellus.png" />Tell us what you want </div>
-					<div style="background-color:#ed1c24;height:100px;border-top-left-radius:90px;padding-left: 50px; font-size:25px;margin: 10px; color:white">  <img style="margin:10px" height= 70px src = "../../img/refer.png" />Refer friends to earn value</div>
+					<div id="inline">
+						<h2>Send us a Message</h2>
+
+						<form id="contact" name="contact" action="#" method="post">
+							<label for="email">Your E-mail</label>
+							<input type="email" id="email" name="email" class="txt">
+							<br>
+							<label for="msg">Enter a Message</label>
+							<textarea id="msg" name="msg" class="txtarea"></textarea>
+							
+							<button id="send">Send E-mail</button>
+						</form>
+					</div>
+					<div style="background-color:#ed1c24;height:100px;border-top-left-radius:90px;padding-left: 50px; font-size:25px;margin: 10px; color:white"> <a class="modalbox" href="#inline">	<img style="margin:10px" height= 70px src = "../../img/tellus.png" /> </a>Tell us what you want </div>
+					<div style="background-color:#ed1c24;height:100px;border-top-left-radius:90px;padding-left: 50px; font-size:25px;margin: 10px; color:white">  <a id = "refer_button" href = "#refer_popup" > <img style="margin:10px" height= 70px src = "../../img/refer.png" /></a>Refer friends to earn value </div>
+					<div id = "refer_popup" style = "display:none; color:#0071bc; font-size:20px; border-top-left-radius: 30px; border-bottom-right-radius:30px " >
+						<p>To receive {$product->refferal_value} tomans for your next purchase, do any of the following : 
+						</p>
+						<p>Copy and share this link:</p>
+						<p>Copy and share this link:</p>
+						<p>Copy and share this link:</p>
+						</div>
 					<div style="background-color:whtie;height:100px;border-top-left-radius:90px;padding-left: 50px; font-size:25px;margin: 10px; color:#ed1c24;
 					border:solid 2px #ed1c24"> <img style="margin:10px" height= 70px src = "../../img/enamad.png" />eNamad Certificated website</div>
 				</div>
