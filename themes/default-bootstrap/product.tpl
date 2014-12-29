@@ -74,21 +74,84 @@
 				{elseif $product->specificPrice && $product->specificPrice.reduction && $productPriceWithoutReduction > $productPrice}
 					<span class="discount">{l s='Reduced price!'}</span>
 				{/if}
-				{if $have_image}
+				<!-- {if $have_image}
 					<span id="view_full_size">
 						{if $jqZoomEnabled && $have_image && !$content_only}
 							<a class="jqzoom" title="{if !empty($cover.legend)}{$cover.legend|escape:'html':'UTF-8'}{else}{$product->name|escape:'html':'UTF-8'}{/if}" rel="gal1" href="{$link->getImageLink($product->link_rewrite, $cover.id_image, 'thickbox_default')|escape:'html':'UTF-8'}" itemprop="url">
-								<img itemprop="image" src="{$link->getImageLink($product->link_rewrite, $cover.id_image, 'large_default')|escape:'html':'UTF-8'}" title="{if !empty($cover.legend)}{$cover.legend|escape:'html':'UTF-8'}{else}{$product->name|escape:'html':'UTF-8'}{/if}" alt="{if !empty($cover.legend)}{$cover.legend|escape:'html':'UTF-8'}{else}{$product->name|escape:'html':'UTF-8'}{/if}"/>
+								<img itemprop="image" src="{$link->getImageLink($product->link_rewrite, $cover.id_image, '')|escape:'html':'UTF-8'}" title="{if !empty($cover.legend)}{$cover.legend|escape:'html':'UTF-8'}{else}{$product->name|escape:'html':'UTF-8'}{/if}" alt="{if !empty($cover.legend)}{$cover.legend|escape:'html':'UTF-8'}{else}{$product->name|escape:'html':'UTF-8'}{/if}"/>
 							</a>
 						{else}
-							<img id="bigpic" itemprop="image" src="{$link->getImageLink($product->link_rewrite, $cover.id_image, 'large_default')|escape:'html':'UTF-8'}" title="{if !empty($cover.legend)}{$cover.legend|escape:'html':'UTF-8'}{else}{$product->name|escape:'html':'UTF-8'}{/if}" alt="{if !empty($cover.legend)}{$cover.legend|escape:'html':'UTF-8'}{else}{$product->name|escape:'html':'UTF-8'}{/if}" width="{$largeSize.width}" height="{$largeSize.height}"/>
+							<img id="bigpic" itemprop="image" src="{$link->getImageLink($product->link_rewrite, $cover.id_image, '')|escape:'html':'UTF-8'}" title="{if !empty($cover.legend)}{$cover.legend|escape:'html':'UTF-8'}{else}{$product->name|escape:'html':'UTF-8'}{/if}" alt="{if !empty($cover.legend)}{$cover.legend|escape:'html':'UTF-8'}{else}{$product->name|escape:'html':'UTF-8'}{/if}" width="{$largeSize.width}" />
 
 						{/if}
 					</span>
 				{else}
+				{/if} -->
+				<a href="#" class="control_next"> >> </a>
+				<a href="#" class="control_prev"> << </a>
+				<ul id="image_block_items">
+				{if isset($images)}
+					{foreach from=$images item=image name=thumbnails}
+						{assign var=imageIds value="`$product->id`-`$image.id_image`"}
+						{if !empty($image.legend)}
+							{assign var=imageTitle value=$image.legend|escape:'html':'UTF-8'}
+						{else}
+							{assign var=imageTitle value=$product->name|escape:'html':'UTF-8'}
+						{/if}
+						<li id="image_block_item_{$image.id_image}" class="image_block_item_li{if $smarty.foreach.thumbnails.last}  last {else} non-last{/if}">
+							<a{if $jqZoomEnabled && $have_image && !$content_only} href="javascript:void(0);" rel="{literal}{{/literal}gallery: 'gal1', smallimage: '{$link->getImageLink($product->link_rewrite, $imageIds, '')|escape:'html':'UTF-8'}',largeimage: '{$link->getImageLink($product->link_rewrite, $imageIds, '')|escape:'html':'UTF-8'}'{literal}}{/literal}"{else} href="{$link->getImageLink($product->link_rewrite, $imageIds, '')|escape:'html':'UTF-8'}"	{/if} title="{$imageTitle}">
+								<img class="img-responsive image_block_item_img" id="image_item_block_{$image.id_image}" src="{$link->getImageLink($product->link_rewrite, $imageIds, '')|escape:'html':'UTF-8'}" alt="{$imageTitle}" title="{$imageTitle}" width="{$largeSize.width}" itemprop="image" />
+							</a>
+						</li>
+					{/foreach}
 				{/if}
+				</ul>
 			</div>
-			
+			<script type="text/javascript">
+			$(document).ready(function ($) {			  
+				var slideCount = $('#image-block ul li').length;
+				var slideWidth = $('#image-block').width();
+				var slideHeight = $('#image-block').height();
+				var sliderUlWidth = slideCount * slideWidth;
+				
+				$('#image-block img').css({ width: slideWidth});
+				
+				$('#image-block ul').css({ width: sliderUlWidth});
+				
+			    $('#image-block ul li:last-child').prependTo('#image-block ul');
+
+			    function moveLeft() {
+			    	console.log(slideWidth);
+			        $('#image-block ul').animate({
+			            left: + slideWidth
+			        }, 200, function () {
+			            $('#image-block ul li:last-child').prependTo('#image-block ul');
+			            $('#image-block ul').css('left', '');
+			        });
+			    };
+
+			    function moveRight() {
+			        $('#image-block ul').animate({
+			            left: - slideWidth
+			        }, 200, function () {
+			            $('#image-block ul li:first-child').appendTo('#image-block ul');
+			            $('#image-block ul').css('left', '');
+			        });
+			    };
+
+			    $('a.control_prev').click(function (ev) {
+			    	ev.preventDefault();
+			        moveLeft();
+			    });
+
+			    $('a.control_next').click(function (ev) {
+			    	ev.preventDefault();
+			        moveRight();
+			    });
+
+			});    
+
+			</script>
 			<!-- end image-block -->
 			<!-- slider -->
 			<!---
@@ -222,8 +285,8 @@
 									{assign var=imageTitle value=$product->name|escape:'html':'UTF-8'}
 								{/if}
 								<li id="thumbnail_{$image.id_image}"{if $smarty.foreach.thumbnails.last} class="last"{/if}>
-									<a{if $jqZoomEnabled && $have_image && !$content_only} href="javascript:void(0);" rel="{literal}{{/literal}gallery: 'gal1', smallimage: '{$link->getImageLink($product->link_rewrite, $imageIds, 'large_default')|escape:'html':'UTF-8'}',largeimage: '{$link->getImageLink($product->link_rewrite, $imageIds, 'thickbox_default')|escape:'html':'UTF-8'}'{literal}}{/literal}"{else} href="{$link->getImageLink($product->link_rewrite, $imageIds, 'thickbox_default')|escape:'html':'UTF-8'}"	data-fancybox-group="other-views" class="fancybox{if $image.id_image == $cover.id_image} shown{/if}"{/if} title="{$imageTitle}">
-										<img class="img-responsive" id="thumb_{$image.id_image}" src="{$link->getImageLink($product->link_rewrite, $imageIds, 'cart_default')|escape:'html':'UTF-8'}" alt="{$imageTitle}" title="{$imageTitle}" height="{$cartSize.height}" width="{$cartSize.width}" itemprop="image" />
+									<a{if $jqZoomEnabled && $have_image && !$content_only} href="javascript:void(0);" rel="{literal}{{/literal}gallery: 'gal1', smallimage: '{$link->getImageLink($product->link_rewrite, $imageIds, '')|escape:'html':'UTF-8'}',largeimage: '{$link->getImageLink($product->link_rewrite, $imageIds, '')|escape:'html':'UTF-8'}'{literal}}{/literal}"{else} href="{$link->getImageLink($product->link_rewrite, $imageIds, '')|escape:'html':'UTF-8'}"	data-fancybox-group="other-views" class="fancybox{if $image.id_image == $cover.id_image} shown{/if}"{/if} title="{$imageTitle}">
+										<img class="img-responsive" id="thumb_{$image.id_image}" src="{$link->getImageLink($product->link_rewrite, $imageIds, '')|escape:'html':'UTF-8'}" alt="{$imageTitle}" title="{$imageTitle}" width="{$cartSize.width}" itemprop="image" />
 									</a>
 								</li>
 							{/foreach}
