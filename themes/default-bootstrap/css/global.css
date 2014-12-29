@@ -559,9 +559,9 @@ pre {
   .container:after {
     clear: both; }
 
-.row {
+/*.row {
   margin-left: -15px;
-  margin-right: -15px; }
+  margin-right: -15px; }*/
   .row:before, .row:after {
     content: " ";
     /* 1 */
@@ -569,6 +569,11 @@ pre {
     /* 2 */ }
   .row:after {
     clear: both; }
+
+.no_row {
+  margin-left:0px;
+  margin-right:0px;
+}
 
 .col-xs-1,
 .col-xs-2,

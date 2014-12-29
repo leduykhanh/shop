@@ -36,7 +36,7 @@
 	{/if}
 
 <div itemscope itemtype="http://schema.org/Product">
-	<div class="primary_block row">
+	<div class="primary_block row no_row">
 		{if !$content_only}
 			<div class="container">
 				<div class="top-hr"></div>
@@ -329,7 +329,7 @@
 					</div>
 			</div>
 -->
-			<div style = "position:absolute;top:30px;right:50px;width:300px;color: white;font-weight: bold" class = "row">
+			<div style = "position:absolute;top:30px;right:50px;width:300px;color: white;font-weight: bold" class = "row no_row">
 					<!--- name --->
 					<div>
 					<h1 style ="text-transform: uppercase;text-align: right; font-size:30px; color:{$product->product_name_color}">{$product->brand_name|escape:'html':'UTF-8'}</h1>
@@ -392,11 +392,11 @@
 					</div>
 					<!-- end reefer -->
 			</div>
-			<div class = "row">
+			<div class = "row no_row">
 			<!-- Bootrap Lee -->
 			<div role="tabpanel" class="col-xs-12">
 							  <!-- Nav tabs -->
-				<div class="row">
+				<div class="row no_row">
 				<div class="col-md-3"></div>
 				<div class="col-md-6">
 
@@ -470,14 +470,14 @@
 					</div>
 					<div role="tabpanel" class="tab-pane" id="comments">
 						<div id="product_comments_block_tab">
-							<div class="row">
+							<div class="row no_row">
 								<hr />
 							</div>
 							{if isset($HOOK_PRODUCT_TITAN_COMMENTS)  && $HOOK_PRODUCT_TITAN_COMMENTS} {$HOOK_PRODUCT_TITAN_COMMENTS} {/if}
 							{if $comments}
 								{foreach from=$comments item=comment}
 									{if $comment.content}
-									<div class="comment row" itemprop="review" itemscope itemtype="http://schema.org/Review">
+									<div class="comment row no_row" itemprop="review" itemscope itemtype="http://schema.org/Review">
 										<div class="comment_author col-sm-2">
 											<div class="comment_author_infos">
 												<strong itemprop="author">{$comment.customer_name|escape:'html':'UTF-8'}</strong>
@@ -622,7 +622,7 @@
 			<section class="page-product-box">
 				<h3 class="page-product-heading">{l s='Download'}</h3>
 				{foreach from=$attachments item=attachment name=attachements}
-					{if $smarty.foreach.attachements.iteration %3 == 1}<div class="row">{/if}
+					{if $smarty.foreach.attachements.iteration %3 == 1}<div class="row no_row">{/if}
 						<div class="col-lg-4">
 							<h4><a href="{$link->getPageLink('attachment', true, NULL, "id_attachment={$attachment.id_attachment}")|escape:'html':'UTF-8'}">{$attachment.name|escape:'html':'UTF-8'}</a></h4>
 							<p class="text-muted">{$attachment.description|escape:'html':'UTF-8'}</p>
