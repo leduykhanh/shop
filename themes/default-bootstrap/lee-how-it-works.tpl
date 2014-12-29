@@ -89,7 +89,15 @@
         <div class="row text-center" style="margin-bottom: 30px;">
             <h2><strong>WHAT</strong> WE DO</h2>
         </div>
-
+		<div>
+		Tutti’s goal is to make you discover one great original offering, at an amazing 
+		price, every single day! 
+		We work hard to get you the lowest prices on the market and give back all its 
+		benefits to our community. 
+		We exclusively collaborate with original manufacturers, services providers and 
+		official brand representatives in order to bring our community the best, newest 
+		and most demanded products with certified warranties. 
+		</div>
         <div class="row" style="margin-top: 30px;">
             <div class="col-md-4">
                 <div class="col-md-2"></div>
