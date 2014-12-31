@@ -554,13 +554,13 @@
 						>
 						</div>
 					<div id="inline">
-						<h2>Send us a Message</h2>
+						<h2 style="color:#0071bc;font-weight:bold">Tell us what products you would like to see for our next sales</h2>
 
 						<form id="contact" name="contact" action="#" method="post">
-							<label for="email">Your E-mail</label>
+							<label style="color:#0071bc" for="email">Your E-mail</label>
 							<input type="email" id="email" name="email" class="txt">
 							<br>
-							<label for="msg">Enter a Message</label>
+							<label style="color:#0071bc" for="msg">Enter a Message</label>
 							<textarea id="msg" name="msg" class="txtarea"></textarea>
 							
 							<button id="send">Send E-mail</button>
