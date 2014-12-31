@@ -1152,9 +1152,6 @@ html { font-size: 62.5%; height: 101%; }
 body { background: #fff; font-family: "Calibri", Arial, sans-serif; }
 img { border: 0; }
 
-a { color: #3a51b2; text-decoration: none; }
-a:hover { text-decoration: underline; }
-
 h2 { font-size: 1.8em; line-height: 1.9em; margin-bottom: 15px;  }
 
 p { color: #0071BC; font-size: 1.2em; margin-bottom: 10px; font-weight: bold }

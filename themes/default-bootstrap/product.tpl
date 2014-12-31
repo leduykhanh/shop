@@ -156,8 +156,18 @@
 					<script>
 					setInterval(updateCountDown,1000);
 					function updateCountDown(){
+						var date = "{$product->end_date}",
+						values = date.split(/[^0-9]/),
+						year = parseInt(values[0], 10),
+						month = parseInt(values[1], 10) - 1, // Month is zero based, so subtract 1
+						day = parseInt(values[2], 10),
+						hours = parseInt(values[3], 10),
+						minutes = parseInt(values[4], 10),
+						seconds = parseInt(values[5], 10),
+						formattedDate;
+						formattedDate = new Date(year, month, day, hours, minutes, seconds);
 						var current_time = new Date();
-						var difference = new Date("{$product->end_date}") - current_time;
+						var difference = formattedDate - current_time;
 						    var daysDifference = Math.floor(difference/1000/60/60/24);
 								difference -= daysDifference*1000*60*60*24
 							 
