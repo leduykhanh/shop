@@ -190,16 +190,17 @@
 							$("#catalog_price").text(formatNumber({$product->catalog_price}));
 							$("#market_price").text(formatNumber({$product->market_price}));
 							$("#shipping_cost").text(formatNumber({$product->shipping_1}));
+							$("#refferal_cost").text(formatNumber({$product->refferal_value}));
 						});
 					</script>
 			<!-- stock -->
 			<div class="pb-left-column col-xs-12 col-sm-12 col-md-12" style="top:-30px">
 				<div style="border-top-right-radius:30px;border:solid 1px #ed1c24;text-align: left; color:red;
-				font-size: 24px;padding-right: 40px;padding-top: 5px;padding-bottom: 5px;" class="col-md-3">
+				font-size: 30px;padding-right: 40px;padding-top: 5px;padding-bottom: 5px;" class="col-md-3">
 					<span id = "count_down">00:00:00</span>
 
 				</div>
-				<div style="border-top-right-radius:30px;background-color:#ed1c24;text-align: right; border:solid 1px #ed1c24;color:white;font-size: 24px;padding-right: 40px;padding-top: 5px;padding-bottom: 5px;"  class="col-md-9">
+				<div style="border-top-right-radius:30px;background-color:#ed1c24;text-align: right; border:solid 1px #ed1c24;color:white;font-size: 30px;padding-right: 40px;padding-top: 5px;padding-bottom: 5px;"  class="col-md-9">
 					<span>{$product->quantity/(float)$product->initial_quantity*100} % stock</span>
 				</div>
 			</div>
@@ -393,7 +394,7 @@
 					<!-- refer -->
 					<div style = "height: 50px; top:-40px;position:relative; z-index:1; padding-top: 1px;text-align: center;font-size: 20px;color:red">
 					<img style="margin:10px" height= 47px src = "../../img/red_refer.png" />
-					<a href = "{$link->getPageLink('leepurchase', true)|escape:'html':'UTF-8'}&id_product={Tools::getValue('id_product')}" style = "color:#ed1c24"> {$product->refferal_value} for each referral</a>
+					<a href = "{$link->getPageLink('leepurchase', true)|escape:'html':'UTF-8'}&id_product={Tools::getValue('id_product')}" style = "color:#ed1c24"> <span id = "refferal_cost"> </span> for each referral</a>
 					</div>
 					<!-- end reefer -->
 			</div>
@@ -467,7 +468,7 @@
 							<section class="page-product-box">
 								{if isset($product) && $product->description}
 									<!-- full description -->
-									<div  class="rte">{$product->description}</div>
+									<div  class="rte align_justify">{$product->description}</div>
 								{/if}
 							</section>
 							<!--end  More info -->
