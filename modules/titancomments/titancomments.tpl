@@ -15,6 +15,7 @@
     <hr />
 </div>
 <div id="titancomments_form">
+{if $is_logged}
     <form id="id_titancomments_form" action="#">
         <div class="comment_author col-sm-2">
             <div class="comment_author_infos">
@@ -25,6 +26,9 @@
             <textarea id="titancomments_content" name="content"></textarea>
         </div>
     </form>
+{else}
+	<span> Please log in to add your comment
+{/if}
 </div>
 <br/>
 <script type='text/javascript'>
