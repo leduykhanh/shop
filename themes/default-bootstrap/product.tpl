@@ -477,7 +477,7 @@
 					<div role="tabpanel" class="tab-pane" id="comments">
 						<div id="product_comments_block_tab">
 							<div class="row no_row">
-								<hr />
+							<span style = "font-size:30px"> Comments </span>
 							</div>
 							{if isset($HOOK_PRODUCT_TITAN_COMMENTS)  && $HOOK_PRODUCT_TITAN_COMMENTS} {$HOOK_PRODUCT_TITAN_COMMENTS} {/if}
 							{if $comments}
@@ -548,8 +548,8 @@
 				<div class="col-xs-6">
 					<div style="background-color:#ed1c24;height:100px;border-top-left-radius:90px;padding-left: 50px; font-size:25px;margin: 10px; color:white">
 						<a class="modalbox" href="#inline">
-						<img style="margin:10px" height= 70px src = "../../img/email.png" /> </a>
-						<input type = "text" style="margin:10px" value = "{if $logged} {Context::getContext()->customer->email}{else}Send us an email
+						<img style="margin:10px" height= 60px src = "../../img/email.png" /> </a>
+						<input placeholder = "Get the daily deal by email" type = "text" style="margin:10px;width:70%" value = "{if $logged} {Context::getContext()->customer->email}
 						{/if}"
 						>
 						</div>

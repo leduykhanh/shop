@@ -259,7 +259,7 @@ a {
   text-decoration: none; }
   a:hover, a:focus {
     color: #515151;
-   /* text-decoration: underline;*/ }
+   /* /*text-decoration: underline;*/*/ }
   a:focus {
     outline: thin dotted #333;
     outline: 5px auto -webkit-focus-ring-color;
@@ -1787,7 +1787,7 @@ textarea.input-lg, .input-group-lg > textarea.form-control,
     border-color: transparent; }
   .btn-link:hover, .btn-link:focus {
     color: #515151;
-    text-decoration: underline;
+    /*/*text-decoration: underline;*/*/
     background-color: transparent; }
   .btn-link[disabled]:hover, .btn-link[disabled]:focus, fieldset[disabled] .btn-link:hover, fieldset[disabled] .btn-link:focus {
     color: #999999;
@@ -5788,7 +5788,7 @@ table.table_block td {
     vertical-align: middle; }
   .table td a.color-myaccount {
     color: #777777;
-    text-decoration: underline; }
+    /*text-decoration: underline;*/ }
     .table td a.color-myaccount:hover {
       text-decoration: none; }
   .table tfoot tr {
@@ -7328,7 +7328,7 @@ p.checkbox.gift {
 
 a.iframe {
   color: #333333;
-  text-decoration: underline; }
+  /*text-decoration: underline;*/ }
   a.iframe:hover {
     text-decoration: none; }
 
@@ -7385,7 +7385,7 @@ p.cheque-indent {
 .order-confirmation.box {
   line-height: 29px; }
   .order-confirmation.box a {
-    text-decoration: underline; }
+    /*text-decoration: underline;*/ }
     .order-confirmation.box a:hover {
       text-decoration: none; }
 
@@ -8047,3 +8047,17 @@ div.star.star_hover:after {
   background-color: #ce1f21; }
   .btn-pinterest:hover i {
     color: white; }
+::-webkit-input-placeholder { /* WebKit browsers */
+    color:    red;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+   color:    red;
+   opacity:  1;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+   color:    red;
+   opacity:  1;
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+   color:   red;
+}
