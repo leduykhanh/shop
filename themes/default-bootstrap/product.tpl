@@ -87,8 +87,10 @@
 					</span>
 				{else}
 				{/if} -->
+				{if isset($images) && count($images) > 1}
 				<a href="#" class="control_next" style="background:url('../../img/next.png') no-repeat;" ></a>
 				<a href="#" class="control_prev" style="background:url('../../img/back.png') no-repeat;"></a>
+				{/if}
 				<ul id="image_block_items">
 				{if isset($images)}
 					{foreach from=$images item=image name=thumbnails}
@@ -99,9 +101,7 @@
 							{assign var=imageTitle value=$product->name|escape:'html':'UTF-8'}
 						{/if}
 						<li id="image_block_item_{$image.id_image}" class="image_block_item_li{if $smarty.foreach.thumbnails.last}  last {else} non-last{/if}">
-							<a{if $jqZoomEnabled && $have_image && !$content_only} href="javascript:void(0);" rel="{literal}{{/literal}gallery: 'gal1', smallimage: '{$link->getImageLink($product->link_rewrite, $imageIds, '')|escape:'html':'UTF-8'}',largeimage: '{$link->getImageLink($product->link_rewrite, $imageIds, '')|escape:'html':'UTF-8'}'{literal}}{/literal}"{else} href="{$link->getImageLink($product->link_rewrite, $imageIds, '')|escape:'html':'UTF-8'}"	{/if} title="{$imageTitle}">
 								<img class="img-responsive image_block_item_img" id="image_item_block_{$image.id_image}" src="{$link->getImageLink($product->link_rewrite, $imageIds, '')|escape:'html':'UTF-8'}" alt="{$imageTitle}" title="{$imageTitle}" width="{$largeSize.width}" itemprop="image" />
-							</a>
 						</li>
 					{/foreach}
 				{/if}
