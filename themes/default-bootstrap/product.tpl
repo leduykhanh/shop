@@ -191,17 +191,18 @@
 							$("#market_price").text(formatNumber({$product->market_price}));
 							$("#shipping_cost").text(formatNumber({$product->shipping_1}));
 							$("#refferal_cost").text(formatNumber({$product->refferal_value}));
+							$("#stock_value").text(({$product->quantity/(float)$product->initial_quantity*100}).toFixed(2));
 						});
 					</script>
 			<!-- stock -->
 			<div class="pb-left-column col-xs-12 col-sm-12 col-md-12" style="top:-30px">
-				<div style="border-top-right-radius:30px;border:solid 1px #ed1c24;text-align: left; color:red;
+				<div style="border-top-right-radius:30px;border:solid 1px red;text-align: left; color:red;
 				font-size: 30px;padding-right: 40px;padding-top: 5px;padding-bottom: 5px;" class="col-md-3">
 					<span id = "count_down">00:00:00</span>
 
 				</div>
-				<div style="border-top-right-radius:30px;background-color:#ed1c24;text-align: right; border:solid 1px #ed1c24;color:white;font-size: 30px;padding-right: 40px;padding-top: 5px;padding-bottom: 5px;"  class="col-md-9">
-					<span>{$product->quantity/(float)$product->initial_quantity*100} % stock</span>
+				<div style="border-top-right-radius:30px;background-color:red;text-align: right; border:solid 1px #ed1c24;color:white;font-size: 30px;padding-right: 40px;padding-top: 5px;padding-bottom: 5px;"  class="col-md-9">
+					<span id = "stock_value"></span> % stock
 				</div>
 			</div>
 			<!--{l s="{var_dump($images)}"} 
@@ -365,7 +366,7 @@
 					</div>
 					<!--- end of market price--->
 					<!--- great I want it --->
-					<div style = "background-color: #ed1c24;height: 120px; top:-60px;position:relative; z-index:1; padding-top: 65px;text-align: center;font-size: 30px;color:white ; border:solid 2px #c2cbb4">
+					<div style = "background-color: red;height: 120px; top:-60px;position:relative; z-index:1; padding-top: 65px;text-align: center;font-size: 30px;color:white ; border:solid 2px #c2cbb4">
 					<!-- pb-right-column-->
 
 					{if ($product->show_price && !isset($restricted_country_mode)) || isset($groups) || $product->reference || (isset($HOOK_PRODUCT_ACTIONS) && $HOOK_PRODUCT_ACTIONS)}
