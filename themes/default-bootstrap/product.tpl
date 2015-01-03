@@ -186,7 +186,7 @@
 							return ("" + num).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, function($1) { return $1 + "'" });
 							}
 						$( document ).ready(function() {
-							$("#our_price").text(formatNumber({$product->price}) + ".-");
+							$("#our_price").text(formatNumber({$product->our_price}) + ".-");
 							$("#catalog_price").text(formatNumber({$product->catalog_price}));
 							$("#market_price").text(formatNumber({$product->market_price}));
 							$("#shipping_cost").text(formatNumber({$product->shipping_1}));

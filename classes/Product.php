@@ -51,6 +51,7 @@ class ProductCore extends ObjectModel
 	public $product_link;
 	public $deal_status;
 	public $product_name_color;
+	public $our_price;
 	
 	//Lee
 	/** @var string Tax name */
@@ -293,7 +294,7 @@ class ProductCore extends ObjectModel
 			'online_only' => 				array('type' => self::TYPE_BOOL, 'shop' => true, 'validate' => 'isBool'),
 			'ecotax' => 					array('type' => self::TYPE_FLOAT, 'shop' => true, 'validate' => 'isPrice'),
 			'minimal_quantity' => 			array('type' => self::TYPE_INT, 'shop' => true, 'validate' => 'isUnsignedInt'),
-			'price' => 						array('type' => self::TYPE_INT, 'shop' => true, 'validate' => 'isUnsignedInt', 'required' => true),
+			'price' => 						array('type' => self::TYPE_FLOAT, 'shop' => true,'required' => true),
 			'wholesale_price' => 			array('type' => self::TYPE_FLOAT, 'shop' => true, 'validate' => 'isPrice'),
 			'unity' => 						array('type' => self::TYPE_STRING, 'shop' => true, 'validate' => 'isString'),
 			'unit_price_ratio' => 			array('type' => self::TYPE_FLOAT, 'shop' => true),
@@ -318,6 +319,7 @@ class ProductCore extends ObjectModel
 			'product_name_color' =>array('type' => self::TYPE_STRING, 'shop' => true),
 			'market_price' => 						array('type' => self::TYPE_FLOAT, 'shop' => true, 'validate' => 'isPrice', 'required' => true),
 			'catalog_price' => 						array('type' => self::TYPE_FLOAT, 'shop' => true, 'validate' => 'isPrice', 'required' => true),
+			'our_price' => 						array('type' => self::TYPE_FLOAT, 'shop' => true, 'validate' => 'isPrice', 'required' => true),
 			'brand_name' => 						array('type' => self::TYPE_STRING, 'lang' => true, 'validate' => 'isCatalogName', 'required' => true, 'size' => 128),
 			'initial_quantity' => 		array('type' => self::TYPE_INT, 'shop' => true, 'validate' => 'isUnsignedId'),
 			'buffer_trigger' => 		array('type' => self::TYPE_INT, 'shop' => true, 'validate' => 'isUnsignedId'),
@@ -338,7 +340,7 @@ class ProductCore extends ObjectModel
 				'type' => self::TYPE_STRING, 
 				'lang' => true, 
 				'validate' => 'isLinkRewrite', 
-				'required' => true, 
+				'required' => false, 
 				'size' => 128,
 				'ws_modifier' => array(
 					'http_method' => WebserviceRequest::HTTP_POST,

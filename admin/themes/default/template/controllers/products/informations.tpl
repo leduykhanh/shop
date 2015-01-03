@@ -100,34 +100,6 @@
 
 	{include file="controllers/products/multishop/check_fields.tpl" product_tab="Informations"}
 
-	<div class="form-group">
-		<label class="control-label col-lg-3" for="simple_product">
-			{$bullet_common_field} {l s='Type'}
-		</label>
-		<div class="col-lg-9">
-			<div class="radio">
-				<label for="simple_product">
-					<input type="radio" name="type_product" id="simple_product" value="{Product::PTYPE_SIMPLE}" {if $product_type == Product::PTYPE_SIMPLE}checked="checked"{/if} >
-					{l s='Standard product'}</label>
-			</div>
-			<div class="radio">
-				<label for="pack_product">
-					<input type="radio" name="type_product" {if $is_in_pack}disabled="disabled"{/if} id="pack_product" value="{Product::PTYPE_PACK}" {if $product_type == Product::PTYPE_PACK}checked="checked"{/if} > {l s='Pack of existing products'}</label>
-			</div>
-			<div class="radio">
-				<label for="virtual_product">
-					<input type="radio" name="type_product" id="virtual_product" {if $is_in_pack}disabled="disabled"{/if} value="{Product::PTYPE_VIRTUAL}" {if $product_type == Product::PTYPE_VIRTUAL}checked="checked"{/if} >
-					{l s='Virtual product (services, booking, downloadable products, etc.)'}</label>
-			</div>
-
-			<div class="row">
-				<div id="warn_virtual_combinations" class="alert alert-warning" style="display:none">{l s='You cannot use combinations with a virtual product.'}</div>
-				<div id="warn_pack_combinations" class="alert alert-warning" style="display:none">{l s='You cannot use combinations with a pack.'}</div>
-			</div>
-
-		</div>
-	</div>
-
 	<div id="product-pack-container" {if $product_type != Product::PTYPE_PACK}style="display:none"{/if}></div>
 
 	<hr />
@@ -233,16 +205,6 @@
 			</select>
 		</div>
 	</div>
-	<div class="form-group redirect_product_options" style="display:none">
-		<div class="col-lg-9 col-lg-offset-3">
-			<div class="alert alert-info">
-				{l s='404 Not Found = Do not redirect and display a 404 page.'}<br/>
-				{l s='301 Moved Permanently = Permanently display another product instead.'}<br/>
-				{l s='302 Moved Temporarily = Temporarily display another product instead.'}
-			</div>	
-		</div>
-	</div>
-
 	<div class="form-group redirect_product_options redirect_product_options_product_choise" style="display:none">	
 		<div class="col-lg-1"><span class="pull-right">{include file="controllers/products/multishop/checkbox.tpl" field="id_product_redirected" type="radio" onclick=""}</span></div>	
 		<label class="control-label col-lg-2" for="related_product_autocomplete_input">
@@ -271,21 +233,6 @@
 			var id_product_redirected = {$product->id_product_redirected|intval};
 			var product_name_redirected = '{$product_name_redirected|escape:'html':'UTF-8'}';
 		</script>
-	</div>
-
-	<div class="form-group">
-		<div class="col-lg-1"><span class="pull-right">{include file="controllers/products/multishop/checkbox.tpl" field="visibility" type="default"}</span></div>		
-		<label class="control-label col-lg-2" for="visibility">
-			{l s='Visibility'}
-		</label>
-		<div class="col-lg-3">
-			<select name="visibility" id="visibility">
-				<option value="both" {if $product->visibility == 'both'}selected="selected"{/if} >{l s='Everywhere'}</option>
-				<option value="catalog" {if $product->visibility == 'catalog'}selected="selected"{/if} >{l s='Catalog only'}</option>
-				<option value="search" {if $product->visibility == 'search'}selected="selected"{/if} >{l s='Search only'}</option>
-				<option value="none" {if $product->visibility == 'none'}selected="selected"{/if}>{l s='Nowhere'}</option>
-			</select>
-		</div>
 	</div>
 
 	<div id="product_options" class="form-group">
@@ -320,19 +267,6 @@
 							{l s='Online only (not sold in your retail store)'}</label>
 					</div>
 				</div>
-			</div>
-			<div class="form-group">
-				<div class="col-lg-1"><span class="pull-right">{include file="controllers/products/multishop/checkbox.tpl" field="condition" type="default"}</span></div>				
-				<label class="control-label col-lg-2" for="condition">
-					{l s='Condition'}
-				</label>
-				<div class="col-lg-3">
-					<select name="condition" id="condition">
-						<option value="new" {if $product->condition == 'new'}selected="selected"{/if} >{l s='New'}</option>
-						<option value="used" {if $product->condition == 'used'}selected="selected"{/if} >{l s='Used'}</option>
-						<option value="refurbished" {if $product->condition == 'refurbished'}selected="selected"{/if}>{l s='Refurbished'}</option>
-					</select>
-				</div>	
 			</div>
 		</div>
 	</div>

@@ -109,20 +109,16 @@ $(document).ready(function () {
 <div id="product-prices" class="panel product-tab">
 	<input type="hidden" name="submitted_tabs[]" value="Prices" />
 	<h3>{l s='Product price'}</h3>
-	<div class="alert alert-info">
-		{l s='You must enter either the pre-tax retail price, or the retail price with tax. The input field will be automatically calculated.'}
-	</div>
 	{include file="controllers/products/multishop/check_fields.tpl" product_tab="Prices"}
 	<div class="form-group">
-		<div class="col-lg-1"><span class="pull-right">{include file="controllers/products/multishop/checkbox.tpl" field="price" type="price"}</span></div>
-		<label class="control-label col-lg-2" for="priceTE">
+		<div class="col-lg-1"><span class="pull-right">{include file="controllers/products/multishop/checkbox.tpl" field="price" type="default"}</span></div>
+		<label class="control-label col-lg-2" for="our_price">
 			<span class="label-tooltip" data-toggle="tooltip" title="{l s='Our Price'}">
 			{l s='Our price'}
 		</label>
 		<div class="input-group col-lg-2">
 			<span class="input-group-addon">{$currency->prefix}{$currency->suffix}</span>
-			<input type="hidden" id="priceTEReal" name="price" value="{$product->price}"/>
-			<input size="11" maxlength="14" id="priceTE" name="price_displayed" type="text" value="{{$product->price}}"/>
+			<input maxlength="14" id="our_price" name="our_price" type="text" value="{{$product->our_price}}"/>
 		</div>
 	</div>
 	<!-- lee --->
@@ -134,7 +130,7 @@ $(document).ready(function () {
 		</label>
 		<div class="input-group col-lg-2">
 			<span class="input-group-addon">{$currency->prefix}{$currency->suffix}</span>
-			<input maxlength="14" name="catalog_price" id="catalog_price" type="text" value="{{toolsConvertPrice price=$product->catalog_price}}" onchange="this.value = this.value.replace(/,/g, '.');" />
+			<input maxlength="14" name="catalog_price" id="catalog_price" type="text" value="{{$product->catalog_price}}" onchange="this.value = this.value.replace(/,/g, '.');" />
 		</div>
 	</div>
 	<div class="form-group">
