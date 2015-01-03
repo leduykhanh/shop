@@ -59,3 +59,7 @@
     font-size: 25px;
     vertical-align: -2px;
     padding-right: 10px; }
+
+#contact-link a, .static-page-menu a {
+  font-size:18px; 
+}
