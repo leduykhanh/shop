@@ -87,8 +87,8 @@
 					</span>
 				{else}
 				{/if} -->
-				<a href="#" class="control_next" > >> </a>
-				<a href="#" class="control_prev"> << </a>
+				<a href="#" class="control_next" style="background:url('../../img/next.png') no-repeat;" ></a>
+				<a href="#" class="control_prev" style="background:url('../../img/back.png') no-repeat;"></a>
 				<ul id="image_block_items">
 				{if isset($images)}
 					{foreach from=$images item=image name=thumbnails}
