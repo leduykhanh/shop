@@ -12,7 +12,6 @@
 
     <style>
         .who-we-are {
-            height: 250px;
             background-color: #fbb03b;
             border-top-right-radius: 130px !important;
             border-bottom-left-radius: 130px !important;
@@ -53,7 +52,7 @@
         }
 
         .divider {
-            border: 1px blue solid;
+            border: 1px #0071BC solid;
             margin-top: 40px;
             margin-bottom: 20px;;
         }
@@ -63,8 +62,8 @@
 </head>
 <body>
     <div class="container">
-        <div class="row text-center" style="margin-bottom: 30px;">
-            <h2><strong>WHO</strong> WE ARE</h2>
+        <div class="row text-center" style="margin-bottom: 30px; color:#0071BC;font-weight:bold">
+            <h2><strong>WHO WE ARE</strong></h2>
         </div>
 
         <div class="row">
@@ -86,8 +85,8 @@
 
         <div class="row divider"></div>
 
-        <div class="row text-center" style="margin-bottom: 30px;">
-            <h2><strong>WHAT</strong> WE DO</h2>
+        <div class="row text-center" style="margin-bottom: 30px;color:#0071BC;font-weight:bold">
+            <h2><strong>WHAT WE DO</strong></h2>
         </div>
 		<div>
 		Tutti’s goal is to make you discover one great original offering, at an amazing 
