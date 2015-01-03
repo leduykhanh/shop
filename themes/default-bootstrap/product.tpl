@@ -179,7 +179,7 @@
 							 
 								var secondsDifference = Math.floor(difference/1000);
 						var count_down = document.getElementById("count_down");
-						count_down.innerHTML = hoursDifference + ":" + minutesDifference + ":" + secondsDifference;
+						count_down.innerHTML = ('0' + hoursDifference).slice(-2) + ":" + ('0' + minutesDifference).slice(-2) + ":" + ('0' + secondsDifference).slice(-2);
 						}
 						function formatNumber(num)
 							{
