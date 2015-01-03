@@ -338,8 +338,8 @@
 			<div style = "position:absolute;top:30px;right:50px;width:300px;color: white;font-weight: bold" class = "row no_row">
 					<!--- name --->
 					<div>
-					<h1 style ="text-transform: uppercase;text-align: right; font-size:30px; color:{$product->product_name_color}">{$product->brand_name|escape:'html':'UTF-8'}</h1>
-					<h2 style ="text-transform: uppercase;text-align: right;font-size:20px; color:{$product->product_name_color}"">{$product->name|escape:'html':'UTF-8'}</h2>
+					<h1 style ="text-transform: uppercase;text-align: right; font-size:31px; font-weight:bold; color:{$product->product_name_color}">{$product->brand_name|escape:'html':'UTF-8'}</h1>
+					<h6 style ="text-transform: uppercase;text-align: right;font-size:22px; font-weight:bold; color:{$product->product_name_color}">{$product->name|escape:'html':'UTF-8'}</h6>
 					</div>
 					<!-- prices -->
 					<div class="price" style = "background-color:#29abe2;border-top-right-radius: 90px;height: 80px; border:solid 2px #c2cbb4;margin-bottom:2px;color: white;" >
