@@ -1,6 +1,10 @@
 <!-- Block user information module NAV  -->
 <script>
 	$(document).ready(function() {
+		$(".header_user_info .login").click(function(ev){
+			ev.preventDefault();
+			showLogin();
+		});
 		/*$(".login").fancybox();*/
 			});
 	function showLogin(){
@@ -25,8 +29,8 @@
 			{l s='Log in' mod='blockuserinfo'}
 		</a>
 	-->
-	<a onclick="showLogin()" class="login" href="#login">Log in</a> or
-	<a class="login" href="{$link->getPageLink('my-account', true)|escape:'html':'UTF-8'}">Sign up</a>
+	<a class="login" href="#login">Log in</a> or
+	<a class="signup" href="{$link->getPageLink('my-account', true)|escape:'html':'UTF-8'}">Sign up</a>
 	{/if}
 </div>
 <div onmouseout = "" id = "login" class="col-xs-3" style="display:none; color:white; background-color:#0071BC; position:absolute; right:10px;top:50px">
