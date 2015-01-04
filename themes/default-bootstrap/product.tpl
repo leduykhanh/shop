@@ -191,7 +191,7 @@
 							$("#market_price").text(formatNumber({$product->market_price}));
 							$("#shipping_cost").text(formatNumber({$product->shipping_1}));
 							$("#refferal_cost").text(formatNumber({$product->refferal_value}));
-							$("#stock_value").text(({$product->quantity/(float)$product->initial_quantity*100}).toFixed(2));
+							$("#stock_value").text(({$product->quantity/(float)$product->initial_quantity*100}).toFixed(0));
 						});
 					</script>
 			<!-- stock -->

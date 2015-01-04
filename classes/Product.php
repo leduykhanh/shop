@@ -41,6 +41,7 @@ class ProductCore extends ObjectModel
 	public $brand_name;
 	public $initial_quantity;
 	public $buffer_trigger;
+	public $buffer_quantity;
 	public $refferal_value;
 	public $shipping_1;
 	public $shipping_2;
@@ -322,6 +323,7 @@ class ProductCore extends ObjectModel
 			'our_price' => 						array('type' => self::TYPE_FLOAT, 'shop' => true, 'validate' => 'isPrice', 'required' => true),
 			'brand_name' => 						array('type' => self::TYPE_STRING, 'lang' => true, 'validate' => 'isCatalogName', 'required' => true, 'size' => 128),
 			'initial_quantity' => 		array('type' => self::TYPE_INT, 'shop' => true, 'validate' => 'isUnsignedId'),
+			'buffer_quantity' => 		array('type' => self::TYPE_INT, 'shop' => true, 'validate' => 'isUnsignedId'),
 			'buffer_trigger' => 		array('type' => self::TYPE_INT, 'shop' => true, 'validate' => 'isUnsignedId'),
 			'refferal_value' => 		array('type' => self::TYPE_INT, 'shop' => true, 'validate' => 'isUnsignedId'),
 			'shipping_1' => 		array('type' => self::TYPE_INT, 'shop' => true, 'validate' => 'isUnsignedId'),

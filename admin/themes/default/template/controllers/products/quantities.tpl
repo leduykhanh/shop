@@ -115,6 +115,26 @@
 					<input size="11" maxlength="14" id="initial_quantity" name="initial_quantity" type="text" value="{{$product->initial_quantity}}"/>
 				</div>
 			</div>
+			<div class="form-group">
+				<label class="control-label col-lg-3" >
+				<div class="col-lg-1"><span class="pull-right">{include file="controllers/products/multishop/checkbox.tpl" field="buffer_quantity" type="default"}</span></div>
+					<span class="label-tooltip" data-toggle="tooltip" title="{l s='Buffer Quantity'}">
+					{l s='Buffer Quantity'}
+				</label>
+				<div class="input-group col-lg-2">
+					<input size="11" maxlength="14" id="buffer_quantity" name="buffer_quantity" type="text" value="{{$product->buffer_quantity}}"/>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-lg-3" >
+				<div class="col-lg-1"><span class="pull-right">{include file="controllers/products/multishop/checkbox.tpl" field="buffer_trigger" type="default"}</span></div>
+					<span class="label-tooltip" data-toggle="tooltip" title="{l s='Buffer Trigger'}">
+					{l s='Buffer Trigger'}
+				</label>
+				<div class="input-group col-lg-2">
+					<input size="11" maxlength="14" id="buffer_trigger" name="buffer_trigger" type="text" value="{{$product->buffer_trigger}}"/>
+				</div>
+			</div>
 				<div class="form-group">
 					<div class="col-lg-9 col-lg-offset-3">
 						<table class="table">

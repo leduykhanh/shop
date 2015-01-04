@@ -191,20 +191,6 @@
 	</div>
 	<hr/>
 
-
-	<div class="form-group redirect_product_options" style="display:none">
-		<div class="col-lg-1"><span class="pull-right">{include file="controllers/products/multishop/checkbox.tpl" field="redirect_type" type="radio" onclick=""}</span></div>
-		<label class="control-label col-lg-2" for="redirect_type">
-			{l s='Redirect when disabled'}
-		</label>
-		<div class="col-lg-5">
-			<select name="redirect_type" id="redirect_type">
-				<option value="404" {if $product->redirect_type == '404'} selected="selected" {/if}>{l s='No redirect (404)'}</option>
-				<option value="301" {if $product->redirect_type == '301'} selected="selected" {/if}>{l s='Redirected permanently (301)'}</option>
-				<option value="302" {if $product->redirect_type == '302'} selected="selected" {/if}>{l s='Redirected temporarily (302)'}</option>
-			</select>
-		</div>
-	</div>
 	<div class="form-group redirect_product_options redirect_product_options_product_choise" style="display:none">	
 		<div class="col-lg-1"><span class="pull-right">{include file="controllers/products/multishop/checkbox.tpl" field="id_product_redirected" type="radio" onclick=""}</span></div>	
 		<label class="control-label col-lg-2" for="related_product_autocomplete_input">
@@ -235,41 +221,7 @@
 		</script>
 	</div>
 
-	<div id="product_options" class="form-group">
-		<div class="col-lg-12">
-			<div class="form-group">
-				<div class="col-lg-1">
-					<span class="pull-right">
-						{if isset($display_multishop_checkboxes) && $display_multishop_checkboxes}
-							{include file="controllers/products/multishop/checkbox.tpl" only_checkbox="true" field="available_for_order" type="default"}
-							{include file="controllers/products/multishop/checkbox.tpl" only_checkbox="true" field="show_price" type="show_price"}
-							{include file="controllers/products/multishop/checkbox.tpl" only_checkbox="true" field="online_only" type="default"}
-						{/if}
-					</span>
-				</div>	
-				<label class="control-label col-lg-2" for="available_for_order">
-					{l s='Options'}
-				</label>
-				<div class="col-lg-9">
-					<div class="checkbox">
-						<label for="available_for_order">
-							<input type="checkbox" name="available_for_order" id="available_for_order" value="1" {if $product->available_for_order}checked="checked"{/if} >
-							{l s='Available for order'}</label>
-					</div>
-					<div class="checkbox">
-						<label for="show_price">
-							<input type="checkbox" name="show_price" id="show_price" value="1" {if $product->show_price}checked="checked"{/if} {if $product->available_for_order}disabled="disabled"{/if} >
-							{l s='Show price'}</label>
-					</div>
-					<div class="checkbox">
-						<label for="online_only">
-							<input type="checkbox" name="online_only" id="online_only" value="1" {if $product->online_only}checked="checked"{/if} >
-							{l s='Online only (not sold in your retail store)'}</label>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+
 	<div class="form-group">
 		<div class="col-lg-1"><span class="pull-right">{include file="controllers/products/multishop/checkbox.tpl" field="start_date" type="default" multilang="true"}</span></div>
 		<label class="control-label col-lg-2 required" for="name_{$id_lang}">

@@ -23,11 +23,13 @@
 *  International Registered Trademark & Property of PrestaShop SA
 *}
 {capture name=path}
+{include file="$tpl_dir./global.tpl"}
 	{if !isset($email_create)}{l s='Authentication'}{else}
 		<a style = "color:#0071BC" href="{$link->getPageLink('authentication', true)|escape:'html':'UTF-8'}" rel="nofollow" title="{l s='Authentication'}">{l s='Authentication'}</a>
 		<span class="navigation-pipe">{$navigationPipe}</span>{l s='Create your account'}
 	{/if}
 {/capture}
+{assign var='email_create' value='1'}
 <h1 class="page-heading">{if !isset($email_create)}{l s='Authentication'}{else}{l s='Create an account'}{/if}</h1>
 {if isset($back) && preg_match("/^http/", $back)}{assign var='current_step' value='login'}{include file="$tpl_dir./order-steps.tpl"}{/if}
 {include file="$tpl_dir./errors.tpl"}
@@ -49,6 +51,7 @@
 		</ol>
 	</div>
 	{/if}-->
+	
 	<div class="row">
 		<div class="col-xs-12 col-sm-6" style="color:white;background-color:#0071BC;border-top-right-radius:70px ; padding-bottom: 0px;">
 			<form action="{$link->getPageLink('authentication', true)|escape:'html':'UTF-8'}" method="post" id="create-account_form" class="box" style="color:white;background-color:#0071BC;border:none; border-top-right-radius:70px; padding-bottom: 0px; ">
@@ -101,6 +104,7 @@
 			</form>
 		</div> -->
 	</div>
+	
 	{if isset($inOrderProcess) && $inOrderProcess && $PS_GUEST_CHECKOUT_ENABLED}
 		<form action="{$link->getPageLink('authentication', true, NULL, "back=$back")|escape:'html':'UTF-8'}" method="post" id="new_account_form" class="std clearfix">
 			<div class="box">
@@ -508,7 +512,7 @@
 					<input type="hidden" name="email_create" value="1" />
 					<input type="hidden" name="is_new_customer" value="1" />
 					{if isset($back)}<input type="hidden" class="hidden" name="back" value="{$back|escape:'html':'UTF-8'}" />{/if}
-					<button type="submit" name="submitAccount" id="submitAccount" class="btn btn-default button button-medium">
+					<button type="submit" name="submitAccount" id="submitAccount" style="background-color:red; border-bottom-right-radius:30px;color:white; font-size:25px; padding:10px; ">
 						<span>{l s='Register'}<i class="icon-chevron-right right"></i></span>
 					</button>
 					<p class="pull-right required"><span><sup>*</sup>{l s='Required field'}</span></p>
