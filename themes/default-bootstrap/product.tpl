@@ -192,6 +192,7 @@
 							$("#shipping_cost").text(formatNumber({$product->shipping_1}));
 							$("#refferal_cost").text(formatNumber({$product->refferal_value}));
 							$("#stock_value").text(({$product->quantity/(float)$product->initial_quantity*100}).toFixed(0));
+							$("span").tooltip();
 						});
 					</script>
 			<!-- stock -->
@@ -347,7 +348,8 @@
 					<span id = "our_price" style="color:white;font-size:40px;padding-left:10px; position:relative; top:20px; "></span>
 					<!-- shipping -->	
 					<div style="font-size:20px; padding:10px; position:relative; top:10px">+ <span id = "shipping_cost"  > {$product->shipping_1} </span><span> of shipping</span>
-							<span class="text-center" id = "catalog_hint" onMouseOver = "$(this).attr('title', 'This is the Iran catalog price');" style="border-radius:50%;border:solid 1px white;position:absolute;right:10px; cursor:pointer;
+							<span class="text-center" id = "catalog_hint"data-toggle="tooltip"
+								title=" This is Tutti's price. All prices are in Toman. Excluding the Shipping Cost" style="border-radius:50%;border:solid 1px white;position:absolute;right:10px;  cursor:pointer;
 							width:18px;height:18px">i</span>
 							</div>
 					</div> <!-- end prices -->
@@ -355,12 +357,15 @@
 					<div style = "background-color: #0071bc; border-bottom-left-radius: 90px;position:relative; height: 60px; z-index:2;border:solid 2px #c2cbb4" class="price">
 						<div style="color:white;font-size:15px;padding-left:50px;top:5px;position:relative;"> Catalog price
 							<span id = "catalog_price"  > </span>
-							<span class="text-center" id = "catalog_hint" onMouseOver = "$(this).attr('title', 'This is the Iran catalog price');" style="border-radius:50%;border:solid 1px white;position:absolute;right:10px; cursor:pointer;
+							<span class="text-center" id = "catalog_hint" data-toggle="tooltip"
+								title="This is the original manufacturer listed price"  style="border-radius:50%;border:solid 1px white;position:absolute;right:10px; cursor:pointer;
 							width:18px;height:18px">i</span>
 							</div>
 						<div style="color:white;font-size:15px;padding-left:50px;top:5px;position:relative;">Market price 
 							<span id = "market_price"  > {$product->market_price} </span>
-							<span class="text-center" id = "market_hint" onMouseOver = "$(this).attr('title', 'This is the Iran market price');" style="border-radius:50%;border:solid 1px white;position:absolute;right:10px; cursor:pointer;
+
+							<span class="text-center" data-toggle="tooltip"
+								title="This is the market price. Tutti travels to several places and gets the most competitive price"  id = "market_hint" style="border-radius:50%;border:solid 1px white;position:absolute;right:10px; cursor:pointer;
 							width:18px;height:18px">i</span>							
 							</div>
 					</div>
@@ -559,7 +564,8 @@
 
 						<form id="contact" name="contact" action="#" method="post">
 							<label style="color:#0071bc" for="email">Your E-mail</label>
-							<input type="email" id="email" name="email" class="txt">
+							<input type="email" id="email" name="email" class="txt" value = "{if $logged} {Context::getContext()->customer->email}
+						{/if}">
 							<br>
 							<label style="color:#0071bc" for="msg">Enter a Message</label>
 							<textarea id="msg" name="msg" class="txtarea"></textarea>
