@@ -1,3 +1,4 @@
+{include file="$tpl_dir./global.tpl"}
 <!DOCTYPE html>
 <html>
 <head lang="en">
