@@ -1,8 +1,14 @@
 <!-- Block user information module NAV  -->
 <script>
 	$(document).ready(function() {
-		$(".login").fancybox();
-		});
+		/*$(".login").fancybox();*/
+			});
+	function showLogin(){
+	$("#login").slideToggle();
+	}
+	function hideLogin(){
+	$("#login").fadeOut();
+	}
 </script>
 {if $is_logged}
 	<div class="header_user_info">
@@ -19,11 +25,11 @@
 			{l s='Log in' mod='blockuserinfo'}
 		</a>
 	-->
-	<a class="login" href="#login">Log in</a> or
-	<a class="login" href="#signup">Sign up</a>
+	<a onclick="showLogin()" class="login" href="#login">Log in</a> or
+	<a class="login" href="{$link->getPageLink('my-account', true)|escape:'html':'UTF-8'}">Sign up</a>
 	{/if}
 </div>
-<div id = "login" class="col-xs-12" style="display:none; color:white; background-color:#0071BC; border-top-right-radius:70px">
+<div onmouseout = "" id = "login" class="col-xs-3" style="display:block; color:white; background-color:#0071BC; position:absolute; right:10px;top:50px">
 			<form action="{$link->getPageLink('authentication', true)|escape:'html':'UTF-8'}" method="post" id="login_form" class="box" style="color:white;background-color:#0071BC;border-top-right-radius:70px; border:none; ">
 				<div class="form_content clearfix">
 					<div class="form-group">
@@ -37,7 +43,7 @@
 					<p class="lost_password form-group"><a style="color:white;" href="{$link->getPageLink('password')|escape:'html':'UTF-8'}" title="{l s='Recover your forgotten password'}" rel="nofollow">{l s='Forgot your password?'}</a></p>
 					<p class="submit">
 						{if isset($back)}<input type="hidden" class="hidden" name="back" value="{$back|escape:'html':'UTF-8'}" />{/if}
-						<button type="submit" id="SubmitLogin" name="SubmitLogin" class="button btn btn-default button-medium">
+						<button type="submit" id="SubmitLogin" name="SubmitLogin" style="background-color:red; color:white">
 							<span>
 								<i class="icon-lock left"></i>
 								{l s='Sign in'}
