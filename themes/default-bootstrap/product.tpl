@@ -550,7 +550,7 @@
 					<div style="background-color:#ed1c24;height:100px;border-top-left-radius:90px;padding-left: 50px; font-size:25px;margin: 10px; color:white">
 						<a class="modalbox" href="#inline">
 						<img style="margin:10px" height= 60px src = "../../img/email.png" /> </a>
-						<input placeholder = "Get the daily deal by email" type = "text" style="margin:10px;width:70%" value = "{if $logged} {Context::getContext()->customer->email}
+						<input placeholder = "Get the daily deal by email" type = "text" style="margin:10px;width:70%;color:red" value = "{if $logged} {Context::getContext()->customer->email}
 						{/if}"
 						>
 						</div>
