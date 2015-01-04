@@ -29,7 +29,7 @@
 	<a class="login" href="{$link->getPageLink('my-account', true)|escape:'html':'UTF-8'}">Sign up</a>
 	{/if}
 </div>
-<div onmouseout = "" id = "login" class="col-xs-3" style="display:block; color:white; background-color:#0071BC; position:absolute; right:10px;top:50px">
+<div onmouseout = "" id = "login" class="col-xs-3" style="display:none; color:white; background-color:#0071BC; position:absolute; right:10px;top:50px">
 			<form action="{$link->getPageLink('authentication', true)|escape:'html':'UTF-8'}" method="post" id="login_form" class="box" style="color:white;background-color:#0071BC;border-top-right-radius:70px; border:none; ">
 				<div class="form_content clearfix">
 					<div class="form-group">
@@ -46,7 +46,7 @@
 						<button type="submit" id="SubmitLogin" name="SubmitLogin" style="background-color:red; color:white">
 							<span>
 								<i class="icon-lock left"></i>
-								{l s='Sign in'}
+								{l s='Log in'}
 							</span>
 						</button>
 					</p>

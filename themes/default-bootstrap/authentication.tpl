@@ -74,6 +74,7 @@
 				</div>
 			</form>
 		</div>
+		<!--
 		<div class="col-xs-12 col-sm-6" style="color:white;background-color:#0071BC;border-top-right-radius:70px">
 			<form action="{$link->getPageLink('authentication', true)|escape:'html':'UTF-8'}" method="post" id="login_form" class="box" style="color:white;background-color:#0071BC;border-top-right-radius:70px; border:none; ">
 				<h3 class="page-subheading" style="color:white;background-color:#0071BC" >{l s='Already registered?'}</h3>
@@ -98,7 +99,7 @@
 					</p>
 				</div>
 			</form>
-		</div>
+		</div> -->
 	</div>
 	{if isset($inOrderProcess) && $inOrderProcess && $PS_GUEST_CHECKOUT_ENABLED}
 		<form action="{$link->getPageLink('authentication', true, NULL, "back=$back")|escape:'html':'UTF-8'}" method="post" id="new_account_form" class="std clearfix">
