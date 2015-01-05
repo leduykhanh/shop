@@ -38,7 +38,7 @@ class LeeHistoryController extends FrontController
         $sql = new DbQuery();
         $sql->select('p.`id_product`');
         $sql->from('product', 'p');
-        $sql->orderBy('p.`id_product` ASC');
+        $sql->orderBy('p.`end_date` ASC');
 
         //This condition is somewhat wrong. 
         //TODO: ask customer for what does it mean by $start_date & $end_date
