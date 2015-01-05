@@ -38,3 +38,5 @@ ALTER TABLE  `ps_product` ADD  `product_name_color` VARCHAR( 10 ) NOT NULL DEFAU
 ALTER TABLE  `ps_product_lang` CHANGE  `link_rewrite`  `link_rewrite` VARCHAR( 128 ) CHARACTER SET utf8 COLLATE utf8_general_ci NULL ;
 ALTER TABLE  `ps_product` ADD  `our_price` BIGINT( 20 ) NOT NULL DEFAULT  '0';
 ALTER TABLE  `ps_product_shop` ADD  `our_price` BIGINT( 20 ) NOT NULL DEFAULT  '0';
+ALTER TABLE  `ps_image` ADD  `history` TINYINT( 1 ) NOT NULL ;
+ALTER TABLE  `ps_image_shop` ADD  `history` TINYINT( 1 ) NOT NULL ;

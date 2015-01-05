@@ -2489,15 +2489,31 @@ class ProductCore extends ObjectModel
 		if (!$context)
 			$context = Context::getContext();
 
-		$sql = 'SELECT image_shop.`cover`, i.`id_image`, il.`legend`, i.`position`
+		$sql = 'SELECT image_shop.`cover`, i.history, i.`id_image`, il.`legend`, i.`position`
 				FROM `'._DB_PREFIX_.'image` i
 				'.Shop::addSqlAssociation('image', 'i').'
 				LEFT JOIN `'._DB_PREFIX_.'image_lang` il ON (i.`id_image` = il.`id_image` AND il.`id_lang` = '.(int)$id_lang.')
-				WHERE i.`id_product` = '.(int)$this->id.'
+				WHERE i.`id_product` = '.(int)$this->id.' AND i.history = 0
 				ORDER BY `position`';
 		return Db::getInstance()->executeS($sql);
 	}
+	//Lee
+	public function getHistoryImage($id_lang, Context $context = null)
+	{
+		if (!$context)
+			$context = Context::getContext();
 
+		$sql = 'SELECT image_shop.`cover`, i.history, i.`id_image`, il.`legend`, i.`position`
+				FROM `'._DB_PREFIX_.'image` i
+				'.Shop::addSqlAssociation('image', 'i').'
+				LEFT JOIN `'._DB_PREFIX_.'image_lang` il ON (i.`id_image` = il.`id_image` AND il.`id_lang` = '.(int)$id_lang.')
+				WHERE i.`id_product` = '.(int)$this->id.' AND i.history = 1
+				ORDER BY `position` LIMIT 1';
+		$result = Db::getInstance()->executeS($sql);
+		if(!$result)
+            return false;
+        return $result[0];
+	}
 	/**
 	* Get product cover image
 	*

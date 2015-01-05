@@ -179,6 +179,9 @@
 							 
 								var secondsDifference = Math.floor(difference/1000);
 						var count_down = document.getElementById("count_down");
+						if(daysDifference>1 ) count_down.innerHTML = daysDifference + " days";
+						else if(daysDifference == 1 ) count_down.innerHTML = daysDifference + " day";
+						else
 						count_down.innerHTML = ('0' + hoursDifference).slice(-2) + ":" + ('0' + minutesDifference).slice(-2) + ":" + ('0' + secondsDifference).slice(-2);
 						}
 						function formatNumber(num)
@@ -192,7 +195,7 @@
 							$("#shipping_cost").text(formatNumber({$product->shipping_1}));
 							$("#refferal_cost").text(formatNumber({$product->refferal_value}));
 							$("#stock_value").text(({$product->quantity/(float)$product->initial_quantity*100}).toFixed(0));
-							$("span").tooltip();
+							$(".price >div span").tooltip();
 						});
 					</script>
 			<!-- stock -->
@@ -344,24 +347,24 @@
 					<h6 style ="text-transform: uppercase;text-align: right;font-size:22px; font-weight:bold; color:{$product->product_name_color}">{$product->name|escape:'html':'UTF-8'}</h6>
 					</div>
 					<!-- prices -->
-					<div class="price" style = "background-color:#29abe2;border-top-right-radius: 90px;height: 80px; border:solid 2px #c2cbb4;margin-bottom:2px;color: white;" >
+					<div class="price" style = "background-color:#29abe2;border-top-right-radius: 90px;height: 80px; border:solid 2px #c2cbb4;margin-bottom:2px;color: white;white-space: normal;" >
 					<span id = "our_price" style="color:white;font-size:40px;padding-left:10px; position:relative; top:20px; "></span>
 					<!-- shipping -->	
-					<div style="font-size:20px; padding:10px; position:relative; top:10px">+ <span id = "shipping_cost"  > {$product->shipping_1} </span><span> of shipping</span>
+					<div style="font-size:20px; padding:10px; position:relative; top:10px;height:18px">+ <span id = "shipping_cost"  >{if $product->shipping_1 !=="0"}$product->shipping_1{else} Free{/if} </span><span> of shipping</span>
 							<span class="text-center" id = "catalog_hint"data-toggle="tooltip"
-								title=" This is Tutti's price. All prices are in Toman. Excluding the Shipping Cost" style="border-radius:50%;border:solid 1px white;position:absolute;right:10px;  cursor:pointer;
+								title=" This is Tutti's price. All prices are in Toman. Excluding the Shipping Cost" style="border-radius:50%;border:solid 1px white;position:absolute;right:10px;  cursor:pointer; font-weight:bold; font-size:15px;
 							width:18px;height:18px">i</span>
 							</div>
 					</div> <!-- end prices -->
 					<!--- market price-->
-					<div style = "background-color: #0071bc; border-bottom-left-radius: 90px;position:relative; height: 60px; z-index:2;border:solid 2px #c2cbb4" class="price">
-						<div style="color:white;font-size:15px;padding-left:50px;top:5px;position:relative;"> Catalog price
+					<div style = "background-color: #0071bc; border-bottom-left-radius: 90px;position:relative; height: 60px; z-index:2;border:solid 2px #c2cbb4; white-space: normal;" class="price">
+						<div style="color:white;font-size:15px;padding-left:50px;top:10px;position:relative; height:18px"> Catalog price
 							<span id = "catalog_price"  > </span>
 							<span class="text-center" id = "catalog_hint" data-toggle="tooltip"
 								title="This is the original manufacturer listed price"  style="border-radius:50%;border:solid 1px white;position:absolute;right:10px; cursor:pointer;
 							width:18px;height:18px">i</span>
 							</div>
-						<div style="color:white;font-size:15px;padding-left:50px;top:5px;position:relative;">Market price 
+						<div style="color:white;font-size:15px;padding-left:50px;top:10px;position:relative;">Market price 
 							<span id = "market_price"  > {$product->market_price} </span>
 
 							<span class="text-center" data-toggle="tooltip"
@@ -555,9 +558,8 @@
 					<div style="background-color:#ed1c24;height:100px;border-top-left-radius:90px;padding-left: 50px; font-size:25px;margin: 10px; color:white">
 						<a class="modalbox" href="#inline">
 						<img style="margin:10px" height= 60px src = "../../img/email.png" /> </a>
-						<input placeholder = "Get the daily deal by email" type = "text" style="margin:10px;width:70%;color:red" value = "{if $logged} {Context::getContext()->customer->email}
-						{/if}"
-						>
+						<input placeholder = "{if $logged}{Context::getContext()->customer->email} {else}Get the daily deal by email
+						{/if}" type = "text" style="margin:10px;width:70%;color:red">
 						</div>
 					<div id="inline">
 						<h2 style="color:#0071bc;font-weight:bold">Tell us what products you would like to see for our next sales</h2>
@@ -575,12 +577,14 @@
 					</div>
 					<div style="background-color:#ed1c24;height:100px;border-top-left-radius:90px;padding-left: 50px; font-size:25px;margin: 10px; color:white"> <a class="modalbox" href="#inline">	<img style="margin:10px" height= 70px src = "../../img/tellus.png" /> </a>Tell us what you want </div>
 					<div style="background-color:#ed1c24;height:100px;border-top-left-radius:90px;padding-left: 50px; font-size:25px;margin: 10px; color:white">  <a id = "refer_button" href = "#refer_popup" > <img style="margin:10px" height= 70px src = "../../img/refer.png" /></a>Refer friends to earn value </div>
-					<div id = "refer_popup" style = "display:none; color:#0071bc; font-size:20px; border-top-left-radius: 30px; border-bottom-right-radius:30px " >
+					<div id = "refer_popup" style = "display:none; color:#0071bc; font-size:20px; padding:20px; border-top-left-radius: 30px; border-bottom-right-radius:30px " >
 						<p>To receive {$product->refferal_value} tomans for your next purchase, do any of the following : 
 						</p>
-						<p>Copy and share this link:</p>
-						<p>Copy and share this link:</p>
-						<p>Copy and share this link:</p>
+						<p>1.Copy and share this link:</p>
+						<p><input type="text" /></p>
+						<p>2.Or your promotion code:</p>
+						<p>3.Email friends to buy and both earn extra discount on your next purchase :</p>
+						<p><input type="text" /></p>
 						</div>
 					<div style="background-color:whtie;height:100px;border-top-left-radius:90px;padding-left: 50px; font-size:25px;margin: 10px; color:#ed1c24;
 					border:solid 2px #ed1c24"> <img style="margin:10px" height= 70px src = "../../img/enamad.png" />eNamad Certificated website</div>
