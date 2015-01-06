@@ -3,8 +3,18 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <!-- Jquery -->
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
     <!-- Bootstrap -->
+		<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+		  <script>
+		  {literal}
+		  $(function() {
+			$( "#datepicker" ).datepicker();
+			$(".ui-datepicker-calendar").css({'display':'none'});
+
+		  });
+		  {/literal}
+			</script>
     <style>
         .product-header {
             height: 30px;
@@ -29,6 +39,9 @@
             height:auto;
             width:100%;
         }
+		.ui-datepicker-calendar{
+		diplay:none !important;
+		}
 
     </style>
 
@@ -37,7 +50,10 @@
     <div class="container">
         <div class="row text-center" style="margin-bottom: 30px; color: #0071BC;font-weight:bold">
             <h2><strong>HISTORY OF DEALS</strong></h2>
+			<div style="position:absolute; right:10px; top = -10px" id="datepicker"></div>
         </div>
+		
+
         <div class="row">
 			{foreach from=$products item=product}
 			{assign var=image value=$product->getHistoryImage(Context::getContext()->cookie->id_lang)}

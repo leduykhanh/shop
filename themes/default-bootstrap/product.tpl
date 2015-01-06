@@ -192,10 +192,14 @@
 							$("#our_price").text(formatNumber({$product->our_price}) + ".-");
 							$("#catalog_price").text(formatNumber({$product->catalog_price}));
 							$("#market_price").text(formatNumber({$product->market_price}));
-							$("#shipping_cost").text(formatNumber({$product->shipping_1}));
+							{if ((int)$product->shipping_1) == 0}
+							$("#shipping_cost").text("Free ");
+							{else} $("#shipping_cost").text(" + "+formatNumber({$product->shipping_1})+" of ");{/if} 
+							
 							$("#refferal_cost").text(formatNumber({$product->refferal_value}));
 							$("#stock_value").text(({$product->quantity/(float)$product->initial_quantity*100}).toFixed(0));
 							$(".price >div span").tooltip();
+							$("#link_refer").val(window.location.href);
 						});
 					</script>
 			<!-- stock -->
@@ -350,7 +354,7 @@
 					<div class="price" style = "background-color:#29abe2;border-top-right-radius: 90px;height: 80px; border:solid 2px #c2cbb4;margin-bottom:2px;color: white;white-space: normal;" >
 					<span id = "our_price" style="color:white;font-size:40px;padding-left:10px; position:relative; top:20px; "></span>
 					<!-- shipping -->	
-					<div style="font-size:20px; padding:10px; position:relative; top:10px;height:18px">+ <span id = "shipping_cost"  >{if $product->shipping_1 !=="0"}$product->shipping_1{else} Free{/if} </span><span> of shipping</span>
+					<div style="font-size:20px; padding:10px; position:relative; top:10px;height:18px"><span id = "shipping_cost"  >{if ((int)$product->shipping_1) == 0}Free{else} $product->shipping_1{/if} </span><span>shipping</span>
 							<span class="text-center" id = "catalog_hint"data-toggle="tooltip"
 								title=" This is Tutti's price. All prices are in Toman. Excluding the Shipping Cost" style="border-radius:50%;border:solid 1px white;position:absolute;right:10px;  cursor:pointer; font-weight:bold; font-size:15px;
 							width:18px;height:18px">i</span>
@@ -379,9 +383,9 @@
 
 					{if ($product->show_price && !isset($restricted_country_mode)) || isset($groups) || $product->reference || (isset($HOOK_PRODUCT_ACTIONS) && $HOOK_PRODUCT_ACTIONS)}
 					<!-- add to cart form-->
-					<form id="buy_block"{if $PS_CATALOG_MODE && !isset($groups) && $product->quantity > 0} class="hidden"{/if} action="{$link->getPageLink('cart')|escape:'html':'UTF-8'}" method="post">
+		<!--			<form id="buy_block"{if $PS_CATALOG_MODE && !isset($groups) && $product->quantity > 0} class="hidden"{/if} action="{$link->getPageLink('cart')|escape:'html':'UTF-8'}" method="post">
 						<!-- hidden datas -->
-						<p class="hidden">
+				<!--		<p class="hidden">
 							<input type="hidden" name="token" value="{$static_token}" />
 							<input type="hidden" name="id_product" value="{$product->id|intval}" id="product_page_product_id" />
 							<input type="hidden" name="add" value="1" />
@@ -393,8 +397,23 @@
 											{if $content_only && (isset($product->customization_required) && $product->customization_required)}{l s='Customize'}{else}{l s='Great, I want it!'}{/if}
 										</button>
 								</div>
-							</form>
+							</form>-->
 					{/if}
+					<form id="buy_block"action="{$link->getPageLink('cart')|escape:'html':'UTF-8'}" method="post">
+						<!-- hidden datas -->
+						<p class="hidden">
+							<input type="hidden" name="token" value="{$static_token}" />
+							<input type="hidden" name="id_product" value="{$product->id|intval}" id="product_page_product_id" />
+							<input type="hidden" name="add" value="1" />
+							<input type="hidden" name="id_product_attribute" id="idCombination" value="" />
+						</p>
+							
+								<div >
+										<button type="submit" name="Submit" style = "color:white; background-color:Transparent; background-repeat:no-repeat; border: none;cursor:pointer;overflow: hidden;outline:none;padding:10px">
+										Great, I want it!
+										</button>
+								</div>
+							</form>
 		<!-- end pb-right-column-->
 				<!--	<a href = "{$link->getPageLink('leepurchase', true)|escape:'html':'UTF-8'}&id_product={Tools::getValue('id_product')}" style = "color:white"> Great,I want it</a>
 				-->
@@ -403,7 +422,8 @@
 					<!-- refer -->
 					<div style = "height: 50px; top:-40px;position:relative; z-index:1; padding-top: 1px;text-align: center;font-size: 20px;color:red">
 					<img style="margin:10px" height= 47px src = "../../img/red_refer.png" />
-					<a href = "{$link->getPageLink('leepurchase', true)|escape:'html':'UTF-8'}&id_product={Tools::getValue('id_product')}" style = "color:#ed1c24"> <span id = "refferal_cost"> </span> for each referral</a>
+				<!--	<a href = "{$link->getPageLink('leepurchase', true)|escape:'html':'UTF-8'}&id_product={Tools::getValue('id_product')}" style = "color:#ed1c24"> <span id = "refferal_cost"> </span> for each referral</a>
+				--><a id = "refer_button" href = "#refer_popup" style = "color:#ed1c24" > <span id = "refferal_cost"> </span> for each referral</a>
 					</div>
 					<!-- end reefer -->
 			</div>
@@ -556,11 +576,18 @@
 				  </div>
 				<div class="col-xs-6">
 					<div style="background-color:#ed1c24;height:100px;border-top-left-radius:90px;padding-left: 50px; font-size:25px;margin: 10px; color:white">
-						<a class="modalbox" href="#inline">
+						<div class = "col-xs-3">
+						<a class="modalbox" href = "#confirm_send_email">
 						<img style="margin:10px" height= 60px src = "../../img/email.png" /> </a>
+						</div>
+						<div class = "col-xs-9" style= "padding-top:30px">
 						<input placeholder = "{if $logged}{Context::getContext()->customer->email} {else}Get the daily deal by email
 						{/if}" type = "text" style="margin:10px;width:70%;color:red">
 						</div>
+						</div>
+					<div id = "confirm_send_email" style = "display:none; color:#0071bc; font-size:20px; padding:20px; border-top-left-radius: 30px; border-bottom-right-radius:30px " >
+					You now will receive email everytime product uploaded
+					</div>
 					<div id="inline">
 						<h2 style="color:#0071bc;font-weight:bold">Tell us what products you would like to see for our next sales</h2>
 
@@ -575,19 +602,40 @@
 							<button id="send">Send E-mail</button>
 						</form>
 					</div>
-					<div style="background-color:#ed1c24;height:100px;border-top-left-radius:90px;padding-left: 50px; font-size:25px;margin: 10px; color:white"> <a class="modalbox" href="#inline">	<img style="margin:10px" height= 70px src = "../../img/tellus.png" /> </a>Tell us what you want </div>
-					<div style="background-color:#ed1c24;height:100px;border-top-left-radius:90px;padding-left: 50px; font-size:25px;margin: 10px; color:white">  <a id = "refer_button" href = "#refer_popup" > <img style="margin:10px" height= 70px src = "../../img/refer.png" /></a>Refer friends to earn value </div>
+					<div style="background-color:#ed1c24;height:100px;border-top-left-radius:90px;padding-left: 50px; font-size:25px;margin: 10px; color:white"> <a class="modalbox" href="#inline">
+						<div class = "col-xs-3">
+						<img style="margin:10px" height= 70px src = "../../img/tellus.png" /> </a>
+						</div>
+						<div class = "col-xs-9" style= "padding-top:35px">
+							Tell us what you want 
+						</div>
+					</div>
+					<div style="background-color:#ed1c24;height:100px;border-top-left-radius:90px;padding-left: 50px; font-size:25px;margin: 10px; color:white"> 
+					<div class = "col-xs-3">
+						<a id = "refer_button" href = "#refer_popup" > <img style="margin:10px" height= 70px src = "../../img/refer.png" /></a>
+					</div>
+					<div class = "col-xs-9" style= "padding-top:35px">
+						Refer friends to earn value
+					</div>
+					</div>
 					<div id = "refer_popup" style = "display:none; color:#0071bc; font-size:20px; padding:20px; border-top-left-radius: 30px; border-bottom-right-radius:30px " >
 						<p>To receive {$product->refferal_value} tomans for your next purchase, do any of the following : 
 						</p>
 						<p>1.Copy and share this link:</p>
-						<p><input type="text" /></p>
+						<p><input id = "link_refer" type="text"/></p>
 						<p>2.Or your promotion code:</p>
 						<p>3.Email friends to buy and both earn extra discount on your next purchase :</p>
 						<p><input type="text" /></p>
 						</div>
 					<div style="background-color:whtie;height:100px;border-top-left-radius:90px;padding-left: 50px; font-size:25px;margin: 10px; color:#ed1c24;
-					border:solid 2px #ed1c24"> <img style="margin:10px" height= 70px src = "../../img/enamad.png" />eNamad Certificated website</div>
+					border:solid 2px #ed1c24">
+					<div class = "col-xs-3" >
+					<img style="margin:10px" height= 70px src = "../../img/enamad.png" />
+					</div>
+					<div class = "col-xs-9" style= "padding-top:35px">
+						eNamad Certificated website
+					</div>
+					</div>
 				</div>
 				<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 				
