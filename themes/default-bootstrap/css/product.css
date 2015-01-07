@@ -6,7 +6,7 @@
 .top-hr {
 background: #BDE0F9;
 height: 2px;
-margin: 2px 0 10px;
+margin: 2px 0 0px;
 }
 
 .product-heading-h5 {
@@ -1239,4 +1239,7 @@ left: 50%;
 margin-left: -5px;
 border-width: 5px 5px 0;
 border-top-color: #000;
+}
+.tooltip .fade .top .in{
+position: absolute;
 }

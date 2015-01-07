@@ -10,27 +10,41 @@
 	function showLogin(){
 	$("#login").slideToggle();
 	}
+	function showLogout(){
+	$("#logout").slideToggle();
+	}
 	function hideLogin(){
 	$("#login").fadeOut();
 	}
 </script>
 {if $is_logged}
 	<div class="header_user_info">
-		<a href="{$link->getPageLink('my-account', true)|escape:'html':'UTF-8'}" title="{l s='View my customer account' mod='blockuserinfo'}" class="account" rel="nofollow"><span>{$cookie->customer_firstname} {$cookie->customer_lastname}</span></a>
+		<a onclick="showLogout()" href = "#" class="account" rel="nofollow"><span>{$cookie->customer_firstname} {substr($cookie->customer_lastname,0,1)}.</span></a>
 	</div>
 {/if}
 <div class="header_user_info">
-	{if $is_logged}
-		<a class="logout" href="{$link->getPageLink('index', true, NULL, "mylogout")|escape:'html':'UTF-8'}" rel="nofollow" title="{l s='Log me out' mod='blockuserinfo'}">
-			{l s='Log out' mod='blockuserinfo'}
-		</a>
-	{else}
+	{if !$is_logged}
 	<!--	<a class="login" href="{$link->getPageLink('my-account', true)|escape:'html':'UTF-8'}" rel="nofollow" title="{l s='Log in to your customer account' mod='blockuserinfo'}">
 			{l s='Log in' mod='blockuserinfo'}
 		</a>
 	-->
 	<a class="login" href="#login">Log in</a> or
 	<a class="signup" href="{$link->getPageLink('my-account', true)|escape:'html':'UTF-8'}">Sign up</a>
+	{/if}
+</div>
+<div id="logout" style = "position:absolute; right:10px;top:40px;color:white; background-color:#0071BC; padding:10px; border-radius: 5px; text-align:right; display:none">
+	{if $is_logged}
+		<div >
+			<a style="color:white" >Credit: 320000 T</a>
+		</div>
+		<div >
+			<a style="color:white" href="{$link->getPageLink('my-account', true)|escape:'html':'UTF-8'}">My account</a>
+		</div>
+		<div style="color:white">
+			<a style="color:white" href="{$link->getPageLink('index', true, NULL, "mylogout")|escape:'html':'UTF-8'}" rel="nofollow" title="{l s='Log me out' mod='blockuserinfo'}">
+			{l s='Log out' mod='blockuserinfo'}
+		</a>
+		</div>
 	{/if}
 </div>
 <div onmouseout = "" id = "login" class="col-xs-3" style="display:none; color:white; background-color:#0071BC; position:absolute; right:10px;top:50px">

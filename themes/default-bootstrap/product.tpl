@@ -191,19 +191,22 @@
 						$( document ).ready(function() {
 							$("#our_price").text(formatNumber({$product->our_price}) + ".-");
 							$("#catalog_price").text(formatNumber({$product->catalog_price}));
-							$("#market_price").text(formatNumber({$product->market_price}));
+							{if ((int)$product->market_price) > 0}
+								$("#market_price").text(formatNumber({$product->market_price}));
+							{/if}
 							{if ((int)$product->shipping_1) == 0}
 							$("#shipping_cost").text("Free ");
 							{else} $("#shipping_cost").text(" + "+formatNumber({$product->shipping_1})+" of ");{/if} 
-							
-							$("#refferal_cost").text(formatNumber({$product->refferal_value}));
+							{if ((int)$product->refferal_value) > 0}
+								$("#refferal_cost").text(formatNumber({$product->refferal_value}));
+							{/if}
 							$("#stock_value").text(({$product->quantity/(float)$product->initial_quantity*100}).toFixed(0));
 							$(".price >div span").tooltip();
 							$("#link_refer").val(window.location.href);
 						});
 					</script>
 			<!-- stock -->
-			<div class="pb-left-column col-xs-12 col-sm-12 col-md-12" style="top:-30px">
+			<div class="pb-left-column col-xs-12 col-sm-12 col-md-12" style="top:-30px;margin-right:10px">
 				<div style="border-top-right-radius:30px;border:solid 1px red;text-align: left; color:red;
 				font-size: 30px;padding-right: 40px;padding-top: 5px;padding-bottom: 5px;" class="col-md-3">
 					<span id = "count_down">00:00:00</span>
@@ -368,6 +371,7 @@
 								title="This is the original manufacturer listed price"  style="border-radius:50%;border:solid 1px white;position:absolute;right:10px; cursor:pointer;
 							width:18px;height:18px">i</span>
 							</div>
+						{if ((int)$product->market_price) > 0}
 						<div style="color:white;font-size:15px;padding-left:50px;top:10px;position:relative;">Market price 
 							<span id = "market_price"  > {$product->market_price} </span>
 
@@ -375,6 +379,7 @@
 								title="This is the market price. Tutti travels to several places and gets the most competitive price"  id = "market_hint" style="border-radius:50%;border:solid 1px white;position:absolute;right:10px; cursor:pointer;
 							width:18px;height:18px">i</span>							
 							</div>
+						{/if}
 					</div>
 					<!--- end of market price--->
 					<!--- great I want it --->
@@ -420,11 +425,13 @@
 					</div>
 					<!--- end great I want it --->
 					<!-- refer -->
+					{if ((int)$product->refferal_value) > 0}
 					<div style = "height: 50px; top:-40px;position:relative; z-index:1; padding-top: 1px;text-align: center;font-size: 20px;color:red">
 					<img style="margin:10px" height= 47px src = "../../img/red_refer.png" />
 				<!--	<a href = "{$link->getPageLink('leepurchase', true)|escape:'html':'UTF-8'}&id_product={Tools::getValue('id_product')}" style = "color:#ed1c24"> <span id = "refferal_cost"> </span> for each referral</a>
 				--><a id = "refer_button" href = "#refer_popup" style = "color:#ed1c24" > <span id = "refferal_cost"> </span> for each referral</a>
 					</div>
+					{/if}
 					<!-- end reefer -->
 			</div>
 			<div class = "row no_row">
