@@ -35,7 +35,7 @@
 <div id="logout" style = "position:absolute; right:10px;top:40px;color:white; background-color:#0071BC; padding:10px; border-radius: 5px; text-align:right; display:none">
 	{if $is_logged}
 		<div >
-			<a style="color:white" >Credit: 320000 T</a>
+			<a style="color:white" >Credit: {Context::getContext()->customer->credit} T</a>
 		</div>
 		<div >
 			<a style="color:white" href="{$link->getPageLink('my-account', true)|escape:'html':'UTF-8'}">My account</a>
