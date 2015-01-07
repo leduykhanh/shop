@@ -166,7 +166,7 @@
 						seconds = parseInt(values[5], 10),
 						formattedDate;
 						formattedDate = new Date(year, month, day, hours, minutes, seconds);
-						var current_time = new Date();
+						var current_time = new Date(); 
 						var difference = formattedDate - current_time;
 						    var daysDifference = Math.floor(difference/1000/60/60/24);
 								difference -= daysDifference*1000*60*60*24
