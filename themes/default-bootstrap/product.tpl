@@ -216,7 +216,7 @@
 					<span id = "stock_value"></span> % stock
 				</div>
 			</div>
-			<!--{l s="{var_dump($images)}"} 
+			<!--{l s="{var_dump(Context::getContext()->customer)}"} 
 			{l s="{isset($images) && count($images) > 0}"}-->
 			{if isset($images) && count($images) > 0} 
 				<!-- thumbnails -->
@@ -625,14 +625,28 @@
 						Refer friends to earn value
 					</div>
 					</div>
-					<div id = "refer_popup" style = "display:none; color:#0071bc; font-size:20px; padding:20px; border-top-left-radius: 30px; border-bottom-right-radius:30px " >
+					<div id = "refer_popup" style="padding:20px;display:none;">
+					{assign var=promotion_code
+					value = base64_encode("{Context::getContext()->customer->id}-{Tools::getValue('id_product')}")}
 						<p>To receive {$product->refferal_value} tomans for your next purchase, do any of the following : 
 						</p>
 						<p>1.Copy and share this link:</p>
-						<p><input id = "link_refer" type="text"/></p>
+						<p><input id = "link_refer" class = "col-md-7" type="text"/>
+							<div class = "col-md-5">
+							<input type="button" class = "text-center" value="Copy"/>
+							</div>
+						</p>
 						<p>2.Or your promotion code:</p>
+						<p><div class = "col-md-7" style="color:red;font-weight:bold">{$promotion_code}</div>
+							<div class = "col-md-5">
+							<input type="button" class = "text-center" value="Copy"/>
+							</div>
+						</p>
 						<p>3.Email friends to buy and both earn extra discount on your next purchase :</p>
-						<p><input type="text" /></p>
+						<p><input class = "col-md-7" type="text" />
+							<div class = "col-md-5">
+							<input type="button" class = "text-center" value="Send"/>
+							</div></p>
 						</div>
 					<div style="background-color:whtie;height:100px;border-top-left-radius:90px;padding-left: 50px; font-size:25px;margin: 10px; color:#ed1c24;
 					border:solid 2px #ed1c24">

@@ -1201,7 +1201,7 @@ display: block;
 cursor: pointer;
 padding: 5px 11px;
 font-size: 1.2em;
-border: solid 1px #224983;
+border: none;
 border-radius: 5px;
 background-color: red; 
 border-bottom-right-radius:20px;
