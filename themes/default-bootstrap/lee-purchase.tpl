@@ -3,12 +3,28 @@
 <head lang="en">
     <meta charset="UTF-8">
     <!-- Jquery -->
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
     <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <style type="text/css">
+    	.back-button, .continue-button, .confirm-button {
+    		border:none;
+    		outline:none;
+    		margin-top:3px;
+    		box-shadow: 2px 2px 5px #111;
+    		webkit-box-shadow: 2px 2px 5px #111;
+    		width:100%;
+    	}
+    	.continue-button, .confirm-button {
+    		/*margin-left:3px;*/
+    	}
+    	.button-container {
+    		margin-left:3px;
+    	}
+    </style>
 </head>
 <body>
 	{$HOOK_LEFT_COLUMN=false}
@@ -21,20 +37,19 @@
 			<div class="col-md-8">
 				<ul class="nav text-center nav-tabs col-xs-12" style="border:none;" role="tablist">
 					<li role="presentation" class="active col-xs-3">
-					<a style="border:none;background-color:#FFFFFF;;color:#0071bc;"href="#address" aria-controls="address" role="tab" data-toggle="tab" onMouseOver="this.style.backgroundColor='#fbb03b'" 
+					<a style="border:none;background-color:#FFFFFF;;color:#0071bc;"href="#address" aria-controls="address" onMouseOver="this.style.backgroundColor='#fbb03b'" 
 						onMouseOut="this.style.backgroundColor='#FFFFFF'">Address</a></li>
 
 					<li role="presentation" class="col-xs-3">
-						<a id = "cc" style="border:none;background-color:#FFFFFF;;color:#0071bc;" href="#selection" aria-controls="selection" role="tab" data-toggle="tab" 
-						onMouseOver="this.style.backgroundColor='#fbb03b'" 
+						<a id = "cc" style="border:none;background-color:#FFFFFF;;color:#0071bc;" href="#selection" aria-controls="selection" onMouseOver="this.style.backgroundColor='#fbb03b'" 
 						onMouseOut="this.style.backgroundColor='#FFFFFF'" >Selection</a></li>
 
 					<li role="presentation" class="col-xs-3">
-					<a style="border:none;background-color:#FFFFFF;color:#0071bc;"href="#payment" aria-controls="payment" role="tab" data-toggle="tab"
+					<a style="border:none;background-color:#FFFFFF;color:#0071bc;"href="#payment" aria-controls="payment" 
 						onMouseOver="this.style.backgroundColor='#fbb03b'" 
 						onMouseOut="this.style.backgroundColor='#FFFFFF'">Payments</a></li>
 					<li role="presentation" class="col-xs-3">
-					<a style="border:none;background-color:#FFFFFF;color:#0071bc;"href="#summary" aria-controls="summary" role="tab" data-toggle="tab"
+					<a style="border:none;background-color:#FFFFFF;color:#0071bc;"href="#summary" aria-controls="summary"
 						onMouseOver="this.style.backgroundColor='#fbb03b'" 
 						onMouseOut="this.style.backgroundColor='#FFFFFF'">Summary</a></li>
 				  </ul>
@@ -48,7 +63,7 @@
 					{assign var='productAttributeId' value=$product.id_product_attribute}
 					{assign var='quantityDisplayed' value=0}
 					
-					<div role="tabpanel" class="tab-pane active"  id="address">
+					<div role="tabpanel" class="tab-pane active first-tab"  id="address">
 						<div class = "row">
 							<div class="col-md-2"></div>	
 							<div class="col-md-8" style="background-color:#0071bc; color:white;border-top-right-radius:50px;margin:1px">
@@ -74,11 +89,11 @@
 						<div class = "row">
 							<div class="col-md-2"></div>
 							<div class="col-md-8" style="padding:0px">
-								<div class="col-md-6" style="padding:0px">
-									<button style="display: table-cell;background-color:#0071bc;color:white; width:100%; border-bottom-left-radius:30px; margin:1px;padding-left:0px"type="button">Back</button>
+								<div class="col-md-3" style="padding:0px">
+									<button class="back-button" style="display: table-cell;background-color:#0071bc;color:white; width:100%; border-bottom-left-radius:30px;padding-left:0px"type="button">Back</button>
 								</div>
-								<div class="col-md-6" style="padding:0px">
-									<button style="display: table-cell;background-color:red;color:white; width:100%; border-top-right-radius:0px; margin:1px;padding-left:0px"type="button">Continue</button>
+								<div class="col-md-9" style="padding:0px">
+									<div class="button-container" ><button class = "continue-button" style="display: table-cell;background-color:red;color:white; width:100%; border-top-right-radius:0px;padding-left:0px"type="button">Continue</button> </div>
 								</div>
 							</div>
 							<div class="col-md-2"></div>
@@ -96,7 +111,7 @@
 						</div>
 						<div class = "row">
 							<div class="col-md-2"></div>
-							<div class="col-md-8" style="background-color:#0071bc; color:white;margin:1px">
+							<div class="col-md-8" style="background-color:#0071bc; color:white;border-top:solid 1px #1182cd">
 								<div class = "col-xs-3" style="background-color:#0071bc;color:white;"> </div>
 								<div class = "col-xs-6" style="background-color:#0071bc;color:white;">Unit</div>
 								<div class = "col-xs-3" style="background-color:#0071bc;color:white;">1</div>
@@ -106,7 +121,7 @@
 						</div>
 						<div class = "row">
 							<div class="col-md-2"></div>
-							<div class="col-md-8" style="background-color:#0071bc;color:white;margin:1px">
+							<div class="col-md-8" style="background-color:#0071bc;color:white;border-top:solid 1px #1182cd">
 								<div class = "col-xs-3" style="background-color:#0071bc;color:white;"> </div>
 								<div class = "col-xs-6" style="background-color:#0071bc;color:white;">Sub-total</div>
 								<div class = "col-xs-3" style="background-color:#0071bc;color:white;">{$product->price}</div>
@@ -115,7 +130,7 @@
 						</div>
 						<div class = "row">
 							<div class="col-md-2"></div>
-							<div class="col-md-8" style="background-color:#0071bc;color:white;margin:1px">
+							<div class="col-md-8" style="background-color:#0071bc;color:white; border-top:solid 1px #1182cd">
 								<div class = "col-xs-3" style="background-color:#0071bc;color:white;"> </div>
 								<div class = "col-xs-6" style="background-color:#0071bc;color:white;">Handling & Shipping</div>
 								<div class = "col-xs-3" style="background-color:#0071bc;color:white;">{$product->additional_shipping_cost}
@@ -125,7 +140,7 @@
 						</div>
 						<div class = "row">
 							<div class="col-md-2"></div>
-							<div class="col-md-8"style="background-color:#0071bc;color:white;margin:1px">
+							<div class="col-md-8"style="background-color:#0071bc;color:white;border-top:solid 1px #1182cd">
 								<div class = "col-xs-3" style="background-color:#0071bc;color:white;"> </div>
 								<div class = "col-xs-6" style="background-color:#0071bc;color:white;">Promotional code</div>
 								<div class = "col-xs-3" style="background-color:#0071bc;color:white;">
@@ -136,7 +151,7 @@
 						</div>
 						<div class = "row">
 							<div class="col-md-2"></div>						
-							<div class="col-md-8" style="background-color:#0071bc;color:white;margin:1px">
+							<div class="col-md-8" style="background-color:#0071bc;color:white;border-top:solid 2px white">
 								<div class = "col-xs-3" style="background-color:#0071bc;color:white;"> </div>
 								<div class = "col-xs-6" style="background-color:#0071bc;color:white;">Total</div>
 								<div class = "col-xs-3" style="background-color:#0071bc;color:white;">
@@ -149,11 +164,11 @@
 						<div class = "row">
 							<div class="col-md-2"></div>
 							<div class="col-md-8" style="padding:0px">
-								<div class="col-md-6" style="padding:0px">
-									<button style="display: table-cell;background-color:#0071bc;color:white; width:100%; border-bottom-left-radius:30px; margin:1px;padding-left:0px"type="button">Back</button>
+								<div class="col-md-3" style="padding:0px">
+									<button class="back-button" style="display: table-cell;background-color:#0071bc;color:white; width:100%; border-bottom-left-radius:30px;padding-left:0px"type="button">Back</button>
 								</div>
-								<div class="col-md-6" style="padding:0px">
-									<button style="display: table-cell;background-color:red;color:white; width:100%; border-top-right-radius:0px; margin:1px;padding-left:0px"type="button">Continue</button>
+								<div class="col-md-9" style="padding:0px">
+									<div class="button-container" ><button class = "continue-button" style="display: table-cell;background-color:red;color:white; border-top-right-radius:0px;padding-left:0px"type="button">Continue</button></div>
 								</div>
 							</div>
 							<div class="col-md-2"></div>
@@ -186,11 +201,11 @@
 						<div class = "row">
 							<div class="col-md-4"></div>
 							<div class="col-md-4" style="padding:0px">
-								<div class="col-md-6" style="padding:0px">
-									<button style="display: table-cell;background-color:#0071bc;color:white; width:100%; border-bottom-left-radius:30px; margin:1px;padding-left:0px"type="button">Back</button>
+								<div class="col-md-3" style="padding:0px">
+									<button class="back-button" style="display: table-cell;background-color:#0071bc;color:white; width:100%; border-bottom-left-radius:30px;padding-left:0px"type="button">Back</button>
 								</div>
-								<div class="col-md-6" style="padding:0px">
-									<button style="display: table-cell;background-color:red;color:white; width:100%; border-top-right-radius:0px; margin:1px;padding-left:0px"type="button">Continue</button>
+								<div class="col-md-9" style="padding:0px">
+									<div class="button-container" ><button class = "continue-button" style="display: table-cell;background-color:red;color:white;border-top-right-radius:0px;padding-left:0px"type="button">Continue</button></div>
 								</div>
 							</div>
 							<div class="col-md-4"></div>
@@ -221,11 +236,11 @@
 						<div class = "row">
 							<div class="col-md-4"></div>
 							<div class="col-md-4" style="padding:0px">
-								<div class="col-md-6" style="padding:0px">
-									<button style="display: table-cell;background-color:#0071bc;color:white; width:100%; border-bottom-left-radius:30px; margin:1px;padding-left:0px"type="button">Back</button>
+								<div class="col-md-3" style="padding:0px">
+									<button class="back-button" style="display: table-cell;background-color:#0071bc;color:white; width:100%; border-bottom-left-radius:30px;padding-left:0px"type="button">Back</button>
 								</div>
-								<div class="col-md-6" style="padding:0px">
-									<button id="confirm_button" style="display: table-cell;background-color:red;color:white; width:100%; border-top-right-radius:0px; margin:1px;padding-left:0px"type="button">Confirm</button>
+								<div class="col-md-9" style="padding:0px">
+									<div class="button-container" ><button id="confirm_button" class="confirm-button" style="display: table-cell;background-color:red;color:white;width:100%;border-top-right-radius:0px;padding-left:0px"type="button">Confirm</button></div>
 								</div>
 							</div>
 							<div class="col-md-4"></div>
@@ -246,7 +261,62 @@
 		$("#confirm_button").click(function(ev){
 			$.post('index.php/?controller=leepurchasebankwire', $("#purchaseForm").serialize());
 		});
+
+		initializeTabs();
 	});
+
+	function initializeTabs(){
+		window.leePurchaseTabNumber = 0;
+		var currentTab = $(".tab-content .active");
+
+		$("ul.nav-tabs li a").click(function(ev){
+			ev.preventDefault();
+			triggerClick($(this));
+		});
+
+		function triggerClick(a){
+			var t = findRelativeLiA(currentTab);
+			t.parent().removeClass("active");
+			currentTab.hide();
+			currentTab.removeClass("active");
+
+
+			currentTab = $(a.attr("href"));
+			currentTab.show();
+			currentTab.addClass("active");
+			
+			t = findRelativeLiA(currentTab);
+			t.parent().addClass("active");
+		}
+
+		function findRelativeLiA(tab){
+			aS = $("ul.nav-tabs li a");
+			for(a in aS){					
+				if($(aS[a]).attr("href") == ("#" + tab.attr("id"))) {
+					return $(aS[a]);
+				}
+			}
+		}
+
+		$(".back-button").click(function(ev){
+			ev.preventDefault();
+			var parent = $(this).parents(".tab-pane");
+			var prevOfParent = parent.prev(".tab-pane");
+			if(!parent.hasClass("first-tab"))
+			{
+				triggerClick(findRelativeLiA(prevOfParent));
+			}
+		});
+		$(".continue-button").click(function(ev){
+			ev.preventDefault();
+			var parent = $(this).parents(".tab-pane");
+			var nextOfParent = parent.next(".tab-pane");
+			if(!parent.hasClass("last-tab"))
+			{
+				triggerClick(findRelativeLiA(nextOfParent));
+			}
+		});
+	}
 
 	function updateAddress() {
 		if (typeof formatedAddressFieldsValuesList == 'undefined' || formatedAddressFieldsValuesList.length <= 0)
