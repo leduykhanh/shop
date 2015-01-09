@@ -211,7 +211,10 @@ class OrderControllerCore extends ParentOrderController
 			break;
 
 			default:
-				$this->_assignAddress();
+				if(!$this->old){
+					$this->_assignAddress();
+					$this->_assignCarrier();
+				}
 				$this->_assignSummaryInformations();
 				if($this->old) $this->setTemplate(_PS_THEME_DIR_.'shopping-cart.tpl');
 				else $this->setTemplate(_PS_THEME_DIR_.'lee-purchase.tpl');
