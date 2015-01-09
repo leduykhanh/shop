@@ -374,6 +374,7 @@
 			<input type="text" value="conghoa" name="test"></input>
 		</form>
 	</div>
+	<div id="server_response" style="display:none"></div>
 <script type="text/javascript">
 	$(document).ready(function(){
 		
@@ -389,8 +390,14 @@
 				type: "POST",
 				url: url,
 				data: leePurchase,
-				success: function(data){
-					console.log(data);
+				complete: function(response){
+
+					//window.location.href = response.redirect;
+					/*$("#server_response").html(response.responseText);
+					$()*/
+					$.fancybox({
+						"content": response.responseText
+					});
 				},
 				dataType: 'json'
 			});
