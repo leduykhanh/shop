@@ -266,7 +266,7 @@
 				input_name='description_short'
 				class="autoload_rte"
 				input_value=$product->description_short
-				max=$PS_PRODUCT_SHORT_DESC_LIMIT}
+				}
 		</div>
 	</div>
 	<div class="form-group">
@@ -350,7 +350,54 @@
 		</div>
 	</div>
 	{/if}
-
+	<div id="product_options" class="form-group" style="display:none">
+		<div class="col-lg-12">
+			<div class="form-group">
+				<div class="col-lg-1">
+					<span class="pull-right">
+						{if isset($display_multishop_checkboxes) && $display_multishop_checkboxes}
+							{include file="controllers/products/multishop/checkbox.tpl" only_checkbox="true" field="available_for_order" type="default"}
+							{include file="controllers/products/multishop/checkbox.tpl" only_checkbox="true" field="show_price" type="show_price"}
+							{include file="controllers/products/multishop/checkbox.tpl" only_checkbox="true" field="online_only" type="default"}
+						{/if}
+					</span>
+				</div>	
+				<label class="control-label col-lg-2" for="available_for_order">
+					{l s='Options'}
+				</label>
+				<div class="col-lg-9">
+					<div class="checkbox">
+						<label for="available_for_order">
+							<input type="checkbox" name="available_for_order" id="available_for_order" value="1" checked="checked">
+							{l s='Available for order'}</label>
+					</div>
+					<div class="checkbox">
+						<label for="show_price">
+							<input type="checkbox" name="show_price" id="show_price" value="1" {if $product->show_price}checked="checked"{/if} {if $product->available_for_order}disabled="disabled"{/if} >
+							{l s='Show price'}</label>
+					</div>
+					<div class="checkbox">
+						<label for="online_only">
+							<input type="checkbox" name="online_only" id="online_only" value="1" {if $product->online_only}checked="checked"{/if} >
+							{l s='Online only (not sold in your retail store)'}</label>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-lg-1"><span class="pull-right">{include file="controllers/products/multishop/checkbox.tpl" field="condition" type="default"}</span></div>				
+				<label class="control-label col-lg-2" for="condition">
+					{l s='Condition'}
+				</label>
+				<div class="col-lg-3">
+					<select name="condition" id="condition">
+						<option value="new" {if $product->condition == 'new'}selected="selected"{/if} >{l s='New'}</option>
+						<option value="used" {if $product->condition == 'used'}selected="selected"{/if} >{l s='Used'}</option>
+						<option value="refurbished" {if $product->condition == 'refurbished'}selected="selected"{/if}>{l s='Refurbished'}</option>
+					</select>
+				</div>	
+			</div>
+		</div>
+	</div>
 	<div class="form-group">
 		<label class="control-label col-lg-3" for="tags_{$id_lang}">
 			<span class="label-tooltip" data-toggle="tooltip"
