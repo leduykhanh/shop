@@ -154,40 +154,77 @@
 			</script>
 			<!-- end image-block -->
 					<script>
-					setInterval(updateCountDown,1000);
 					function updateCountDown(){
-						var date = "{$product->end_date}",
-						values = date.split(/[^0-9]/),
-						year = parseInt(values[0], 10),
-						month = parseInt(values[1], 10) - 1, // Month is zero based, so subtract 1
-						day = parseInt(values[2], 10),
-						hours = parseInt(values[3], 10),
-						minutes = parseInt(values[4], 10),
-						seconds = parseInt(values[5], 10),
-						formattedDate;
-						formattedDate = new Date(year, month, day, hours, minutes, seconds);
-						var current_time = new Date(); 
-						var difference = formattedDate - current_time;
-						    var daysDifference = Math.floor(difference/1000/60/60/24);
-								difference -= daysDifference*1000*60*60*24
-							 
-								var hoursDifference = Math.floor(difference/1000/60/60);
-								difference -= hoursDifference*1000*60*60
-							 
-								var minutesDifference = Math.floor(difference/1000/60);
-								difference -= minutesDifference*1000*60
-							 
-								var secondsDifference = Math.floor(difference/1000);
-						var count_down = document.getElementById("count_down");
-						if(daysDifference>1 ) count_down.innerHTML = daysDifference + " days";
-						else if(daysDifference == 1 ) count_down.innerHTML = daysDifference + " day";
-						else
-						count_down.innerHTML = ('0' + hoursDifference).slice(-2) + ":" + ('0' + minutesDifference).slice(-2) + ":" + ('0' + secondsDifference).slice(-2);
+						var percentAll = 60;
+						var percentHead = 25;
+						var percentTail = 80;
+						var percentLeft = parseInt({$product->quantity/(float)$product->initial_quantity*100});
+
+					    var formattedEndDate  = getDateFormated("{$product->end_date}");
+						var current_time_client = new Date();
+						var current_time = getDateFormated(moment(current_time_client).tz("Africa/Asmera").format("YYYY-M-D H:mm:s"));
+						var difference = formattedEndDate - current_time;
+
+						var daysDifference = Math.floor(difference/1000/60/60/24);
+						difference -= daysDifference*1000*60*60*24
+						var hoursDifference = Math.floor(difference/1000/60/60);
+						difference -= hoursDifference*1000*60*60
+						var minutesDifference = Math.floor(difference/1000/60);
+						difference -= minutesDifference*1000*60
+						var secondsDifference = Math.floor(difference/1000);
+
+						if(daysDifference >= 1) {
+							$('#count_down').html(daysDifference + " days");
 						}
+						else{
+							$('#count_down').html(('0' + hoursDifference).slice(-2) + ":" + ('0' + minutesDifference).slice(-2) + ":" + ('0' + secondsDifference).slice(-2));
+						};
+
+						var percentDif = Math.round(percentAll * (percentLeft/100));
+						percentDif = (percentDif < 0) ? 0 : percentDif > percentAll ? percentAll : percentDif ;
+
+						$('.pb-head').css('width',((percentHead + percentAll - percentDif) + '%'));
+						$('.pb-tail').css('width',((percentTail - percentAll + percentDif) + '%'));
+
+						$('.pb-tail').css('background-color',getColorTail(percentLeft));
+						$('.pb-tail').css('border','solid 1px '+ getColorTail(percentLeft));
+						$('#pb-head-mask').css('border-top','solid 1px '+ getColorTail(percentLeft));
+						};
+
+
+						function getColorTail(percent) {
+						percent = parseInt(percent);
+							if ( percent > 75){
+								return 'green'
+							} else if (percent <= 75 && percent > 50){
+								return '#29abe2'
+							} else if (percent <= 50 && percent > 25){
+								return '#e8641b'
+							} else if (percent <= 25 ){
+								return '#ed1c24'
+							}else {
+								return '#ed1c24'
+							};
+						};
+
+						function getDateFormated(date){
+							values = date.split(/[^0-9]/),
+							year = parseInt(values[0], 10),
+							month = parseInt(values[1], 10) - 1, // Month is zero based, so subtract 1
+							day = parseInt(values[2], 10),
+							hours = parseInt(values[3], 10),
+							minutes = parseInt(values[4], 10),
+							seconds = parseInt(values[5], 10);
+							return new Date(year, month, day, hours, minutes, seconds);
+						};
+
+
 						function formatNumber(num)
 							{
 							return ("" + num).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, function($1) { return $1 + "'" });
 							}
+
+
 						$( document ).ready(function() {
 							$("#our_price").text(formatNumber({$product->our_price}) + ".-");
 							$("#catalog_price").text(formatNumber({$product->catalog_price}));
@@ -203,20 +240,23 @@
 							$("#stock_value").text(({$product->quantity/(float)$product->initial_quantity*100}).toFixed(0));
 							$(".price >div span").tooltip();
 							$("#link_refer").val(window.location.href);
+							setInterval(updateCountDown,1000);
 						});
 					</script>
+			<script type="text/javascript" src="../../js/moment.js"></script>
+			<script type="text/javascript" src="../../js/moment-timezone-with-data-2010-2020.js"></script>
 			<!-- stock -->
-			<div class="pb-left-column col-xs-12 col-sm-12 col-md-12" style="top:-30px;margin-right:10px">
-				<div style="border-top-right-radius:30px;border:solid 1px red;text-align: left; color:red;
-				font-size: 30px;padding-right: 40px;padding-top: 5px;padding-bottom: 5px;" class="col-md-3">
+			<div class="pb-left-column col-xs-12 col-sm-12 col-md-12 pb-all">
+				<div class="col-md-3 pb-head">
+				<div id="pb-head-mask"></div>
 					<span id = "count_down">00:00:00</span>
-
 				</div>
-				<div style="border-top-right-radius:30px;background-color:red;text-align: right; border:solid 1px #ed1c24;color:white;font-size: 30px;padding-right: 40px;padding-top: 5px;padding-bottom: 5px;"  class="col-md-9">
-					<span id = "stock_value"></span> % stock
+				<div class="col-md-9 pb-tail">
+					<span id = "stock_value"></span> <span>% stock</span>
 				</div>
 			</div>
-			<!--{l s="{var_dump(Context::getContext()->customer)}"} 
+
+			<!--{l s="{var_dump(Context::getContext()->customer)}"}
 			{l s="{isset($images) && count($images) > 0}"}-->
 			{if isset($images) && count($images) > 0} 
 				<!-- thumbnails -->

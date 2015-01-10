@@ -8061,3 +8061,56 @@ div.star.star_hover:after {
 :-ms-input-placeholder { /* Internet Explorer 10+ */
    color:   red;
 }
+
+.pb-all{
+  top:-76px;
+  padding-right: 25px;
+  padding-left: 35px;
+}
+
+.pb-all div {
+  text-align: right;
+  padding-top: 24px;
+  padding-bottom: 5px;
+  font-size: 30px;
+  height: 66px;
+}
+.pb-all div>span {
+  font-size: 40px;
+  font-family: "Nexa";
+  font-weight: bold;
+}
+
+
+.pb-head{
+  background: url('../img/head_pb.png')right no-repeat;
+  border-top:solid 1px red;
+  border-bottom:solid 1px red;
+  border-left:solid 1px red;
+  width: 25%;
+  margin-right: -100px;
+  z-index: 1;
+  text-align: left;
+  color:red;
+  padding-right: 165px;
+}
+
+
+#pb-head-mask {
+  position: absolute;
+  top:-1px;
+  right:1px;
+  width:67px;
+  background-color:transparent;
+  padding: 0;
+  border-bottom:solid 1px #fbb03b;
+}
+
+.pb-tail{
+  border-top-right-radius: 66px;
+  width: 80%;
+  background-color:#ed1c24;
+  border:solid 1px #ed1c24;
+  padding-right: 50px;
+  color: white;
+}
