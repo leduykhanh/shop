@@ -479,24 +479,24 @@
 			<div role="tabpanel" class="col-xs-12">
 							  <!-- Nav tabs -->
 				<div class="row no_row">
-				<div class="col-md-3"></div>
-				<div class="col-md-6">
+				
+				<div class="col-md-12">
 
-					<ul id="presentation_ul" class="nav text-center nav-tabs col-xs-12" style="border:none;" role="tablist">
-						<li role="presentation" class="active col-md-4">
+					<ul id="presentation_ul" class="nav text-center nav-tabs col-xs-12" role="tablist">
+						<li role="presentation" class="active col-md-2">
 							<a id = "cc" href="#word-of-day" aria-controls="word-of-day" role="tab" data-toggle="tab" 
 							onMouseOver="this.style.backgroundColor='#FFFFFF)'" 
 							onMouseOut="this.style.backgroundColor='#FFFFFF'" >Word of Day</a></li>
-						<li role="presentation"  class="col-md-4">
+						<li role="presentation"  class="col-md-2">
 						<a href="#product-details" aria-controls="product-details" role="tab" data-toggle="tab" onMouseOver="this.style.backgroundColor='#FFFFFF'" 
 							onMouseOut="this.style.backgroundColor='#FFFFFF'">Product Details</a></li>
-						<li role="presentation"  class="col-md-4">
+						<li role="presentation"  class="col-md-2">
 						<a href="#comments" aria-controls="comments" role="tab" data-toggle="tab"
 							onMouseOver="this.style.backgroundColor='#FFFFFF'" 
 							onMouseOut="this.style.backgroundColor='#FFFFFF'">Comments</a></li>
 					  </ul>
 				   </div>
-				  <div class="col-md-3"></div>
+				  
 				  </div>
 				<!---
 				  <ul class="nav nav-tabs" role="tablist">
@@ -553,7 +553,6 @@
 					<div role="tabpanel" class="tab-pane" id="comments">
 						<div id="product_comments_block_tab">
 							<div class="row no_row">
-							<span style = "font-size:30px"> Comments </span>
 							</div>
 							{if isset($HOOK_PRODUCT_TITAN_COMMENTS)  && $HOOK_PRODUCT_TITAN_COMMENTS} {$HOOK_PRODUCT_TITAN_COMMENTS} {/if}
 							{if $comments}

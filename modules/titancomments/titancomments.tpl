@@ -6,13 +6,14 @@
     var titancomments_added_moderation = '{l s='Your comment has been submitted and will be available once approved by a moderator.' mod='productcomments' js=1}';
 </script>
 
-<div class="row">
+<div class="row control-row" >
     <div class="col-sm-3 titancomments_add_comment" id="titancomments_add_comment">
-        Add a comment</div>
+        Add a Comment</div>
     <div class="col-sm-3 titancomments_submit_comment" id="titancomments_submit_comment">
         <a > Submit </a></div>
-    <div class="col-sm-3 titancomments_rules_of_forum" id="titancomments_rules_of_forum">Rules of forum</div>
-    <hr />
+    <div class="col-sm-3 titancomments_rules_of_forum" id="titancomments_rules_of_forum"><a href="index.php?controller=leehowitworks" class="iframe"> Rules of Forum  <span class="balance-icon"></span></a> </div>
+
+    
 </div>
 <div id="titancomments_form">
 {if $is_logged}
@@ -32,5 +33,15 @@
 </div>
 <br/>
 <script type='text/javascript'>
-
+    $(document).ready(function(){
+        $("#titancomments_rules_of_forum a").click(function(ev){
+            ev.preventDefault();
+        });
+        $("#titancomments_rules_of_forum a").fancybox({
+               'Width'    :       960 ,
+               'Height'   :       640,
+               'hideOnContentClick': false, 
+               'type':'iframe'
+          }); 
+    });
 </script>

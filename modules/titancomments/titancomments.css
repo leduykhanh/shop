@@ -1,4 +1,4 @@
-.titancomments_submit_comment {
+.titancomments_submit_comment, #titancomments_rules_of_forum{
     cursor:pointer;
 }
 .titancomments_add_comment{
@@ -6,7 +6,16 @@
 }
 #titancomments_content {
     width:100%;
-    margin-bottom:15px;
+    margin-top:15px;
+    margin-bottom:10px;
+}
+
+#titancomments_rules_of_forum a {
+    color:#0071bc;
+}
+
+.balance-icon {
+    background: url(../../img/balance.gif) no-repeat;float: right;height: 14px;width: 16px;cursor:pointer;margin-top: 3px;
 }
 
 /*voting style */
