@@ -1072,6 +1072,40 @@ Quick View Styles
 padding: 5px 0 10px 10px;
 }
 
+#presentation_ul {
+  text-align:left;
+  font-weight:bold;
+  padding-right:0px;
+  background: -webkit-linear-gradient(left, white 50% , #eee, black); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(right, white 50% , #eee, black); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(right, white 50% , #eee, black); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(to right, white 50% , #eee, black); /* Standard syntax (must be last) */
+  border:none;
+  border-bottom:solid 1px #888;
+}
+#presentation_ul li {
+  padding:0px;
+  border-left:0px;
+  border-right:0px;
+}
+#presentation_ul li.active { 
+  border:none; 
+  border-bottom:solid 1px white;
+}
+
+#presentation_ul li.active a {
+  border:solid 1px #888;
+  border-bottom:solid 1px white;
+  border-top-right-radius:90px;
+  -webkit-border-right-radius: 90px;
+  -moz-border-right-radius: 90px;
+}
+
+.titancomments_add_comment, .titancomments_submit_comment, .titancomments_rules_of_forum {
+  font-weight:bold;
+}
+
+
 #presentation_ul a{
  /* border-style: none none solid none;
   border-bottom-width: thick;*/
