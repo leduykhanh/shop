@@ -5326,7 +5326,7 @@ header {
 
 p.info-title {
   font-weight: bold;
-  color: #333333;
+  color: #0071BC;
   margin-bottom: 25px; }
 
 p.info-account {
@@ -5505,8 +5505,8 @@ span.exclusive {
 .button.button-small {
   font: bold 13px/17px Arial, Helvetica, sans-serif;
   color: white;
-  background: #6f6f6f;
-  border: 1px solid;
+  background: red;
+  border: none;
   border-color: #666666 #5f5f5f #292929 #5f5f5f;
   padding: 0;
   text-shadow: 1px 1px rgba(0, 0, 0, 0.24);
@@ -5516,7 +5516,7 @@ span.exclusive {
   .button.button-small span {
     display: block;
     padding: 3px 8px 3px 8px;
-    border: 1px solid;
+    border: none;
     border-color: #8b8a8a; }
     .button.button-small span i {
       vertical-align: 0px;
@@ -5525,8 +5525,10 @@ span.exclusive {
         margin-right: 0;
         margin-left: 5px; }
     .button.button-small span:hover {
-      background: #575757;
-      border-color: #303030 #303030 #666666 #444444; }
+      background: red;
+	  color:white;
+      /*border-color: #303030 #303030 #666666 #444444;*/
+		border:none;	  }
 
 .button.button-medium {
   font-size: 17px;
@@ -5784,7 +5786,7 @@ table.table_block td {
   .table > thead > tr > th {
     background: #fbfbfb;
     border-bottom-width: 1px;
-    color: #333333;
+    color: #0071BC;
     vertical-align: middle; }
   .table td a.color-myaccount {
     color: #777777;
@@ -6189,10 +6191,10 @@ table.table_block td {
     margin-bottom: 0; }
 
 .page-subheading {
-  font-family: "Open Sans", sans-serif;
+  font-family: "Nexa Bold", sans-serif;
   font-weight: 600;
   text-transform: uppercase;
-  color: #555454;
+  color: #0071BC;
   font-size: 18px;
   padding: 0 0 15px;
   line-height: normal;
@@ -6200,9 +6202,9 @@ table.table_block td {
   border-bottom: 1px solid #d6d4d4; }
 
 h3.page-product-heading {
-  color: #555454;
+  color: #0071BC;
   text-transform: uppercase;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Nexa Bold", sans-serif;
   font-weight: 600;
   font-size: 18px;
   line-height: 20px;

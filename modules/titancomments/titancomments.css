@@ -1,8 +1,10 @@
 .titancomments_submit_comment, #titancomments_rules_of_forum{
     cursor:pointer;
+	font-weight:bold;
 }
 .titancomments_add_comment{
 	cursor:pointer;
+	font-weight:bold;
 }
 #titancomments_content {
     width:100%;
@@ -15,7 +17,7 @@
 }
 
 .balance-icon {
-    background: url(../../img/balance.gif) no-repeat;float: right;height: 14px;width: 16px;cursor:pointer;margin-top: 3px;
+    background: url(../../img/balance.png) no-repeat;float: right;height: 14px;width: 16px;cursor:pointer;margin-top: 3px;
 }
 
 /*voting style */
