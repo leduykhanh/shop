@@ -11,6 +11,17 @@ class TuttiConfigControllerCore extends AdminController
 		$this->initToolbar();
 		parent::__construct();
 		$this->fields_options = array(
+			'product_comment' => array(
+			'title' => $this->l('Product Comment'),
+			'fields' =>	array(
+				'PRODUCT_BUTTON' => array(
+					'type' => 'input',
+					'value' => 'Config',
+					'title' => "<a href='index.php?controller=AdminModules&token=".Tools::getAdminTokenLite('AdminModules')."&configure=productcomments&tab_module=front_office_features&module_name=productcomments'>Config</a>",
+					'onclick' => 'alert(1)'
+				)
+			)
+			),
 			'email' => array(
 				'title' => $this->l('Email Sample'),
 				'icon' => 'icon-envelope',
@@ -159,7 +170,7 @@ class TuttiConfigControllerCore extends AdminController
 		{
 			$smtpChecked = (trim(Tools::getValue('mailMethod')) == 'smtp');
 			$smtpServer = Tools::getValue('smtpSrv');
-			$content = Configuration::get('EMAIL_TEMPLATE');
+			$content = urldecode(Tools::getValue('testMsg'));
 			$content = html_entity_decode($content);
 			$subject = urldecode(Tools::getValue('testSubject'));
 			$type = 'text/html';

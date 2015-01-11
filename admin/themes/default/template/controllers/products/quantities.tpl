@@ -132,6 +132,7 @@
 					{l s='Buffer Trigger'}
 				</label>
 				<div class="input-group col-lg-2">
+					<span class="input-group-addon">%</span>
 					<input size="11" maxlength="14" id="buffer_trigger" name="buffer_trigger" type="text" value="{{$product->buffer_trigger}}"/>
 				</div>
 			</div>
@@ -140,7 +141,7 @@
 						<table class="table">
 							<thead>
 								<tr>
-									<th><span class="title_box">{l s='Quantity'}</span></th>
+									<th><span class="title_box">{l s='Quantity Left'}</span></th>
 									<th><span class="title_box">{l s='Designation'}</span></th>
 								</tr>
 							</thead>

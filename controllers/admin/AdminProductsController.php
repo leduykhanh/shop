@@ -3449,7 +3449,7 @@ class AdminProductsControllerCore extends AdminController
 		// Reindex array starting from 0
 		$specific_price_priorities = array_values($specific_price_priorities);
 
-		$content .= '<div class="panel">
+		$content .= '<div class="panel" style="display:none">
 		<h3>'.$this->l('Priority management').'</h3>
 		<div class="alert alert-info">
 				'.$this->l('Sometimes one customer can fit into multiple price rules. Priorities allow you to define which rule applies to the customer.').'
