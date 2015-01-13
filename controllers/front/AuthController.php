@@ -42,7 +42,67 @@ class AuthControllerCore extends FrontController
 	{
 		parent::init();
 		$this->display_footer =  false;
-		if (!Tools::getIsset('step') && $this->context->customer->isLogged() && !$this->ajax)
+		if(Tools::getValue('activate')){
+			$cus_id = base64_decode(Tools::getValue('activate'));
+			if (Customer::activate($cus_id)){
+				$customer = new Customer();
+				$customer->getById($cus_id);
+				$this->context->cookie->logged = 1;
+				$this->context->cookie->id_compare = isset($this->context->cookie->id_compare) ? $this->context->cookie->id_compare: CompareProduct::getIdCompareByIdCustomer($customer->id);
+				$this->context->cookie->id_customer = (int)($customer->id);
+				$this->context->cookie->customer_lastname = $customer->lastname;
+				$this->context->cookie->customer_firstname = $customer->firstname;
+				$this->context->cookie->logged = 1;
+				$customer->logged = 1;
+				$this->context->cookie->is_guest = $customer->isGuest();
+				$this->context->cookie->passwd = $customer->passwd;
+				$this->context->cookie->email = $customer->email;
+				
+				// Add customer to the context
+				$this->context->customer = $customer;
+				
+				if (Configuration::get('PS_CART_FOLLOWING') && (empty($this->context->cookie->id_cart) || Cart::getNbProducts($this->context->cookie->id_cart) == 0) && $id_cart = (int)Cart::lastNoneOrderedCart($this->context->customer->id))
+					$this->context->cart = new Cart($id_cart);
+				else
+				{
+					$id_carrier = (int)$this->context->cart->id_carrier;
+					$this->context->cart->id_carrier = 0;
+					$this->context->cart->setDeliveryOption(null);
+					$this->context->cart->id_address_delivery = (int)Address::getFirstCustomerAddressId((int)($customer->id));
+					$this->context->cart->id_address_invoice = (int)Address::getFirstCustomerAddressId((int)($customer->id));
+				}
+				$this->context->cart->id_customer = (int)$customer->id;
+				$this->context->cart->secure_key = $customer->secure_key;
+
+				if ($this->ajax && isset($id_carrier) && $id_carrier && Configuration::get('PS_ORDER_PROCESS_TYPE'))
+				{
+					$delivery_option = array($this->context->cart->id_address_delivery => $id_carrier.',');
+					$this->context->cart->setDeliveryOption($delivery_option);
+				}
+
+				$this->context->cart->save();
+				$this->context->cookie->id_cart = (int)$this->context->cart->id;
+				$this->context->cookie->write();
+				$this->context->cart->autosetProductAddress();
+
+				Hook::exec('actionAuthentication');
+
+				// Login information have changed, so we check if the cart rules still apply
+				CartRule::autoRemoveFromCart($this->context);
+				CartRule::autoAddToCart($this->context);
+
+				if (!$this->ajax)
+				{
+					if (($back = Tools::getValue('back')) && $back == Tools::secureReferrer($back))
+						Tools::redirect(html_entity_decode($back));
+					Tools::redirect('index.php?controller='.(($this->authRedirection !== false) ? urlencode($this->authRedirection) : 'my-account'));
+				}
+			}
+			//Tools::redirect('index.php?controller=my-account');
+			//return;
+		
+		}
+		else if (!Tools::getIsset('step') && $this->context->customer->isLogged() && !$this->ajax)
 			Tools::redirect('index.php?controller='.(($this->authRedirection !== false) ? urlencode($this->authRedirection) : 'my-account'));
 
 		if (Tools::getValue('create_account'))
@@ -277,6 +337,8 @@ class AuthControllerCore extends FrontController
 			$authentication = $customer->getByEmail(trim($email), trim($passwd));
 			if (!$authentication || !$customer->id)
 				$this->errors[] = Tools::displayError('Authentication failed.');
+			else if(Customer::isBanned($customer->id))
+				$this->errors[] = Tools::displayError('please activate your account.');
 			else
 			{
 				$this->context->cookie->id_compare = isset($this->context->cookie->id_compare) ? $this->context->cookie->id_compare: CompareProduct::getIdCompareByIdCustomer($customer->id);
@@ -430,7 +492,7 @@ class AuthControllerCore extends FrontController
 
 				// New Guest customer
 				$customer->is_guest = (Tools::isSubmit('is_new_customer') ? !Tools::getValue('is_new_customer', 1) : 0);
-				$customer->active = 1;
+				$customer->active = 0;
 
 				if (!count($this->errors))
 				{
@@ -542,7 +604,7 @@ class AuthControllerCore extends FrontController
 
 			if (!count($this->errors))
 			{
-				$customer->active = 1;
+				$customer->active = 0;
 				// New Guest customer
 				if (Tools::isSubmit('is_new_customer'))
 					$customer->is_guest = !Tools::getValue('is_new_customer', 1);
@@ -720,7 +782,9 @@ class AuthControllerCore extends FrontController
 				'{firstname}' => $customer->firstname,
 				'{lastname}' => $customer->lastname,
 				'{email}' => $customer->email,
-				'{passwd}' => Tools::getValue('passwd')),
+				'{passwd}' => Tools::getValue('passwd'),
+				'{activate_link}'=>'controller=authentication?activate='.base64_encode($customer->id)),
+				
 			$customer->email,
 			$customer->firstname.' '.$customer->lastname
 		);

@@ -105,7 +105,7 @@ class CustomerCore extends ObjectModel
 	public $last_passwd_gen;
 
 	/** @var boolean Status */
-	public $active = true;
+	public $active = false;
 
 	/** @var boolean Status */
 	public $is_guest = 0;
@@ -380,7 +380,36 @@ class CustomerCore extends ObjectModel
 		}
 		return Cache::retrieve($cache_id);
 	}
+//Lee
+	public static function activate($id_customer)
+	{
+		if (!Validate::isUnsignedId($id_customer))
+			return true;
+		return Db::getInstance()->execute('
+			UPDATE `'._DB_PREFIX_.'customer`
+			SET `active` = 1
+			WHERE `id_customer` = \''.(int)$id_customer.'\'');
+	}
+	public function getById($customer_id)
+	{
 
+		$sql = 'SELECT *
+				FROM `'._DB_PREFIX_.'customer`
+				WHERE `id_customer` = '.(int)$customer_id.'
+					AND `deleted` = 0';
+
+		$result = Db::getInstance()->getRow($sql);
+
+		if (!$result)
+			return false;
+		$this->id = $result['id_customer'];
+		foreach ($result as $key => $value)
+			if (array_key_exists($key, $this))
+				$this->{$key} = $value;
+
+		return $this;
+	}
+//Lee
 	/**
 	 * Check if e-mail is already registered in database
 	 *

@@ -1,6 +1,6 @@
 <?php
 
-class TuttiConfigControllerCore extends AdminController
+class AdminTuttiConfigControllerCore extends AdminController
 {
 	public function __construct()
 	{
@@ -71,6 +71,7 @@ class TuttiConfigControllerCore extends AdminController
 	{
 			$this->fields_form = array(
 			'tinymce' => true,
+			'lang' => true,
 			'legend' => array(
 				'title' => $this->l('CMS Page'),
 				'icon' => 'icon-folder-close'
@@ -82,6 +83,7 @@ class TuttiConfigControllerCore extends AdminController
 					'label' => $this->l('Page content'),
 					'name' => 'content',
 					'autoload_rte' => true,
+					'class' => 'rte',
 					'lang' => true,
 					'rows' => 5,
 					'cols' => 40,
