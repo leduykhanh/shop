@@ -112,6 +112,7 @@ class TuttiConfigControllerCore extends AdminController
 		$this->content .= $this->renderOptions();
 		$this->content .= $this->renderForm();
 
+		$iso = $this->context->language->iso_code;
 		$iso = file_exists(_PS_CORE_DIR_.'/js/tiny_mce/langs/'.$iso.'.js') ? $iso : 'en';;
 		$pathCSS = _THEME_CSS_DIR_;;
 		$ad = __PS_BASE_URI__.basename(_PS_ADMIN_DIR_);;
