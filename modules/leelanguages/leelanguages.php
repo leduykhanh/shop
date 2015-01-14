@@ -47,7 +47,7 @@ class LeeLanguages extends Module
 
 	public function install()
 	{
-		return (parent::install() && $this->registerHook('displayFooter')&& $this->registerHook('displayLeeLanguagues') && $this->registerHook('displayHeader') && $this->registerHook('displayNav'));
+		return (parent::install() && $this->registerHook('Footer')&& $this->registerHook('displayLeeLanguagues') && $this->registerHook('displayHeader') && $this->registerHook('displayNav'));
 	}
 	private function _setBaseUrl()
     {
@@ -131,11 +131,11 @@ class LeeLanguages extends Module
 	{
 		return $this->hookDisplayLeftColumn($params);
 	}
-	public function hookDisplayFooter($params)
+	/*public function hookDisplayFooter($params)
 	{
 		$this->_prepareHook($params);
 		$this->context->controller->addCSS($this->_path.'leelanguages.css', 'all');
-	}
+	}*/
 		public function hookDisplayTop($params)
 	{
 		if (!$this->_prepareHook($params))

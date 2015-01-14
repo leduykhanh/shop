@@ -29,15 +29,15 @@
 </head>
 <body>
     <div class="container">
-        <div class="row text-center" style="margin-bottom: 30px; color: blue;">
-            <h2><strong>HELP</strong> & <strong>CONTACT</strong></h2>
+        <div class="row text-center" style="margin-bottom: 30px; color: #0071bc">
+            <h2><strong>{l s='FAQ & Help'}</strong></h2>
         </div>
 
         <div class="row">
             <div class="col-md-2"></div>
 
             <div class="col-md-8 help-title">
-                <h3 style="display: table-cell; vertical-align: middle;"> SHIPPING QUESTIONS ?</h3>
+                <h3 style="display: table-cell; vertical-align: middle;">{l s='SHIPPING QUESTIONS ?'}</h3>
             </div>
         </div>
 
@@ -48,23 +48,23 @@
             <div class="col-md-8 help-content">
                 <div class="row" style="margin-bottom: 20px; margin-top: 20px;">
                     <div class="col-md-12 question">
-                        Which cities do Tutti delivers?
+                        {l s='Which cities do Tutti delivers?'}
                     </div>
 
                     <div class="col-md-12 answer">
-                        At the moment, we only deliver to Tehran, Karaj and Esfahan. We will shortly expand to other cities as demand and requests from those places grow.
+                        {l s='At the moment, we only deliver to Tehran, Karaj and Esfahan. We will shortly expand to other cities as demand and requests from those places grow.'}
                     </div>
                 </div>
 
                 <div class="row" style="margin-bottom: 20px; margin-top: 20px;">
                     <div class="col-md-12 question">
-                        Why are you not delivering in my city?
+                        {l s='Why are you not delivering in my city?'}
                     </div>
                 </div>
 
                 <div class="row" style="margin-bottom: 20px; margin-top: 20px;">
                     <div class="col-md-12 question">
-                        How long would it take to deliver my product?
+                        {l s='How long would it take to deliver my product?'}
                     </div>
                 </div>
 
