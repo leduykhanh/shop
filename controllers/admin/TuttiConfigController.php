@@ -184,6 +184,11 @@ class TuttiConfigControllerCore extends AdminController
 		
 		$this->content .= $this->renderOptions();
 		$this->content .= $this->renderForm();
+		$this->content .= "
+			<script type='text/javascript'>
+				tinySetup({editor_selector:'textarea-autosize'});
+			</script>
+		";
 		$this->context->smarty->assign(array(
 			'content' => $this->content,
 			'url_post' => self::$currentIndex.'&token='.$this->token,
@@ -245,4 +250,124 @@ class TuttiConfigControllerCore extends AdminController
 			die($result === true ? 'ok' : $result);
 		}
 	}
+
+	protected function processUpdateOptions()
+	{
+		$this->beforeUpdateOptions();
+
+		$languages = Language::getLanguages(false);
+
+		$hide_multishop_checkbox = (Shop::getTotalShops(false, null) < 2) ? true : false;
+		foreach ($this->fields_options as $category_data)
+		{
+			if (!isset($category_data['fields']))
+				continue;
+
+			$fields = $category_data['fields'];
+
+			foreach ($fields as $field => $values)
+			{
+				if (isset($values['type']) && $values['type'] == 'selectLang')
+				{
+					foreach ($languages as $lang)
+						if (Tools::getValue($field.'_'.strtoupper($lang['iso_code'])))
+							$fields[$field.'_'.strtoupper($lang['iso_code'])] = array(
+								'type' => 'select',
+								'cast' => 'strval',
+								'identifier' => 'mode',
+								'list' => $values['list']
+							);
+				}
+			}
+
+			// Validate fields
+			foreach ($fields as $field => $values)
+			{
+				// We don't validate fields with no visibility
+				if (!$hide_multishop_checkbox && Shop::isFeatureActive() && isset($values['visibility']) && $values['visibility'] > Shop::getContext())
+					continue;
+
+				// Check if field is required
+				if ((!Shop::isFeatureActive() && isset($values['required']) && $values['required']) 
+					|| (Shop::isFeatureActive() && isset($_POST['multishopOverrideOption'][$field]) && isset($values['required']) && $values['required']))
+					if (isset($values['type']) && $values['type'] == 'textLang')
+					{
+						foreach ($languages as $language)
+							if (($value = Tools::getValue($field.'_'.$language['id_lang'])) == false && (string)$value != '0')
+								$this->errors[] = sprintf(Tools::displayError('field %s is required.'), $values['title']);
+					}
+					elseif (($value = Tools::getValue($field)) == false && (string)$value != '0')
+						$this->errors[] = sprintf(Tools::displayError('field %s is required.'), $values['title']);
+
+				// Check field validator
+				if (isset($values['type']) && $values['type'] == 'textLang')
+				{
+					foreach ($languages as $language)
+						if (Tools::getValue($field.'_'.$language['id_lang']) && isset($values['validation']))
+							if (!Validate::$values['validation'](Tools::getValue($field.'_'.$language['id_lang'])))
+								$this->errors[] = sprintf(Tools::displayError('field %s is invalid.'), $values['title']);
+				}
+				elseif (Tools::getValue($field) && isset($values['validation']))
+					if (!Validate::$values['validation'](Tools::getValue($field)))
+						$this->errors[] = sprintf(Tools::displayError('field %s is invalid.'), $values['title']);
+
+				// Set default value
+				if (Tools::getValue($field) === false && isset($values['default']))
+					$_POST[$field] = $values['default'];
+			}
+
+			if (!count($this->errors))
+			{
+				foreach ($fields as $key => $options)
+				{
+					if (!$hide_multishop_checkbox && Shop::isFeatureActive() && isset($options['visibility']) && $options['visibility'] > Shop::getContext())
+						continue;
+
+					if (!$hide_multishop_checkbox && Shop::isFeatureActive() && Shop::getContext() != Shop::CONTEXT_ALL && empty($options['no_multishop_checkbox']) && empty($_POST['multishopOverrideOption'][$key]))
+					{
+						Configuration::deleteFromContext($key);
+						continue;
+					}
+
+					// check if a method updateOptionFieldName is available
+					$method_name = 'updateOption'.Tools::toCamelCase($key, true);
+					if (method_exists($this, $method_name))
+						$this->$method_name(Tools::getValue($key));
+					elseif (isset($options['type']) && in_array($options['type'], array('textLang', 'textareaLang')))
+					{
+						$list = array();
+						foreach ($languages as $language)
+						{
+							$key_lang = Tools::getValue($key.'_'.$language['id_lang']);
+							$val = (isset($options['cast']) ? $options['cast']($key_lang) : $key_lang);
+							if ($this->validateField($val, $options))
+							{
+								if (Validate::isCleanHtml($val))
+									$list[$language['id_lang']] = $val;
+								else
+									$this->errors[] = Tools::displayError('Can not add configuration '.$key.' for lang '.Language::getIsoById((int)$language['id_lang']));
+							}
+						}
+						Configuration::updateValue($key, $list, true);
+					}
+					else
+					{
+						$val = (isset($options['cast']) ? $options['cast'](Tools::getValue($key)) : Tools::getValue($key));
+						if ($this->validateField($val, $options))
+						{
+							if (Validate::isCleanHtml($val))
+								Configuration::updateValue($key, $val, true);
+							else
+								$this->errors[] = Tools::displayError('Can not add configuration '.$key);
+						}
+					}
+				}
+			}
+		}
+
+		$this->display = 'list';
+		if (empty($this->errors))
+			$this->confirmations[] = $this->_conf[6];
+	}
+
 }
