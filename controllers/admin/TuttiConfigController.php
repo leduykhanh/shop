@@ -1,6 +1,21 @@
 <?php
-
-class AdminTuttiConfigControllerCore extends AdminController
+/**
+* In order to make it work (without including js):
+* the text area must have class ="autoload_rte"
+* renderForm must call parent::renderForm()
+*
+* Note: u also can make it work by including js:
+* var iso = 'en';
+*	var pathCSS = '/prestashop/themes/default-bootstrap/css/';
+*	var ad = '/prestashop/admin6357';
+*	$(document).ready(function(){		
+*			tinySetup({
+*				editor_selector :"autoload_rte"
+*			});
+*		
+*	});
+*/
+class TuttiConfigControllerCore extends AdminController
 {
 	public function __construct()
 	{
@@ -69,41 +84,77 @@ class AdminTuttiConfigControllerCore extends AdminController
 	}
 	public function renderForm()
 	{
+			$this->multiple_fieldsets = true;
 			$this->fields_form = array(
-			'tinymce' => true,
-			'lang' => true,
-			'legend' => array(
-				'title' => $this->l('CMS Page'),
-				'icon' => 'icon-folder-close'
-			),
-			'input' => array(
-				// custom template
-				array(
-					'type' => 'textarea',
-					'label' => $this->l('Page content'),
-					'name' => 'content',
-					'autoload_rte' => true,
-					'class' => 'rte',
-					'lang' => true,
-					'rows' => 5,
-					'cols' => 40,
-					'hint' => $this->l('Invalid characters:').' <>;=#{}'
+				//first array
+				array( "form" => array(
+					'tinymce' => true,
+					'legend' => array(
+						'title' => $this->l('CMS Page 1'),
+						'icon' => 'icon-folder-close'
+					),
+					'input' => array(
+						// custom template
+						array(
+							'type' => 'textarea',
+							'label' => $this->l('Page content'),
+							'name' => 'content',
+							'autoload_rte' => true,
+							'lang' => true,
+							'rows' => 5,
+							'cols' => 40,
+							'hint' => $this->l('Invalid characters:').' <>;=#{}'
+						),
+					),
+					'submit' => array(
+						'title' => $this->l('Save'),
+					),
+					'buttons' => array(
+						'save_and_preview' => array(
+							'name' => 'viewcms',
+							'type' => 'submit',
+							'title' => $this->l('Save and preview'),
+							'class' => 'btn btn-default pull-right',
+							'icon' => 'process-icon-preview'
+						)))
+				), //end of first array
+
+				//second array
+				array( "form" => array(
+				'tinymce' => true,
+				'legend' => array(
+					'title' => $this->l('CMS Page 2'),
+					'icon' => 'icon-folder-close'
 				),
-			),
-			'submit' => array(
-				'title' => $this->l('Save'),
-			),
-			'buttons' => array(
-				'save_and_preview' => array(
-					'name' => 'viewcms',
-					'type' => 'submit',
-					'title' => $this->l('Save and preview'),
-					'class' => 'btn btn-default pull-right',
-					'icon' => 'process-icon-preview'
-				)
-			)
+				'input' => array(
+					// custom template
+					array(
+						'type' => 'textarea',
+						'label' => $this->l('Page content'),
+						'name' => 'content',
+						'autoload_rte' => true,
+						'lang' => true,
+						'rows' => 5,
+						'cols' => 40,
+						'hint' => $this->l('Invalid characters:').' <>;=#{}'
+					),
+				),
+				'submit' => array(
+					'title' => $this->l('Save'),
+				),
+				'buttons' => array(
+					'save_and_preview' => array(
+						'name' => 'viewcms',
+						'type' => 'submit',
+						'title' => $this->l('Save and preview'),
+						'class' => 'btn btn-default pull-right',
+						'icon' => 'process-icon-preview'
+					)))				
+				) //end of second array
 		);
-		}
+		return parent::renderForm();
+	}
+
 	public function updateOptionPsMailPasswd($value)
 	{
 		if (Tools::getValue('PS_MAIL_PASSWD') == '' && Configuration::get('PS_MAIL_PASSWD'))
