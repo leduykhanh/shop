@@ -25,8 +25,8 @@
 
 <!-- Block languages module -->
 {if count($languages) > 1}
-<div id="languages_block_top">
-	<div id="languages-block-top" class="languages-block">
+<div id="languages_block_top" class="leelanguages">
+	<div id="languages-block-top" class="languages-block hello">
 		{foreach from=$languages key=k item=language name="languages"}
 			{if $language.iso_code == $lang_iso}
 				<div class="current">
@@ -34,7 +34,7 @@
 				</div>
 			{/if}
 		{/foreach}
-		<ul id="first-languages" class="languages-block_ul toogle_content">
+		<ul id="first-languages-leelanguages" class="languages-block_ul language_toogle_content">
 			{foreach from=$languages key=k item=language name="languages"}
 				<li {if $language.iso_code == $lang_iso}class="selected"{/if}>
 				{if $language.iso_code != $lang_iso}
@@ -53,17 +53,40 @@
 			{/foreach}
 		</ul>
 	</div>
-
+</div>
 <script type="text/javascript">
+
+function dropDownLeeLanguage() 
+{
+	var elementClick = '#footer .leelanguages .current';
+	var elementSlide =  'ul.language_toogle_content';       
+	var activeClass = 'active';			 
+	$(elementClick).on('click', function(e){
+		e.stopPropagation();
+		var subUl = $(this).next(elementSlide);
+		
+		if(subUl.is(':hidden'))
+		{
+			subUl.slideDown();
+			$(this).addClass(activeClass);	
+		}
+		else
+		{
+			subUl.slideUp();
+			$(this).removeClass(activeClass);
+		}
+		
+		e.preventDefault();
+	});
+
+	$("#footer .leelanguages ul.language_toogle_content").on('click', function(e){
+		e.stopPropagation();
+	});
+
+}
+
 $(document).ready(function () {
-		$("#countries").mouseover(function(){
-		$(this).addClass("countries_hover");
-		$(".countries_ul").addClass("countries_ul_hover");
-	});
-	$("#countries").mouseout(function(){
-		$(this).removeClass("countries_hover");
-		$(".countries_ul").removeClass("countries_ul_hover");
-	});
+		dropDownLeeLanguage();		
 
 });
 </script>

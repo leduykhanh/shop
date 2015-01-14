@@ -146,7 +146,7 @@ class LeeLanguages extends Module
 	public function hookDisplayNav($params)
 	{
 
-		return $this->hookDisplayTop($params);
+		//return $this->hookDisplayTop($params);
 	}
 
 	public function hookDisplayHeader($params)
