@@ -82,79 +82,7 @@ class TuttiConfigControllerCore extends AdminController
 			)
 		);
 	}
-	public function renderForm()
-	{
-			$this->multiple_fieldsets = true;
-			$this->fields_form = array(
-				//first array
-				array( "form" => array(
-					'tinymce' => true,
-					'legend' => array(
-						'title' => $this->l('CMS Page 1'),
-						'icon' => 'icon-folder-close'
-					),
-					'input' => array(
-						// custom template
-						array(
-							'type' => 'textarea',
-							'label' => $this->l('Page content'),
-							'name' => 'content',
-							'autoload_rte' => true,
-							'lang' => true,
-							'rows' => 5,
-							'cols' => 40,
-							'hint' => $this->l('Invalid characters:').' <>;=#{}'
-						),
-					),
-					'submit' => array(
-						'title' => $this->l('Save'),
-					),
-					'buttons' => array(
-						'save_and_preview' => array(
-							'name' => 'viewcms',
-							'type' => 'submit',
-							'title' => $this->l('Save and preview'),
-							'class' => 'btn btn-default pull-right',
-							'icon' => 'process-icon-preview'
-						)))
-				), //end of first array
-
-				//second array
-				array( "form" => array(
-				'tinymce' => true,
-				'legend' => array(
-					'title' => $this->l('CMS Page 2'),
-					'icon' => 'icon-folder-close'
-				),
-				'input' => array(
-					// custom template
-					array(
-						'type' => 'textarea',
-						'label' => $this->l('Page content'),
-						'name' => 'content',
-						'autoload_rte' => true,
-						'lang' => true,
-						'rows' => 5,
-						'cols' => 40,
-						'hint' => $this->l('Invalid characters:').' <>;=#{}'
-					),
-				),
-				'submit' => array(
-					'title' => $this->l('Save'),
-				),
-				'buttons' => array(
-					'save_and_preview' => array(
-						'name' => 'viewcms',
-						'type' => 'submit',
-						'title' => $this->l('Save and preview'),
-						'class' => 'btn btn-default pull-right',
-						'icon' => 'process-icon-preview'
-					)))				
-				) //end of second array
-		);
-		return parent::renderForm();
-	}
-
+	
 	public function updateOptionPsMailPasswd($value)
 	{
 		if (Tools::getValue('PS_MAIL_PASSWD') == '' && Configuration::get('PS_MAIL_PASSWD'))
@@ -171,8 +99,7 @@ class TuttiConfigControllerCore extends AdminController
 		$this->initTabModuleList();
 		$this->initToolbar();
 		$this->initPageHeaderToolbar();
-		$this->context->controller->addJS(_PS_JS_DIR_.'tiny_mce/tiny_mce.js');
-		$this->context->controller->addJS(_PS_JS_DIR_.'tinymce.inc.js');
+		
 		$this->addToolBarModulesListButton();
 		unset($this->toolbar_btn['save']);
 		$back = $this->context->link->getAdminLink('AdminDashboard');
@@ -184,11 +111,26 @@ class TuttiConfigControllerCore extends AdminController
 		
 		$this->content .= $this->renderOptions();
 		$this->content .= $this->renderForm();
+
+		$iso = file_exists(_PS_CORE_DIR_.'/js/tiny_mce/langs/'.$iso.'.js') ? $iso : 'en';;
+		$pathCSS = _THEME_CSS_DIR_;;
+		$ad = __PS_BASE_URI__.basename(_PS_ADMIN_DIR_);;
 		$this->content .= "
 			<script type='text/javascript'>
-				tinySetup({editor_selector:'textarea-autosize'});
+				var iso = '$iso';
+				var pathCSS = '$pathCSS';
+				var ad = '$ad';
+
+				$(document).ready(function(){
+					
+					tinySetup({editor_selector:'textarea-autosize'});
+				});
+				
 			</script>
 		";
+		$this->context->controller->addJS(_PS_JS_DIR_.'tiny_mce/tiny_mce.js');
+		$this->context->controller->addJS(_PS_JS_DIR_.'tinymce.inc.js');
+
 		$this->context->smarty->assign(array(
 			'content' => $this->content,
 			'url_post' => self::$currentIndex.'&token='.$this->token,
@@ -348,7 +290,7 @@ class TuttiConfigControllerCore extends AdminController
 									$this->errors[] = Tools::displayError('Can not add configuration '.$key.' for lang '.Language::getIsoById((int)$language['id_lang']));
 							}
 						}
-						Configuration::updateValue($key, $list, true);
+						Configuration::updateValue($key, $list, $html=true);
 					}
 					else
 					{
@@ -356,7 +298,7 @@ class TuttiConfigControllerCore extends AdminController
 						if ($this->validateField($val, $options))
 						{
 							if (Validate::isCleanHtml($val))
-								Configuration::updateValue($key, $val, true);
+								Configuration::updateValue($key, $val, $html=true);
 							else
 								$this->errors[] = Tools::displayError('Can not add configuration '.$key);
 						}
